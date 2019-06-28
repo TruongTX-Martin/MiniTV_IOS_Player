@@ -68,7 +68,7 @@ func findBookInfo(completion: @escaping (Bool, Book?) -> Void) {
                 let bookInfo = try! JSONDecoder().decode(BookInfo.self, from: data)
                 //print(bookInfo.result.rawData) // Sample1(a: "aa", b: "bb")
                 let book = try! JSONDecoder().decode(Book.self, from: bookInfo.result.rawData.data(using: .utf8)!)
-                print(book)
+                //print(book)
                 completion(true, book)
             } catch {
                 print("error \(error.localizedDescription)")

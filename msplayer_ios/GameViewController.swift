@@ -22,8 +22,14 @@ class GameViewController: UIViewController {
         sView.backgroundColor = .clear
         sView.allowsTransparency = true
        
+        print("vis zie \(sView.frame.size)")
+        print("screen size \(UIScreen.main.scale)")
+        print("screen size 2 \(UIScreen.main.bounds)")
+        print("screen size 3 \(UIScreen.main.nativeBounds)7")
         
-        let loadingScene = LoadingScene()
+        let loadingScene = LoadingScene(size: CGSize(width: 100, height: 100))
+        loadingScene.position = CGPoint(x: 10, y: 10)
+        loadingScene.scaleMode = .aspectFit
         
         sView.presentScene(loadingScene)
         self.view.addSubview(sView)
@@ -36,7 +42,7 @@ class GameViewController: UIViewController {
                 return
             }
             
-            print("success  \(book!.pageGroups[0].pages[0])")
+            //print("success  \(book!.pageGroups[0].pages[0])")
         }
         
         

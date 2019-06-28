@@ -21,6 +21,7 @@ struct Book: Codable {
 struct PageGroup: Codable {
     let id: Int
     let title: String
+    let zIndex: Int
     let pages: [Page]
 }
 

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16CA5DBB619E25D8AA9FB8DC /* Pods_msplayer_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936F70040C01E4DCAFC2701C /* Pods_msplayer_ios.framework */; };
-		8A4AE21EC16C7F0F2DB3EF5B /* Pods_msplayer_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D10FEECC3394D82309D3EE /* Pods_msplayer_iosUITests.framework */; };
+		41CFC42FBF360ED5EF45D465 /* libPods-msplayer_iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5B6915285A86350C58E0EB /* libPods-msplayer_iosUITests.a */; };
+		6F09F97517716F9A967DC079 /* libPods-msplayer_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 622C6FD1906D03ECC4BAD335 /* libPods-msplayer_ios.a */; };
 		B576A35C22B21EBC00C92D40 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576A35B22B21EBC00C92D40 /* CameraView.swift */; };
 		B579A08322B370FA00BF2E99 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = B579A08222B370FA00BF2E99 /* Loading.swift */; };
 		B5DA753A22B0CBF20050E6FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DA753922B0CBF20050E6FF /* AppDelegate.swift */; };
@@ -22,7 +22,8 @@
 		B5EC168E22B37F4F00E5C1E1 /* PlayerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC168D22B37F4F00E5C1E1 /* PlayerAPI.swift */; };
 		B5EC169122B3AB9200E5C1E1 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC169022B3AB9200E5C1E1 /* Book.swift */; };
 		B5EC169322B3ABFA00E5C1E1 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC169222B3ABFA00E5C1E1 /* Page.swift */; };
-		EC30DB8862A6C324683655F8 /* Pods_msplayer_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8294624AF4EF47643B51D3 /* Pods_msplayer_iosTests.framework */; };
+		B5EC16A922B74BD600E5C1E1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC16A822B74BD600E5C1E1 /* Config.swift */; };
+		C78C0B4DBB260538CDE206B9 /* libPods-msplayer_iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE30FC430D1EAA5E0F078DF /* libPods-msplayer_iosTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,13 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05D10FEECC3394D82309D3EE /* Pods_msplayer_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_msplayer_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567CA63F44F2BA46E783223D /* Pods-msplayer_iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_iosUITests.release.xcconfig"; path = "Target Support Files/Pods-msplayer_iosUITests/Pods-msplayer_iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		59E101AA87D0E08F2808CCC8 /* Pods-msplayer_iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-msplayer_iosUITests/Pods-msplayer_iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		622C6FD1906D03ECC4BAD335 /* libPods-msplayer_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msplayer_ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8725F42388327007A4380E1D /* Pods-msplayer_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_ios.debug.xcconfig"; path = "Target Support Files/Pods-msplayer_ios/Pods-msplayer_ios.debug.xcconfig"; sourceTree = "<group>"; };
-		8E8294624AF4EF47643B51D3 /* Pods_msplayer_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_msplayer_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		936F70040C01E4DCAFC2701C /* Pods_msplayer_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_msplayer_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BE30FC430D1EAA5E0F078DF /* libPods-msplayer_iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msplayer_iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF5B6915285A86350C58E0EB /* libPods-msplayer_iosUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msplayer_iosUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44B912C73736B3B2A078CD3 /* Pods-msplayer_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_iosTests.debug.xcconfig"; path = "Target Support Files/Pods-msplayer_iosTests/Pods-msplayer_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B54EF16122B9334100144BC3 /* msplayer_ios-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "msplayer_ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		B576A35B22B21EBC00C92D40 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		B579A08222B370FA00BF2E99 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		B5DA753622B0CBF20050E6FF /* msplayer_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = msplayer_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 		B5EC168D22B37F4F00E5C1E1 /* PlayerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAPI.swift; sourceTree = "<group>"; };
 		B5EC169022B3AB9200E5C1E1 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B5EC169222B3ABFA00E5C1E1 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		B5EC16A822B74BD600E5C1E1 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D68457BBCBEDDC9F2CBF7F7D /* Pods-msplayer_ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_ios.release.xcconfig"; path = "Target Support Files/Pods-msplayer_ios/Pods-msplayer_ios.release.xcconfig"; sourceTree = "<group>"; };
 		EFB1A1076F3B45BCA0DE8979 /* Pods-msplayer_iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msplayer_iosTests.release.xcconfig"; path = "Target Support Files/Pods-msplayer_iosTests/Pods-msplayer_iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16CA5DBB619E25D8AA9FB8DC /* Pods_msplayer_ios.framework in Frameworks */,
+				6F09F97517716F9A967DC079 /* libPods-msplayer_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC30DB8862A6C324683655F8 /* Pods_msplayer_iosTests.framework in Frameworks */,
+				C78C0B4DBB260538CDE206B9 /* libPods-msplayer_iosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A4AE21EC16C7F0F2DB3EF5B /* Pods_msplayer_iosUITests.framework in Frameworks */,
+				41CFC42FBF360ED5EF45D465 /* libPods-msplayer_iosUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,9 +107,9 @@
 		37ED1796D07F4144ED7F23F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				936F70040C01E4DCAFC2701C /* Pods_msplayer_ios.framework */,
-				8E8294624AF4EF47643B51D3 /* Pods_msplayer_iosTests.framework */,
-				05D10FEECC3394D82309D3EE /* Pods_msplayer_iosUITests.framework */,
+				622C6FD1906D03ECC4BAD335 /* libPods-msplayer_ios.a */,
+				9BE30FC430D1EAA5E0F078DF /* libPods-msplayer_iosTests.a */,
+				AF5B6915285A86350C58E0EB /* libPods-msplayer_iosUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B5DA753822B0CBF20050E6FF /* msplayer_ios */,
+				B5EC169B22B7493B00E5C1E1 /* SupportingFiles */,
 				B5DA755322B0CBF30050E6FF /* msplayer_iosTests */,
 				B5DA755E22B0CBF30050E6FF /* msplayer_iosUITests */,
 				B5DA753722B0CBF20050E6FF /* Products */,
@@ -144,6 +148,7 @@
 		B5DA753822B0CBF20050E6FF /* msplayer_ios */ = {
 			isa = PBXGroup;
 			children = (
+				B5EC169422B7467500E5C1E1 /* WebRTC */,
 				B5EC168F22B3AAFD00E5C1E1 /* Model */,
 				B5EC168C22B37F3000E5C1E1 /* API */,
 				B579A08122B370D700BF2E99 /* Scene */,
@@ -192,6 +197,46 @@
 				B5EC169222B3ABFA00E5C1E1 /* Page.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B5EC169422B7467500E5C1E1 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				B5EC16A822B74BD600E5C1E1 /* Config.swift */,
+				B5EC16A722B74B4E00E5C1E1 /* Screens */,
+				B5EC16A622B74B3900E5C1E1 /* Services */,
+				B5EC16A522B74B2D00E5C1E1 /* Extensions */,
+			);
+			path = WebRTC;
+			sourceTree = "<group>";
+		};
+		B5EC169B22B7493B00E5C1E1 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B54EF16122B9334100144BC3 /* msplayer_ios-Bridging-Header.h */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B5EC16A522B74B2D00E5C1E1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B5EC16A622B74B3900E5C1E1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B5EC16A722B74B4E00E5C1E1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		F445D65D29856A2B985FF67C /* Pods */ = {
@@ -430,6 +475,7 @@
 			files = (
 				B5DA754022B0CBF20050E6FF /* GameScene.swift in Sources */,
 				B5DA754222B0CBF20050E6FF /* GameViewController.swift in Sources */,
+				B5EC16A922B74BD600E5C1E1 /* Config.swift in Sources */,
 				B5EC169322B3ABFA00E5C1E1 /* Page.swift in Sources */,
 				B5EC169122B3AB9200E5C1E1 /* Book.swift in Sources */,
 				B579A08322B370FA00BF2E99 /* Loading.swift in Sources */,
@@ -614,13 +660,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9CSU2273Y;
 				INFOPLIST_FILE = msplayer_ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.minischool.msplayer-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SupportingFiles/msplayer_ios-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -634,13 +681,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W9CSU2273Y;
 				INFOPLIST_FILE = msplayer_ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.minischool.msplayer-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SupportingFiles/msplayer_ios-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

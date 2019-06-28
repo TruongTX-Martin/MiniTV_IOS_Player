@@ -11,21 +11,29 @@ import SpriteKit
 
 class LoadingScene: SKScene {
     
-    override init() {
-        super.init(size: CGSize.zero)
-        self.backgroundColor = .blue
-    }
+    var scoreLabel: SKLabelNode!
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    override init() {
+//        super.init(size: CGSize.zero)
+//        //self.backgroundColor = .blue
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        //self.backgroundColor = .red
+        
+        backgroundColor = .red
         print("didMove")
 
-
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: 0"
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.position = CGPoint(x: 0, y: 0)
+        addChild(scoreLabel)
+        
 
     }
     
