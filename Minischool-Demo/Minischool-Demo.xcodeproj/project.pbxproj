@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		493B387D22CDFED200D19AC0 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 493B387A22CDFEC600D19AC0 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		493B388722CED44B00D19AC0 /* page.html in Resources */ = {isa = PBXBuildFile; fileRef = 493B388622CED3FE00D19AC0 /* page.html */; };
+		494FFDD422CDEBBE00B38B59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */; };
+		494FFDD622CDEBBE00B38B59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FFDD522CDEBBE00B38B59 /* ViewController.swift */; };
+		494FFDD922CDEBBE00B38B59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494FFDD722CDEBBE00B38B59 /* Main.storyboard */; };
+		494FFDDB22CDEBBF00B38B59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494FFDDA22CDEBBF00B38B59 /* Assets.xcassets */; };
+		494FFDDE22CDEBBF00B38B59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494FFDDC22CDEBBF00B38B59 /* LaunchScreen.storyboard */; };
+		4967FE9B22CDFCC800466C4D /* MinischoolOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4967FE9C22CDFCC800466C4D /* MinischoolOne.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		494FFDEA22CDEBD000B38B59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 49DABFF822CDEA0A0051FD17;
+			remoteInfo = MinischoolOne;
+		};
+		4967FE9D22CDFCC800466C4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 49DABFF722CDEA0A0051FD17;
+			remoteInfo = MinischoolOne;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4967FE9922CDFBEC00466C4D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4967FE9C22CDFCC800466C4D /* MinischoolOne.framework in CopyFiles */,
+				493B387D22CDFED200D19AC0 /* WebRTC.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		493B387A22CDFEC600D19AC0 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		493B388622CED3FE00D19AC0 /* page.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = page.html; sourceTree = "<group>"; };
+		494FFDD022CDEBBE00B38B59 /* Minischool-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Minischool-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		494FFDD522CDEBBE00B38B59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		494FFDD822CDEBBE00B38B59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		494FFDDA22CDEBBF00B38B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		494FFDDD22CDEBBF00B38B59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		494FFDDF22CDEBBF00B38B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MinischoolOne.xcodeproj; path = ../MinischoolOne/MinischoolOne.xcodeproj; sourceTree = "<group>"; };
+		49DAC02122CDEA4C0051FD17 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		494FFDCD22CDEBBE00B38B59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4967FE9B22CDFCC800466C4D /* MinischoolOne.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		494FFDC722CDEBBE00B38B59 = {
+			isa = PBXGroup;
+			children = (
+				494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */,
+				494FFDD222CDEBBE00B38B59 /* Minischool-Demo */,
+				494FFDD122CDEBBE00B38B59 /* Products */,
+				494FFDEC22CDEBE800B38B59 /* Frameworks */,
+				49EAC01122CDFCF50099DAFC /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		494FFDD122CDEBBE00B38B59 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				494FFDD022CDEBBE00B38B59 /* Minischool-Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		494FFDD222CDEBBE00B38B59 /* Minischool-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				493B388622CED3FE00D19AC0 /* page.html */,
+				494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */,
+				494FFDD522CDEBBE00B38B59 /* ViewController.swift */,
+				494FFDD722CDEBBE00B38B59 /* Main.storyboard */,
+				494FFDDA22CDEBBF00B38B59 /* Assets.xcassets */,
+				494FFDDC22CDEBBF00B38B59 /* LaunchScreen.storyboard */,
+				494FFDDF22CDEBBF00B38B59 /* Info.plist */,
+			);
+			path = "Minischool-Demo";
+			sourceTree = "<group>";
+		};
+		494FFDE622CDEBD000B38B59 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		494FFDEC22CDEBE800B38B59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				493B387A22CDFEC600D19AC0 /* WebRTC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49EAC01122CDFCF50099DAFC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				49DAC02122CDEA4C0051FD17 /* WebRTC.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		494FFDCF22CDEBBE00B38B59 /* Minischool-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 494FFDE222CDEBBF00B38B59 /* Build configuration list for PBXNativeTarget "Minischool-Demo" */;
+			buildPhases = (
+				494FFDCC22CDEBBE00B38B59 /* Sources */,
+				494FFDCD22CDEBBE00B38B59 /* Frameworks */,
+				494FFDCE22CDEBBE00B38B59 /* Resources */,
+				4967FE9922CDFBEC00466C4D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4967FE9E22CDFCC800466C4D /* PBXTargetDependency */,
+			);
+			name = "Minischool-Demo";
+			productName = "Minischool-Demo";
+			productReference = 494FFDD022CDEBBE00B38B59 /* Minischool-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		494FFDC822CDEBBE00B38B59 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Minischool;
+				TargetAttributes = {
+					494FFDCF22CDEBBE00B38B59 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 494FFDCB22CDEBBE00B38B59 /* Build configuration list for PBXProject "Minischool-Demo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 494FFDC722CDEBBE00B38B59;
+			productRefGroup = 494FFDD122CDEBBE00B38B59 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 494FFDE622CDEBD000B38B59 /* Products */;
+					ProjectRef = 494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				494FFDCF22CDEBBE00B38B59 /* Minischool-Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MinischoolOne.framework;
+			remoteRef = 494FFDEA22CDEBD000B38B59 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		494FFDCE22CDEBBE00B38B59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				493B388722CED44B00D19AC0 /* page.html in Resources */,
+				494FFDDE22CDEBBF00B38B59 /* LaunchScreen.storyboard in Resources */,
+				494FFDDB22CDEBBF00B38B59 /* Assets.xcassets in Resources */,
+				494FFDD922CDEBBE00B38B59 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		494FFDCC22CDEBBE00B38B59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				494FFDD622CDEBBE00B38B59 /* ViewController.swift in Sources */,
+				494FFDD422CDEBBE00B38B59 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4967FE9E22CDFCC800466C4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MinischoolOne;
+			targetProxy = 4967FE9D22CDFCC800466C4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		494FFDD722CDEBBE00B38B59 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				494FFDD822CDEBBE00B38B59 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		494FFDDC22CDEBBF00B38B59 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				494FFDDD22CDEBBF00B38B59 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		494FFDE022CDEBBF00B38B59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		494FFDE122CDEBBF00B38B59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		494FFDE322CDEBBF00B38B59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8UKLSN47S;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Minischool-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.minischool.ios.Minischool-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		494FFDE422CDEBBF00B38B59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N8UKLSN47S;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "Minischool-Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.minischool.ios.Minischool-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		494FFDCB22CDEBBE00B38B59 /* Build configuration list for PBXProject "Minischool-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				494FFDE022CDEBBF00B38B59 /* Debug */,
+				494FFDE122CDEBBF00B38B59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		494FFDE222CDEBBF00B38B59 /* Build configuration list for PBXNativeTarget "Minischool-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				494FFDE322CDEBBF00B38B59 /* Debug */,
+				494FFDE422CDEBBF00B38B59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 494FFDC822CDEBBE00B38B59 /* Project object */;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Client Sample</title>
+        <style type="text/css">
+            #container {
+                margin-top: 30pt;
+            }
+        button {
+            background-color: gray;
+            border: none;
+            padding: 10pt;
+            font-size: 30pt;
+            width: 600px;
+            height: 200px;
+        }
+        </style>
+        <script type="text/javascript">
+            
+        function initNative() {
+
+        }
+        
+        function callNative(funcName, data) {
+            var message = {
+                'function': funcName,
+                'data' : data
+            };
+            window.webkit.messageHandlers.jsToNative.postMessage(message);
+        }
+        
+        function sendLocalVideoToBack() {
+            callNative('sendLocalVideoToBack', '')
+        }
+        
+        function bringLocalVideoToFront() {
+            callNative('bringLocalVideoToFront', '')
+        }
+        
+        </script>
+    </head>
+    <body>
+        <div id='container' align='center'>
+            <button onclick='sendLocalVideoToBack();'>sendLocalVideoToBack</button></br></br>
+            <button onclick='bringLocalVideoToFront();'>bringLocalVideoToFront</button></br></br>
+        </div>
+    </body>
+</html>
