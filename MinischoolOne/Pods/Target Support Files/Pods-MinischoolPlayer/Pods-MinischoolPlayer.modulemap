@@ -1,0 +1,6 @@
+module Pods_MinischoolPlayer {
+  umbrella header "Pods-MinischoolPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
