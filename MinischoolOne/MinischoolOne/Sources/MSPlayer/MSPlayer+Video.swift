@@ -61,8 +61,13 @@ extension MSPlayer{
     }
     
     func destroyVideo(isLocal: Bool) {
-        
+        if isLocal {
+            Client.shared.webRTCClient.stopCaptureLocalVideo()
+        }else{
+            Client.shared.webRTCClient.stopRenderRemoteVideo()
+        }
     }
+    
     private func embedView(_ view: UIView, into containerView: UIView) {
         containerView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false

@@ -37,6 +37,9 @@ final class WebRTCClient: NSObject {
     private var remoteVideoTrack: RTCVideoTrack?
     private var localDataChannel: RTCDataChannel?
     private var remoteDataChannel: RTCDataChannel?
+    
+    private weak var localRenderer: RTCVideoRenderer?
+    private weak var remoteRenderer: RTCVideoRenderer?
 
     @available(*, unavailable)
     override init() {
@@ -126,10 +129,26 @@ final class WebRTCClient: NSObject {
                               fps: Int(fps.maxFrameRate))
         
         self.localVideoTrack?.add(renderer)
+        self.localRenderer = renderer
+    }
+    
+    func stopCaptureLocalVideo() {
+        guard let renderer = self.localRenderer else { return }
+        self.localVideoTrack?.remove(renderer)
+        guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else {
+            return
+        }
+        capturer.stopCapture()
     }
     
     func renderRemoteVideo(to renderer: RTCVideoRenderer) {
         self.remoteVideoTrack?.add(renderer)
+        self.remoteRenderer = renderer
+    }
+    
+    func stopRenderRemoteVideo() {
+        guard let renderer = self.remoteRenderer else { return }
+        self.remoteVideoTrack?.remove(renderer)
     }
     
     private func configureAudioSession() {
