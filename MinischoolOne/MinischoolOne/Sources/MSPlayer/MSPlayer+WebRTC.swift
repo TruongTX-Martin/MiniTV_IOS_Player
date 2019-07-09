@@ -47,4 +47,49 @@ extension MSPlayer: WebRTCClientDelegate {
         }
     }
     
+    
+    /*
+     2019-7-8
+     
+     NativeToJS
+     
+     - sendOffer(sdp)
+     - sendAnswer(sdp)
+     - sendIceCandidate(sdp)
+ */
+    
+//    JSToNative
+//    WebRTC Control
+    func startWebRTC( constraints: String, iceConfiguration: String ) {
+
+    }
+    func stopWebRTC() {
+        
+    }
+    
+//    Video Control
+    func createLocalVideo(frame: Frame) {
+        self.createVideo(isLocal: true, frame: frame)
+    }
+    func destroyLocalVideo() {
+        self.destroyVideo(isLocal: true)
+    }
+    func createRemoteVideo(frame: Frame) {
+        self.createVideo(isLocal: false, frame: frame)
+    }
+    func destroyRemoteVideo() {
+        self.destroyVideo(isLocal: false)
+    }
+    
+//    WebRTC Callback
+    func onReceiveOffer(sdp: String) {
+        
+    }
+    func onReceiveAnswer(sdp: String) {
+        
+    }
+    func onReceiveIceCandidate(candidate: String) {
+        
+    }
+    
 }

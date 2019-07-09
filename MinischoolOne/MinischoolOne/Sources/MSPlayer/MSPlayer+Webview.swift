@@ -124,10 +124,23 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             }
         })
     }
+//    Note that you don't need all this stuff, your function could be as simple as:
     
+    func jsonEncode(object: Any) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: object, options:[])
+    }
+//    If you really need to pass an Optional, then you have to unwrap it:
+    
+    func jsonEncode(object: Any?) -> Data? {
+        if let object = object {
+            return try? JSONSerialization.data(withJSONObject: object, options:[])
+        }
+        return nil
+    }
     //Called from JS
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.name)
+        print(message)
+//        print(message.name)
         if message.name == "jsToNative" {
             if let dictionary: [String: String] = message.body as? Dictionary {
                 if let function = dictionary["function"] {
@@ -152,19 +165,11 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
                     case "sendWebViewToBack" :
                         self.sendWebViewToBack()
                         
-                    case "setLocalVideoFrame" :
-//                        guard let data = dictionary["data"] as? String else {return}
-//                        do {
-//                            //here dataResponse received from a network request
-//                            let decoder = JSONDecoder()
-//                            let model = try decoder.decode([Frame].self, from:
-//                                data as String) //Decode JSON Response Data
-//                            print(model)
-//                            self.setLocalVideoFrame(x: model.x, y: model.y, width: model.width, height: model.height)
-//                        } catch let parsingError {
-//                            print("Error", parsingError)
-//                        }
-                        print("under construction")
+                    case "resizeLocalVideo" :
+                        guard let data = dictionary["data"] else {return}
+                        print("data: \(data)")
+                        let frame: Frame = self.jsonTo(data: data, defValue: Frame(x: 0, y: 0, z:0, width: 100, height: 100))
+                        self.setLocalVideoFrame(x: frame.x, y: frame.y, width: frame.width, height: frame.height)
 
                     default:
                         print("not available")
@@ -174,10 +179,14 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             }
         }
     }
-}
-struct Frame: Codable{
-    var x: CGFloat
-    var y: CGFloat
-    var width: CGFloat
-    var height: CGFloat
+    
+    func jsonTo<T: Codable>(data: String, defValue: T) -> T {
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data.data(using: .utf8)!)
+        } catch let parsingError {
+            print("Parsing error: ", parsingError)
+        }
+        return defValue
+    }
 }

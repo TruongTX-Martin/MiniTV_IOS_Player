@@ -37,12 +37,18 @@
             callNative('bringLocalVideoToFront', '')
         }
         
+        function resizeLocalVideo() {
+            var frame = { x: 10, y:10, width:100, height:100 };
+            callNative('resizeLocalVideo', JSON.stringify(frame))
+        }
+
         </script>
     </head>
     <body>
         <div id='container' align='center'>
             <button onclick='sendLocalVideoToBack();'>sendLocalVideoToBack</button></br></br>
             <button onclick='bringLocalVideoToFront();'>bringLocalVideoToFront</button></br></br>
+            <button onclick='resizeLocalVideo();'>resizeLocalVideo</button></br></br>
         </div>
     </body>
 </html>

@@ -37,6 +37,32 @@ extension MSPlayer{
         }
     }
     
+    func createVideo(isLocal: Bool, frame: Frame) {
+        
+        let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
+        
+        #if arch(arm64)
+        // Using metal (arm64 only)
+        let renderer = RTCMTLVideoView(frame: videoView.frame)
+        renderer.videoContentMode = .scaleAspectFill
+        #else
+        // Using OpenGLES for the rest
+        let renderer = RTCEAGLVideoView(frame: videoView.frame)
+        #endif
+        //좌우반전(거울처럼)
+        renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        
+        if isLocal {
+            Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
+        }else{
+            Client.shared.webRTCClient.renderRemoteVideo(to: renderer)
+        }
+        self.embedView(renderer, into: videoView)
+    }
+    
+    func destroyVideo(isLocal: Bool) {
+        
+    }
     private func embedView(_ view: UIView, into containerView: UIView) {
         containerView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
