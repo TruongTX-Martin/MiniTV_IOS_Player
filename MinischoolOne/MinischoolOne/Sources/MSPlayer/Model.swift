@@ -33,6 +33,52 @@ public struct Frame: Codable{
     var height: CGFloat
 }
 
-struct SDP: Codable{
-
+public struct SDP: Codable{
+    
 }
+
+public struct Candidate: Codable{
+    
+}
+
+public struct AVConstraint: Codable{
+    
+    init(){
+        self.audio = false
+        self.video = false
+    }
+    
+    var audio: Bool
+    var video: Bool
+}
+
+public struct ICEConfiguration: Codable{
+    
+    /*
+     const configuration = {
+     iceServers: [{
+     //url: 'stun:stun.l.google.com:19302',
+     url: "stun:stage-ct-e1.minischool.co.kr:3478",
+     urls: "stun:stage-ct-e1.minischool.co.kr:3478"
+     }, {
+     credential: "********",
+     url: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp",
+     urls: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp",
+     username: "minischool"
+     }]
+     };
+     */
+    init() {
+        self.iceServers = []
+    }
+    
+    var iceServers: [Url]
+}
+
+public struct Url: Codable{
+    var credential: String
+    var url: String
+    var urls: String
+    var username: String
+}
+

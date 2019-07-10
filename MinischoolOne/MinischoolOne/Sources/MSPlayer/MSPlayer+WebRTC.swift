@@ -47,22 +47,15 @@ extension MSPlayer: WebRTCClientDelegate {
         }
     }
     
-    
-    /*
-     2019-7-8
-     
-     NativeToJS
-     
-     - sendOffer(sdp)
-     - sendAnswer(sdp)
-     - sendIceCandidate(sdp)
- */
-    
 //    JSToNative
+    
 //    WebRTC Control
-    public func startWebRTC( constraints: String, iceConfiguration: String ) {
-
+    public func startWebRTC( constraints: AVConstraint, iceConfiguration: ICEConfiguration ) {
+        Client.constraints = constraints
+        Client.iceConfiguration = iceConfiguration
+    
     }
+    
     public func stopWebRTC() {
         
     }
@@ -95,14 +88,23 @@ extension MSPlayer: WebRTCClientDelegate {
     }
     
 //    WebRTC Callback
-    func onReceiveOffer(sdp: String) {
+    public func  onReceiveOffer(_ sdp: SDP) {
         
     }
-    func onReceiveAnswer(sdp: String) {
+    public func  onReceiveAnswer(_ sdp: SDP) {
         
     }
-    func onReceiveIceCandidate(candidate: String) {
+    public func  onReceiveIceCandidate(_ candidate: Candidate) {
         
     }
-    
+//    NativeToJS
+    public func  sendOffer(_ sdp: String) {
+        
+    }
+    public func  sendAnswer(_ sdp: String) {
+        
+    }
+    public func  sendIceCandidate(_ sdp: String) {
+        
+    }
 }

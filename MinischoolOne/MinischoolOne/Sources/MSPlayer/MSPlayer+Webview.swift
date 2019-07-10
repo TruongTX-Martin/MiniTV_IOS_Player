@@ -123,21 +123,48 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
                 if let function = dictionary["function"] {
 
                     print(function)
-                    let json: String? = dictionary["data"]
+                    let json: Any? = dictionary["data"]
+                    if let json = json {
+                        print(json)
+                    }
 
                     switch function {
                         
                     case "startWebRTC" :
-                        let constraints = ""
-                        let iceConfiguration = ""
-                        self.startWebRTC(constraints: constraints, iceConfiguration: iceConfiguration)
-
+                        if let parameters: [String: String] = json as? Dictionary {
+                            let constraints : AVConstraint = self.jsonTo(json: parameters["constraints"], defValue: AVConstraint())
+                            let iceConfiguration : ICEConfiguration = self.jsonTo(json: parameters["iceConfiguration"], defValue: ICEConfiguration())
+                            self.startWebRTC(constraints: constraints, iceConfiguration: iceConfiguration)
+                        }
+                        
                     case "stopWebRTC" :
                         self.stopWebRTC()
 
                     case "createLocalVideo" :
-                        let frame: Frame = self.jsonTo(json: json, defValue: Frame())
+                        let frame: Frame = self.jsonTo(json: json as? String, defValue: Frame())
                         self.createLocalVideo(frame)
+                        
+                    case "destroyLocalVideo" :
+                        self.destroyLocalVideo()
+                        
+                    case "createRemoteVideo" :
+                        let frame: Frame = self.jsonTo(json: json as? String, defValue: Frame())
+                        self.createRemoteVideo(frame)
+                        
+                    case "destroyRemoteVideo" :
+                        self.destroyRemoteVideo()
+                        
+                    case "onReceiveOffer" :
+                        let sdp: SDP = self.jsonTo(json: json as? String, defValue: SDP())
+                        self.onReceiveOffer(sdp)
+                        
+                    case "onReceiveAnswer" :
+                        let sdp: SDP = self.jsonTo(json: json as? String, defValue: SDP())
+                        self.onReceiveAnswer(sdp)
+                        
+                    case "onReceiveIceCandidate" :
+                        let candidate: Candidate = self.jsonTo(json: json as? String, defValue: Candidate())
+                        self.onReceiveIceCandidate(candidate)
                         
 
                     default:

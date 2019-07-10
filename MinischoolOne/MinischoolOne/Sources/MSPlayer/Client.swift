@@ -8,12 +8,15 @@
 
 import Foundation
 
-class Client {
+public class Client {
     
     static let shared = Client()
     
-    public var signalClient: SignalingClient!
-    public var webRTCClient: WebRTCClient!
+    static var iceConfiguration = ICEConfiguration()
+    static var constraints = AVConstraint()
+
+    var signalClient: SignalingClient!
+    var webRTCClient: WebRTCClient!
     
     private init() {
         
