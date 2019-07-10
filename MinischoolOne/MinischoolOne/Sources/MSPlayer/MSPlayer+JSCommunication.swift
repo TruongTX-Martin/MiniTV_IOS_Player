@@ -64,6 +64,18 @@ extension MSPlayer {
                 if let candidate: IceCandidate = self.jsonTo(json: json as? String) {
                     self.onReceiveIceCandidate(candidate)
                 }
+
+            case "muteAudio" :
+                self.muteAudio()
+            
+            case "unmuteAudio" :
+                self.unmuteAudio()
+            
+            case "speakerOn" :
+                self.speakerOn()
+            
+            case "speakerOff" :
+                self.speakerOff()
             
             default:
                 printError("\(function) is not defined in ios native")
