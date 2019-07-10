@@ -60,24 +60,37 @@ extension MSPlayer: WebRTCClientDelegate {
     
 //    JSToNative
 //    WebRTC Control
-    func startWebRTC( constraints: String, iceConfiguration: String ) {
+    public func startWebRTC( constraints: String, iceConfiguration: String ) {
 
     }
-    func stopWebRTC() {
+    public func stopWebRTC() {
         
     }
     
 //    Video Control
-    func createLocalVideo(frame: Frame) {
+    public func createLocalVideo(_ frame: Frame) {
         self.createVideo(isLocal: true, frame: frame)
+        if frame.z == 0 {
+            self.bringLocalVideoToFront()
+        }else{
+            self.sendLocalVideoToBack()
+        }
     }
-    func destroyLocalVideo() {
+    
+    public func createRemoteVideo(_ frame: Frame) {
+        self.createVideo(isLocal: false, frame: frame)
+        if frame.z == 0 {
+            self.bringRemoteVideoToFront()
+        }else{
+            self.sendRemoteVideoToBack()
+        }
+    }
+
+    public func destroyLocalVideo() {
         self.destroyVideo(isLocal: true)
     }
-    func createRemoteVideo(frame: Frame) {
-        self.createVideo(isLocal: false, frame: frame)
-    }
-    func destroyRemoteVideo() {
+    
+    public func destroyRemoteVideo() {
         self.destroyVideo(isLocal: false)
     }
     

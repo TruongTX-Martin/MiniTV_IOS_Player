@@ -104,19 +104,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
-/*
- Native Interface
- Start
- Stop
- OnReceiveOffer
- OnReceiveAnswer
- OnReceiveIceCandidate
- 
- Web Interface
- SendOffer
- SendAnswer
- SendIceCandidate
- */
+
     func callJS(jsFunctionName: String, data: String) {
         webView.evaluateJavaScript("\(jsFunctionName)('\(data)')", completionHandler: {(result, error) in
             if let result = result {
@@ -124,69 +112,54 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             }
         })
     }
-//    Note that you don't need all this stuff, your function could be as simple as:
     
-    func jsonEncode(object: Any) -> Data? {
-        return try? JSONSerialization.data(withJSONObject: object, options:[])
-    }
-//    If you really need to pass an Optional, then you have to unwrap it:
-    
-    func jsonEncode(object: Any?) -> Data? {
-        if let object = object {
-            return try? JSONSerialization.data(withJSONObject: object, options:[])
-        }
-        return nil
-    }
     //Called from JS
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message)
-//        print(message.name)
+
         if message.name == "jsToNative" {
+
             if let dictionary: [String: String] = message.body as? Dictionary {
+
                 if let function = dictionary["function"] {
+
                     print(function)
+                    let json: String? = dictionary["data"]
+
                     switch function {
                         
-                    case "bringLocalVideoToFront" :
-                        self.bringLocalVideoToFront()
+                    case "startWebRTC" :
+                        let constraints = ""
+                        let iceConfiguration = ""
+                        self.startWebRTC(constraints: constraints, iceConfiguration: iceConfiguration)
+
+                    case "stopWebRTC" :
+                        self.stopWebRTC()
+
+                    case "createLocalVideo" :
+                        let frame: Frame = self.jsonTo(json: json, defValue: Frame())
+                        self.createLocalVideo(frame)
                         
-                    case "bringRemoteVideoToFront" :
-                        self.bringRemoteVideoToFront()
-                        
-                    case "bringWebViewToFront" :
-                        self.bringWebViewToFront()
-                        
-                    case "sendLocalVideoToBack" :
-                        self.sendLocalVideoToBack()
-                        
-                    case "sendRemoteVideoToBack" :
-                        self.sendRemoteVideoToBack()
-                        
-                    case "sendWebViewToBack" :
-                        self.sendWebViewToBack()
-                        
-                    case "resizeLocalVideo" :
-                        guard let data = dictionary["data"] else {return}
-                        print("data: \(data)")
-                        let frame: Frame = self.jsonTo(data: data, defValue: Frame(x: 0, y: 0, z:0, width: 100, height: 100))
-                        self.setLocalVideoFrame(x: frame.x, y: frame.y, width: frame.width, height: frame.height)
 
                     default:
-                        print("not available")
-                        webView.evaluateJavaScript("console.log('\(function) is not defined in ios native');", completionHandler: nil)
+                        printError("\(function) is not defined in ios native")
                     }
                 }
             }
         }
     }
     
-    func jsonTo<T: Codable>(data: String, defValue: T) -> T {
+    func jsonTo<T: Codable>(json: String?, defValue: T) -> T {
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: data.data(using: .utf8)!)
+            return try decoder.decode(T.self, from: json!.data(using: .utf8)!)
         } catch let parsingError {
-            print("Parsing error: ", parsingError)
+            printError("Parsing error: \(parsingError)")
         }
         return defValue
+    }
+    
+    func printError(_ message : String) {
+        print(message)
+        self.callJS(jsFunctionName: "console.log", data: "\(message)")
     }
 }

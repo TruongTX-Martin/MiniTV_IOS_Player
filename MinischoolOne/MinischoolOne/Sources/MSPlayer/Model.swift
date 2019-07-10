@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct Frame: Codable{
+public struct Frame: Codable{
+    
+    init() {
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        self.width = 100
+        self.height = 100
+    }
+    
     init(x: CGFloat, y: CGFloat, z: CGFloat, width: CGFloat, height: CGFloat) {
         self.x = x
         self.y = y
@@ -22,4 +31,8 @@ struct Frame: Codable{
     var z: CGFloat
     var width: CGFloat
     var height: CGFloat
+}
+
+struct SDP: Codable{
+
 }
