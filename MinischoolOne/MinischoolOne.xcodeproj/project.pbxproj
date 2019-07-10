@@ -46,6 +46,7 @@
 		49DAC07322CDEAE80051FD17 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06222CDEAE80051FD17 /* Message.swift */; };
 		49DAC07422CDEAE80051FD17 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */; };
 		49DAC07522CDEAE80051FD17 /* SignalingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06422CDEAE80051FD17 /* SignalingClient.swift */; };
+		49E7F43322D5DD18002F6F46 /* MSPlayer+JSCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */; };
 		49FC3D6822CFB1910049AF22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC3D6722CFB1910049AF22 /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		49DAC06222CDEAE80051FD17 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
 		49DAC06422CDEAE80051FD17 /* SignalingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingClient.swift; sourceTree = "<group>"; };
+		49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+JSCommunication.swift"; sourceTree = "<group>"; };
 		49FC3D6722CFB1910049AF22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,7 +329,7 @@
 				49DAC05122CDEAE80051FD17 /* MSPlayer+Video.swift */,
 				49DAC05422CDEAE80051FD17 /* MSPlayer+WebRTC.swift */,
 				49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */,
-				49DAC05222CDEAE80051FD17 /* Client.swift */,
+				49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */,
 			);
 			path = MSPlayer;
 			sourceTree = "<group>";
@@ -373,6 +375,7 @@
 		49DAC06122CDEAE80051FD17 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				49DAC05222CDEAE80051FD17 /* Client.swift */,
 				49DAC06222CDEAE80051FD17 /* Message.swift */,
 				49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */,
 				49DAC06422CDEAE80051FD17 /* SignalingClient.swift */,
@@ -509,6 +512,7 @@
 				49DAC06822CDEAE80051FD17 /* Client.swift in Sources */,
 				49DAC03922CDEA4C0051FD17 /* Pods-MinischoolPlayer-dummy.m in Sources */,
 				49DAC06922CDEAE80051FD17 /* MSPlayer.swift in Sources */,
+				49E7F43322D5DD18002F6F46 /* MSPlayer+JSCommunication.swift in Sources */,
 				493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */,
 				49DAC04B22CDEA4C0051FD17 /* SSLSecurity.swift in Sources */,
 				49FC3D6822CFB1910049AF22 /* Model.swift in Sources */,
