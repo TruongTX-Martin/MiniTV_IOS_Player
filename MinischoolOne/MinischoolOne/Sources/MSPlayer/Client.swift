@@ -10,18 +10,26 @@ import Foundation
 
 public class Client {
     
-    static let shared = Client()
+    static var shared : Client!
     
-    static var iceConfiguration = ICEConfiguration()
-    static var constraints = AVConstraint()
-
-    var signalClient: SignalingClient!
+//    var signalClient: SignalingClient!
     var webRTCClient: WebRTCClient!
-    
+
+    /*
     private init() {
         
         let config = Config.default
         self.signalClient = SignalingClient(serverUrl: config.signalingServerUrl)
         self.webRTCClient = WebRTCClient(iceServers: config.webRTCIceServers)
+    }
+     */
+    
+    public init(iceConfiguration: ICEConfiguration, constraints: AVConstraint) {
+    
+        self.webRTCClient = WebRTCClient(iceConfiguration: iceConfiguration, constraints: constraints)
+    }
+    
+    public static func prepare(iceConfiguration: ICEConfiguration, constraints: AVConstraint) {
+        Client.shared = Client(iceConfiguration: iceConfiguration, constraints: constraints)
     }
 }

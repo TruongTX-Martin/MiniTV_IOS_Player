@@ -15,7 +15,7 @@ extension MSPlayer: WebRTCClientDelegate {
         //offer하고 상대를 찾음
         print("discovered local candidate")
 //        self.localCandidateCount += 1
-        Client.shared.signalClient.send(candidate: candidate)
+//        Client.shared.signalClient.send(candidate: candidate)
     }
     
     func webRTCClient(_ client: WebRTCClient, didChangeConnectionState state: RTCIceConnectionState) {
@@ -51,9 +51,7 @@ extension MSPlayer: WebRTCClientDelegate {
     
 //    WebRTC Control
     public func startWebRTC( constraints: AVConstraint, iceConfiguration: ICEConfiguration ) {
-        Client.constraints = constraints
-        Client.iceConfiguration = iceConfiguration
-    
+        Client.prepare(iceConfiguration: iceConfiguration, constraints: constraints)
     }
     
     public func stopWebRTC() {
@@ -88,13 +86,13 @@ extension MSPlayer: WebRTCClientDelegate {
     }
     
 //    WebRTC Callback
-    public func  onReceiveOffer(_ sdp: SDP) {
+    public func  onReceiveOffer(_ sdp: SessionDescription) {
         
     }
-    public func  onReceiveAnswer(_ sdp: SDP) {
+    public func  onReceiveAnswer(_ sdp: SessionDescription) {
         
     }
-    public func  onReceiveIceCandidate(_ candidate: Candidate) {
+    public func  onReceiveIceCandidate(_ candidate: IceCandidate) {
         
     }
 //    NativeToJS

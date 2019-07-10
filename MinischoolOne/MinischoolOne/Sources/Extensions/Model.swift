@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WebRTC
 
 public struct Frame: Codable{
     
@@ -33,13 +34,9 @@ public struct Frame: Codable{
     var height: CGFloat
 }
 
-public struct SDP: Codable{
-    
-}
+//SessionDescription
 
-public struct Candidate: Codable{
-    
-}
+//IceCandidate
 
 public struct AVConstraint: Codable{
     

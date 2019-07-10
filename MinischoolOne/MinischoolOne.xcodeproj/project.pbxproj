@@ -328,7 +328,6 @@
 				49DAC05422CDEAE80051FD17 /* MSPlayer+WebRTC.swift */,
 				49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */,
 				49DAC05222CDEAE80051FD17 /* Client.swift */,
-				49FC3D6722CFB1910049AF22 /* Model.swift */,
 			);
 			path = MSPlayer;
 			sourceTree = "<group>";
@@ -336,6 +335,7 @@
 		49DAC05622CDEAE80051FD17 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				49FC3D6722CFB1910049AF22 /* Model.swift */,
 				49DAC05722CDEAE80051FD17 /* RTCStates.swift */,
 				49DAC05822CDEAE80051FD17 /* SessionDescription.swift */,
 				49DAC05922CDEAE80051FD17 /* IceCandidate.swift */,
