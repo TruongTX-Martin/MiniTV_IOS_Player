@@ -11,24 +11,25 @@ import WebRTC
 
 extension MSPlayer {
     
-    public func JSToNative(dictionary: [String: String]) {
+    public func JSToNative(dictionary: [String: Any]) {
         
-        guard let function = dictionary["function"] else { return }
+        guard let function = dictionary["function"] as? String else { return }
         print(function)
         
         let json: Any? = dictionary["data"]
         if let json = json {
+            print(type(of: json))
             print(json)
         }
         
         switch function {
             
             case "startWebRTC" :
-                if let parameters: [String: String] = json as? Dictionary {
-                    if let constraints : AVConstraint = self.jsonTo(json: parameters["constraints"]),
-                        let iceConfiguration : ICEConfiguration = self.jsonTo(json: parameters["iceConfiguration"]) {
-                        self.startWebRTC(constraints: constraints, iceConfiguration: iceConfiguration)
-                    }
+                print("startWebRTC start")
+                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
+                    print("webRTCParameter")
+                    print(webRTCParameter)
+                    self.startWebRTC(webRTCParameter)
                 }
             
             case "stopWebRTC" :
@@ -82,10 +83,10 @@ extension MSPlayer {
         }
     }
     
-    func jsonTo<T: Codable>(json: String?) -> T? {
+    func jsonTo<T: Codable>(json: Any?) -> T? {
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: json!.data(using: .utf8)!)
+            return try decoder.decode(T.self, from: (json as! String).data(using: .utf8)!)
         } catch let parsingError {
             printError("Parsing error: \(parsingError)")
         }
@@ -100,8 +101,8 @@ extension MSPlayer {
     //    JSToNative
     
     //    WebRTC Control
-    public func startWebRTC( constraints: AVConstraint, iceConfiguration: ICEConfiguration ) {
-        Client.prepare(iceConfiguration: iceConfiguration, constraints: constraints)
+    public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
+        Client.prepare(webRTCParameter : webRTCParameter)
     }
     
     public func stopWebRTC() {

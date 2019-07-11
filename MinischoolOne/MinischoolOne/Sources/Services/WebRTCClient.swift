@@ -66,11 +66,19 @@ final class WebRTCClient: NSObject {
         self.peerConnection.delegate = self
     }
     */
-    required init(iceConfiguration: ICEConfiguration, constraints: AVConstraint) {
+    required init(_ webRTCParameter : WebRTCParameter) {
+        print("WebRTCClient webRTCParameter: \(webRTCParameter)")
+
+        let iceConfiguration = webRTCParameter.iceConfiguration
+        let constraints = webRTCParameter.constraints
+        
         let config = RTCConfiguration()
         config.iceServers = [RTCIceServer(urlStrings: iceConfiguration.iceServers.map({ (url) -> String in
             return url.urls
         }) )]
+        
+        print(config.debugDescription)
+
         
         // Unified plan is more superior than planB
         config.sdpSemantics = .unifiedPlan
@@ -80,10 +88,10 @@ final class WebRTCClient: NSObject {
         
         let mandatoryConstraints = [kRTCMediaConstraintsOfferToReceiveAudio: constraints.audio ? kRTCMediaConstraintsValueTrue : kRTCMediaConstraintsValueFalse,
                                             kRTCMediaConstraintsOfferToReceiveVideo: constraints.video ? kRTCMediaConstraintsValueTrue : kRTCMediaConstraintsValueFalse]
-        let constraints = RTCMediaConstraints(mandatoryConstraints: mandatoryConstraints,
+        let rTCMediaConstraints = RTCMediaConstraints(mandatoryConstraints: mandatoryConstraints,
                                               optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
 
-        self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: constraints, delegate: nil)
+        self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: rTCMediaConstraints, delegate: nil)
         
         super.init()
         self.createMediaSenders()

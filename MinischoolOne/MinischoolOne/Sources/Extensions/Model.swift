@@ -38,8 +38,14 @@ public struct Frame: Codable{
 
 //IceCandidate
 
-public struct AVConstraint: Codable{
+public struct WebRTCParameter: Codable{
     
+    var constraints: AVConstraint
+    var iceConfiguration: ICEConfiguration
+}
+
+public struct AVConstraint: Codable{
+
     init(){
         self.audio = false
         self.video = false
@@ -73,9 +79,9 @@ public struct ICEConfiguration: Codable{
 }
 
 public struct Url: Codable{
-    var credential: String
+    var credential: String?
     var url: String
     var urls: String
-    var username: String
+    var username: String?
 }
 

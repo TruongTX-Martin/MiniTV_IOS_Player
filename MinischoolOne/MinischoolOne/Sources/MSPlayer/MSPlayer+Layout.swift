@@ -11,26 +11,32 @@ import Foundation
 extension MSPlayer {
     
     public func bringLocalVideoToFront() {
+        print("bringLocalVideoToFront")
         self.containerView.bringSubviewToFront(self.localVideoView)
     }
     
     public func bringRemoteVideoToFront() {
+        print("bringRemoteVideoToFront")
         self.containerView.bringSubviewToFront(self.remoteVideoView)
     }
     
     public func bringWebViewToFront() {
+        print("bringWebViewToFront")
         self.containerView.bringSubviewToFront(self.webView)
     }
     
     public func sendLocalVideoToBack() {
+        print("sendLocalVideoToBack")
         self.containerView.sendSubviewToBack(self.localVideoView)
     }
     
     public func sendRemoteVideoToBack() {
+        print("sendRemoteVideoToBack")
         self.containerView.sendSubviewToBack(self.remoteVideoView)
     }
     
     public func sendWebViewToBack() {
+        print("sendWebViewToBack")
         self.containerView.sendSubviewToBack(self.webView)
     }
     

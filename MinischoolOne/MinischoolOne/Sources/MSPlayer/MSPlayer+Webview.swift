@@ -48,8 +48,8 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 //        let localFile = Bundle.main.path(forResource: "page", ofType: "html")
 //        let url = URL(fileURLWithPath: localFile!)
 //        let request = URLRequest(url: url)
-        
-//        let url = URL(string: "http://192.168.1.57:8080/?role=p")
+//        self.createLocalVideo(Frame(x: 20, y: 50, z: 99, width: 50, height: 100))
+
         let url = URL(string: "http://172.16.3.95:8080/?role=t")
         print("openUrl \(url.debugDescription)")
         let request = URLRequest(url: url!)
@@ -124,9 +124,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
         if message.name == "jsToNative" {
-
+            
             if let dictionary: [String: String] = message.body as? Dictionary {
-                
+
                 self.JSToNative(dictionary: dictionary)
             }
         }

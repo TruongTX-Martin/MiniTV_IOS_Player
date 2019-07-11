@@ -24,12 +24,12 @@ public class Client {
     }
      */
     
-    public init(iceConfiguration: ICEConfiguration, constraints: AVConstraint) {
+    public init(webRTCParameter : WebRTCParameter) {
     
-        self.webRTCClient = WebRTCClient(iceConfiguration: iceConfiguration, constraints: constraints)
+        self.webRTCClient = WebRTCClient(webRTCParameter)
     }
     
-    public static func prepare(iceConfiguration: ICEConfiguration, constraints: AVConstraint) {
-        Client.shared = Client(iceConfiguration: iceConfiguration, constraints: constraints)
+    public static func prepare(webRTCParameter : WebRTCParameter) {
+        Client.shared = Client(webRTCParameter: webRTCParameter)
     }
 }

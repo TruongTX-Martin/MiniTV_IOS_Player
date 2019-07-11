@@ -42,18 +42,20 @@ extension MSPlayer{
         // video view 생성
         
         if isLocal {
-            self.localVideoView = UIView(frame: CGRect(x: frame.x, y: frame.height, width: frame.width, height: frame.height))
-            
-            if frame.zIndex == 0 {
+            self.localVideoView = UIView(frame: CGRect(x: frame.x, y: frame.y, width: frame.width, height: frame.height))
+            self.containerView.addSubview(self.localVideoView)
+
+            if frame.zIndex <= 2 {
                 self.bringLocalVideoToFront()
             }else{
                 self.sendLocalVideoToBack()
             }
             
         }else{
-            self.remoteVideoView = UIView(frame: CGRect(x: frame.x, y: frame.height, width: frame.width, height: frame.height))
-            
-            if frame.zIndex == 0 {
+            self.remoteVideoView = UIView(frame: CGRect(x: frame.x, y: frame.y, width: frame.width, height: frame.height))
+            self.containerView.addSubview(self.remoteVideoView)
+
+            if frame.zIndex <= 2 {
                 self.bringRemoteVideoToFront()
             }else{
                 self.sendRemoteVideoToBack()
@@ -61,7 +63,6 @@ extension MSPlayer{
         }
         
         let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
-        self.containerView.addSubview(videoView)
 
         #if arch(arm64)
         // Using metal (arm64 only)
