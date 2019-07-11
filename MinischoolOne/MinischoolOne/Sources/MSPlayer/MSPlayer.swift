@@ -21,13 +21,12 @@ public class MSPlayer : NSObject {
     public init(_ containerView: UIView, viewController: UIViewController) {
         super.init()
 //      
+        self.containerView = containerView
         self.viewController = viewController
-
 
 //        self.initVideoView()
 
         // webview 생성
-        self.containerView = containerView
 
         self.initWebview()
         

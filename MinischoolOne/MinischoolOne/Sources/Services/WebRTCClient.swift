@@ -77,7 +77,7 @@ final class WebRTCClient: NSObject {
             return url.urls
         }) )]
         
-        print(config.debugDescription)
+//        print(config.debugDescription)
 
         
         // Unified plan is more superior than planB

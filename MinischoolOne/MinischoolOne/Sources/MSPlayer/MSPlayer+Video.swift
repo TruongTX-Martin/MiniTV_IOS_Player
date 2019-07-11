@@ -39,11 +39,20 @@ extension MSPlayer{
     
     func createVideo(isLocal: Bool, frame: Frame) {
         
+        
+        let widthProportion : CGFloat = self.containerView.frame.width / 1920
+        let heightProportion : CGFloat = self.containerView.frame.height / 1080
+
+        let modifiedFrame = CGRect(x: frame.x * widthProportion, y: frame.y * heightProportion, width: frame.width * widthProportion, height: frame.height * heightProportion)
+        
         // video view 생성
         
         if isLocal {
-            self.localVideoView = UIView(frame: CGRect(x: frame.x, y: frame.y, width: frame.width, height: frame.height))
-            self.containerView.addSubview(self.localVideoView)
+            if self.localVideoView?.superview != nil {
+                self.localVideoView.removeFromSuperview()
+            }
+            self.localVideoView = UIView(frame: modifiedFrame)
+//            self.containerView.addSubview(self.localVideoView)
 
             if frame.zIndex <= 2 {
                 self.bringLocalVideoToFront()
@@ -52,8 +61,11 @@ extension MSPlayer{
             }
             
         }else{
-            self.remoteVideoView = UIView(frame: CGRect(x: frame.x, y: frame.y, width: frame.width, height: frame.height))
-            self.containerView.addSubview(self.remoteVideoView)
+            if self.remoteVideoView?.superview != nil {
+                self.remoteVideoView.removeFromSuperview()
+            }
+            self.remoteVideoView = UIView(frame: modifiedFrame)
+//            self.containerView.addSubview(self.remoteVideoView)
 
             if frame.zIndex <= 2 {
                 self.bringRemoteVideoToFront()
@@ -63,6 +75,7 @@ extension MSPlayer{
         }
         
         let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
+        self.containerView.addSubview(videoView)
 
         #if arch(arm64)
         // Using metal (arm64 only)
@@ -74,7 +87,12 @@ extension MSPlayer{
         #endif
         
         //좌우반전(거울처럼)
-        renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        switch UIDevice.current.orientation {
+        case .portrait:
+            renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+        default:
+            renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+        }
         
         if isLocal {
             Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
@@ -86,9 +104,16 @@ extension MSPlayer{
     
     func destroyVideo(isLocal: Bool) {
         if isLocal {
+            
             Client.shared.webRTCClient.stopCaptureLocalVideo()
+            if self.localVideoView?.superview != nil {
+                self.localVideoView.removeFromSuperview()
+            }
         }else{
             Client.shared.webRTCClient.stopRenderRemoteVideo()
+            if self.remoteVideoView?.superview != nil {
+                self.remoteVideoView.removeFromSuperview()
+            }
         }
     }
     

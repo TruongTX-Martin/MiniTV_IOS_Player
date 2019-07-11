@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.player = MSPlayer(self.containerView, viewController: self)
+        self.player = MSPlayer(self.view, viewController: self)
         self.player.run()
     }
 
