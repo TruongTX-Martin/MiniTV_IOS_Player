@@ -45,12 +45,14 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     }
     
     func openUrl() {
-        let localFile = Bundle.main.path(forResource: "page", ofType: "html")
-        let url = URL(fileURLWithPath: localFile!)
-        let request = URLRequest(url: url)
+//        let localFile = Bundle.main.path(forResource: "page", ofType: "html")
+//        let url = URL(fileURLWithPath: localFile!)
+//        let request = URLRequest(url: url)
         
-//        let url = URL(string: "http://169.254.143.6:8080/?role=p")
-//        let request = URLRequest(url: url!)
+//        let url = URL(string: "http://192.168.1.57:8080/?role=p")
+        let url = URL(string: "http://172.16.3.95:8080/?role=t")
+        print("openUrl \(url.debugDescription)")
+        let request = URLRequest(url: url!)
         webView.load(request)
     }
     
@@ -104,7 +106,12 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
-
+    
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        let url = webView.url
+        print("didFinish \(url as Any)")
+    }
     func callJS(jsFunctionName: String, data: String) {
         webView.evaluateJavaScript("\(jsFunctionName)('\(data)')", completionHandler: {(result, error) in
             if let result = result {

@@ -111,20 +111,10 @@ extension MSPlayer {
     //    Video Control
     public func createLocalVideo(_ frame: Frame) {
         self.createVideo(isLocal: true, frame: frame)
-        if frame.z == 0 {
-            self.bringLocalVideoToFront()
-        }else{
-            self.sendLocalVideoToBack()
-        }
     }
     
     public func createRemoteVideo(_ frame: Frame) {
         self.createVideo(isLocal: false, frame: frame)
-        if frame.z == 0 {
-            self.bringRemoteVideoToFront()
-        }else{
-            self.sendRemoteVideoToBack()
-        }
     }
     
     public func destroyLocalVideo() {

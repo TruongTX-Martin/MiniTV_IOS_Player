@@ -23,21 +23,15 @@ public class MSPlayer : NSObject {
 //      
         self.viewController = viewController
 
-        // video view 생성(local, remote)
-        self.localVideoView = UIView(frame: CGRect(x: 0, y: containerView.frame.height * 0.5, width: 100, height: 50))
-        self.remoteVideoView = UIView(frame: CGRect(x: containerView.frame.width * 0.5, y: containerView.frame.height * 0.5, width: 100, height: 50))
 
-        //위치 설정
-        self.initVideoView()
+//        self.initVideoView()
 
         // webview 생성
         self.containerView = containerView
 
         self.initWebview()
         
-        self.containerView.addSubview(self.localVideoView)
-        self.containerView.addSubview(self.remoteVideoView)
-        self.containerView.sendSubviewToBack(self.webView)
+//        self.containerView.sendSubviewToBack(self.webView)
     }
     
     public func run() {

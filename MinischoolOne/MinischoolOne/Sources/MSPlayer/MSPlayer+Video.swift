@@ -39,8 +39,30 @@ extension MSPlayer{
     
     func createVideo(isLocal: Bool, frame: Frame) {
         
-        let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
+        // video view 생성
         
+        if isLocal {
+            self.localVideoView = UIView(frame: CGRect(x: frame.x, y: frame.height, width: frame.width, height: frame.height))
+            
+            if frame.zIndex == 0 {
+                self.bringLocalVideoToFront()
+            }else{
+                self.sendLocalVideoToBack()
+            }
+            
+        }else{
+            self.remoteVideoView = UIView(frame: CGRect(x: frame.x, y: frame.height, width: frame.width, height: frame.height))
+            
+            if frame.zIndex == 0 {
+                self.bringRemoteVideoToFront()
+            }else{
+                self.sendRemoteVideoToBack()
+            }
+        }
+        
+        let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
+        self.containerView.addSubview(videoView)
+
         #if arch(arm64)
         // Using metal (arm64 only)
         let renderer = RTCMTLVideoView(frame: videoView.frame)
@@ -49,6 +71,7 @@ extension MSPlayer{
         // Using OpenGLES for the rest
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
         #endif
+        
         //좌우반전(거울처럼)
         renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
