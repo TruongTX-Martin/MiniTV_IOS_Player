@@ -16,7 +16,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         let contentController = WKUserContentController()
         contentController.add(self, name: "jsToNative")
         
-        let userScript = WKUserScript(source: "MSConfig.isNative(true)", injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let userScript = WKUserScript(source: "window.isNative = true;", injectionTime: .atDocumentStart, forMainFrameOnly: true)
         contentController.addUserScript(userScript)
         
         let webConfiguration = WKWebViewConfiguration()
@@ -50,7 +50,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 //        let request = URLRequest(url: url)
 //        self.createLocalVideo(Frame(x: 20, y: 50, z: 99, width: 50, height: 100))
 
-        let url = URL(string: "http://172.16.3.95:8080/?role=t")
+        let url = URL(string: "http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
         print("openUrl \(url.debugDescription)")
         let request = URLRequest(url: url!)
         webView.load(request)
@@ -113,11 +113,15 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         print("didFinish \(url as Any)")
     }
     func callJS(jsFunctionName: String, data: String) {
-        webView.evaluateJavaScript("\(jsFunctionName)('\(data)')", completionHandler: {(result, error) in
-            if let result = result {
-                print(result)
-            }
-        })
+        let stringJS = "\(jsFunctionName)(\(data))"
+        DispatchQueue.main.async {
+            print("callJS: \(stringJS)")
+            self.webView.evaluateJavaScript(stringJS, completionHandler: {(result, error) in
+                if let result = result {
+                    print(result)
+                }
+            })
+        }
     }
     
     //Called from JS

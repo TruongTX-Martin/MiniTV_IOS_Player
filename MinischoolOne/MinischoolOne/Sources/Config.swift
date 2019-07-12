@@ -12,11 +12,13 @@ import Foundation
 fileprivate let defaultSignalingServerUrl = URL(string: "ws://127.0.0.1:8080")!
 
 // We use Google's public stun servers. For production apps you should deploy your own stun/turn servers.
-fileprivate let defaultIceServers = ["stun:stun.l.google.com:19302",
+fileprivate let defaultIceServers1 = ["stun:stun.l.google.com:19302",
                                      "stun:stun1.l.google.com:19302",
                                      "stun:stun2.l.google.com:19302",
                                      "stun:stun3.l.google.com:19302",
                                      "stun:stun4.l.google.com:19302"]
+fileprivate let defaultIceServers = ["stun:stage-ct-e1.minischool.co.kr:3478",
+                                     "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp"]
 
 struct Config {
     let signalingServerUrl: URL

@@ -14,6 +14,7 @@ extension MSPlayer: WebRTCClientDelegate {
     func webRTCClient(_ client: WebRTCClient, didDiscoverLocalCandidate candidate: RTCIceCandidate) {
         //offer하고 상대를 찾음
         print("discovered local candidate")
+        self.sendIceCandidate(IceCandidate(from: candidate))
 //        self.localCandidateCount += 1
 //        Client.shared.signalClient.send(candidate: candidate)
     }

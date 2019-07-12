@@ -11,7 +11,7 @@ import WebRTC
 
 /// This struct is a swift wrapper over `RTCIceCandidate` for easy encode and decode
 public struct IceCandidate: Codable {
-    let sdp: String
+    let sdp: String?
     let sdpMLineIndex: Int32
     let sdpMid: String?
     
@@ -22,6 +22,6 @@ public struct IceCandidate: Codable {
     }
     
     var rtcIceCandidate: RTCIceCandidate {
-        return RTCIceCandidate(sdp: self.sdp, sdpMLineIndex: self.sdpMLineIndex, sdpMid: self.sdpMid)
+        return RTCIceCandidate(sdp: self.sdp ?? "", sdpMLineIndex: self.sdpMLineIndex, sdpMid: self.sdpMid)
     }
 }

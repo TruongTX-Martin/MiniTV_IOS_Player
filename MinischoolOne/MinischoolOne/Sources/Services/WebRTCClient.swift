@@ -45,7 +45,6 @@ final class WebRTCClient: NSObject {
     override init() {
         fatalError("WebRTCClient:init is unavailable")
     }
-    /*
     required init(iceServers: [String]) {
         let config = RTCConfiguration()
         config.iceServers = [RTCIceServer(urlStrings: iceServers)]
@@ -65,21 +64,21 @@ final class WebRTCClient: NSObject {
         self.configureAudioSession()
         self.peerConnection.delegate = self
     }
-    */
+    
     required init(_ webRTCParameter : WebRTCParameter) {
-        print("WebRTCClient webRTCParameter: \(webRTCParameter)")
 
         let iceConfiguration = webRTCParameter.iceConfiguration
         let constraints = webRTCParameter.constraints
         
         let config = RTCConfiguration()
-        config.iceServers = [RTCIceServer(urlStrings: iceConfiguration.iceServers.map({ (url) -> String in
+        config.iceServers = [
+            RTCIceServer(urlStrings: iceConfiguration.iceServers.map({ (url) -> String in
             return url.urls
-        }) )]
-        
-//        print(config.debugDescription)
-
-        
+        }), username:  iceConfiguration.iceServers.first(where: { (url) -> Bool in
+            return url.username != nil
+        })?.username, credential: iceConfiguration.iceServers.first(where: { (url) -> Bool in
+            return url.credential != nil
+        })?.credential )]
         // Unified plan is more superior than planB
         config.sdpSemantics = .unifiedPlan
         
@@ -92,7 +91,9 @@ final class WebRTCClient: NSObject {
                                               optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
 
         self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: rTCMediaConstraints, delegate: nil)
-        
+
+//        print(self.peerConnection.debugDescription)
+
         super.init()
         self.createMediaSenders()
         self.configureAudioSession()
@@ -129,6 +130,7 @@ final class WebRTCClient: NSObject {
     }
     
     func set(remoteSdp: RTCSessionDescription, completion: @escaping (Error?) -> ()) {
+//        print("set remoteSdp: \(remoteSdp)")
         self.peerConnection.setRemoteDescription(remoteSdp, completionHandler: completion)
     }
     
@@ -209,10 +211,10 @@ final class WebRTCClient: NSObject {
         self.remoteVideoTrack = self.peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
         
         // Data
-        if let dataChannel = createDataChannel() {
-            dataChannel.delegate = self
-            self.localDataChannel = dataChannel
-        }
+//        if let dataChannel = createDataChannel() {
+//            dataChannel.delegate = self
+//            self.localDataChannel = dataChannel
+//        }
     }
     
     private func createAudioTrack() -> RTCAudioTrack {

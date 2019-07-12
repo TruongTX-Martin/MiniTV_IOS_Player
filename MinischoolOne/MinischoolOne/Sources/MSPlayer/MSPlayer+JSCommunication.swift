@@ -18,8 +18,9 @@ extension MSPlayer {
         
         let json: Any? = dictionary["data"]
         if let json = json {
-            print(type(of: json))
             print(json)
+        }else{
+            printError("\(function) has no parameter")
         }
         
         switch function {
@@ -92,7 +93,19 @@ extension MSPlayer {
         }
         return nil
     }
-    
+
+    func jsonFrom<T: Codable>(obj: T) -> String? {
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(obj)
+            return String(data: data, encoding: .utf8)
+        } catch let parsingError {
+            printError("Encoding error: \(parsingError)")
+        }
+        return nil
+    }
+
     func printError(_ message : String) {
         print(message)
         self.callJS(jsFunctionName: "console.log", data: "\(message)")
@@ -128,23 +141,36 @@ extension MSPlayer {
     
     //    WebRTC Callback
     public func  onReceiveOffer(_ sdp: SessionDescription) {
-        
+        Client.shared.webRTCClient.set(remoteSdp: sdp.rtcSessionDescription) { (err) in
+            if let error = err {
+                print("webRTCClient.set has error!!!")
+                self.printError(error.localizedDescription)
+                return
+            }
+
+            Client.shared.webRTCClient.answer { (localSdp) in
+                self.sendAnswer(SessionDescription(from: localSdp))
+            }
+        }
     }
     public func  onReceiveAnswer(_ sdp: SessionDescription) {
         
     }
     public func  onReceiveIceCandidate(_ candidate: IceCandidate) {
-        
+        Client.shared.webRTCClient.set(remoteCandidate: candidate.rtcIceCandidate)
     }
     //    NativeToJS
     public func  sendOffer(_ sdp: SessionDescription) {
-        self.callJS(jsFunctionName: "sendOffer", data: "\(sdp)")
+        let json = jsonFrom(obj: sdp)
+        self.callJS(jsFunctionName: "NativeToJS.sendOffer", data: "\(json!)")
     }
     public func  sendAnswer(_ sdp: SessionDescription) {
-        self.callJS(jsFunctionName: "sendAnswer", data: "\(sdp)")
+        let json = jsonFrom(obj: sdp)
+        self.callJS(jsFunctionName: "NativeToJS.sendAnswer", data: "\(json!)")
     }
     public func  sendIceCandidate(_ candidate: IceCandidate) {
-        self.callJS(jsFunctionName: "sendIceCandidate", data: "\(candidate)")
+        let json = jsonFrom(obj: candidate)
+        self.callJS(jsFunctionName: "NativeToJS.sendIceCandidate", data: "\(json!)")
     }
     
     public func muteAudio() {
