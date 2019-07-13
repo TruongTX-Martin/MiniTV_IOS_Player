@@ -39,10 +39,6 @@
 		49DAC06C22CDEAE80051FD17 /* RTCStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05722CDEAE80051FD17 /* RTCStates.swift */; };
 		49DAC06D22CDEAE80051FD17 /* SessionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05822CDEAE80051FD17 /* SessionDescription.swift */; };
 		49DAC06E22CDEAE80051FD17 /* IceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05922CDEAE80051FD17 /* IceCandidate.swift */; };
-		49DAC06F22CDEAE80051FD17 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DAC05C22CDEAE80051FD17 /* VideoViewController.xib */; };
-		49DAC07022CDEAE80051FD17 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05D22CDEAE80051FD17 /* VideoViewController.swift */; };
-		49DAC07122CDEAE80051FD17 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49DAC05F22CDEAE80051FD17 /* MainViewController.xib */; };
-		49DAC07222CDEAE80051FD17 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06022CDEAE80051FD17 /* MainViewController.swift */; };
 		49DAC07322CDEAE80051FD17 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06222CDEAE80051FD17 /* Message.swift */; };
 		49DAC07422CDEAE80051FD17 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */; };
 		49DAC07522CDEAE80051FD17 /* SignalingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06422CDEAE80051FD17 /* SignalingClient.swift */; };
@@ -106,10 +102,6 @@
 		49DAC05722CDEAE80051FD17 /* RTCStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCStates.swift; sourceTree = "<group>"; };
 		49DAC05822CDEAE80051FD17 /* SessionDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDescription.swift; sourceTree = "<group>"; };
 		49DAC05922CDEAE80051FD17 /* IceCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidate.swift; sourceTree = "<group>"; };
-		49DAC05C22CDEAE80051FD17 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
-		49DAC05D22CDEAE80051FD17 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		49DAC05F22CDEAE80051FD17 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		49DAC06022CDEAE80051FD17 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		49DAC06222CDEAE80051FD17 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
 		49DAC06422CDEAE80051FD17 /* SignalingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingClient.swift; sourceTree = "<group>"; };
@@ -314,7 +306,6 @@
 				49DAC04E22CDEAE80051FD17 /* MSPlayer */,
 				49DAC05522CDEAE80051FD17 /* Config.swift */,
 				49DAC05622CDEAE80051FD17 /* Extensions */,
-				49DAC05A22CDEAE80051FD17 /* Screens */,
 				49DAC06122CDEAE80051FD17 /* Services */,
 			);
 			path = Sources;
@@ -343,33 +334,6 @@
 				49DAC05922CDEAE80051FD17 /* IceCandidate.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		49DAC05A22CDEAE80051FD17 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				49DAC05B22CDEAE80051FD17 /* VideoScreen */,
-				49DAC05E22CDEAE80051FD17 /* MainScreen */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		49DAC05B22CDEAE80051FD17 /* VideoScreen */ = {
-			isa = PBXGroup;
-			children = (
-				49DAC05C22CDEAE80051FD17 /* VideoViewController.xib */,
-				49DAC05D22CDEAE80051FD17 /* VideoViewController.swift */,
-			);
-			path = VideoScreen;
-			sourceTree = "<group>";
-		};
-		49DAC05E22CDEAE80051FD17 /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				49DAC05F22CDEAE80051FD17 /* MainViewController.xib */,
-				49DAC06022CDEAE80051FD17 /* MainViewController.swift */,
-			);
-			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		49DAC06122CDEAE80051FD17 /* Services */ = {
@@ -484,11 +448,9 @@
 				49DAC03C22CDEA4C0051FD17 /* Pods-MinischoolPlayer.release.xcconfig in Resources */,
 				49DAC03B22CDEA4C0051FD17 /* Pods-MinischoolPlayer-acknowledgements.plist in Resources */,
 				49DAC04722CDEA4C0051FD17 /* LICENSE in Resources */,
-				49DAC07122CDEAE80051FD17 /* MainViewController.xib in Resources */,
 				49DAC04222CDEA4C0051FD17 /* Manifest.lock in Resources */,
 				49DAC03822CDEA4C0051FD17 /* Pods-MinischoolPlayer.debug.xcconfig in Resources */,
 				49DAC04822CDEA4C0051FD17 /* README.md in Resources */,
-				49DAC06F22CDEAE80051FD17 /* VideoViewController.xib in Resources */,
 				49DAC04022CDEA4C0051FD17 /* Starscream.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,11 +464,9 @@
 			files = (
 				49DAC04A22CDEA4C0051FD17 /* Compression.swift in Sources */,
 				49DAC03E22CDEA4C0051FD17 /* Starscream-dummy.m in Sources */,
-				49DAC07022CDEAE80051FD17 /* VideoViewController.swift in Sources */,
 				49DAC06A22CDEAE80051FD17 /* MSPlayer+WebRTC.swift in Sources */,
 				49DAC06B22CDEAE80051FD17 /* Config.swift in Sources */,
 				49DAC07522CDEAE80051FD17 /* SignalingClient.swift in Sources */,
-				49DAC07222CDEAE80051FD17 /* MainViewController.swift in Sources */,
 				49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */,
 				49DAC04922CDEA4C0051FD17 /* SSLClientCertificate.swift in Sources */,
 				49DAC06822CDEAE80051FD17 /* Client.swift in Sources */,
