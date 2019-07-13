@@ -47,25 +47,6 @@ final class WebRTCClient: NSObject {
     override init() {
         fatalError("WebRTCClient:init is unavailable")
     }
-    required init(iceServers: [String]) {
-        let config = RTCConfiguration()
-        config.iceServers = [RTCIceServer(urlStrings: iceServers)]
-        
-        // Unified plan is more superior than planB
-        config.sdpSemantics = .unifiedPlan
-        
-        // gatherContinually will let WebRTC to listen to any network changes and send any new candidates to the other client
-        config.continualGatheringPolicy = .gatherContinually
-        
-        let constraints = RTCMediaConstraints(mandatoryConstraints: nil,
-                                              optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
-        self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: constraints, delegate: nil)
-        
-        super.init()
-        self.createMediaSenders()
-        self.configureAudioSession()
-        self.peerConnection.delegate = self
-    }
     
     required init(_ webRTCParameter : WebRTCParameter) {
 
