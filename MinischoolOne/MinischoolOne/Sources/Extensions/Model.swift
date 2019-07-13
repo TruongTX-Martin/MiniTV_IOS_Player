@@ -11,32 +11,12 @@ import WebRTC
 
 public struct Frame: Codable{
     
-    init() {
-        self.x = 0
-        self.y = 0
-        self.zIndex = 0
-        self.width = 100
-        self.height = 100
-    }
-    
-    init(x: CGFloat, y: CGFloat, z: CGFloat, width: CGFloat, height: CGFloat) {
-        self.x = x
-        self.y = y
-        self.zIndex = z
-        self.width = width
-        self.height = height
-    }
-    
     var x: CGFloat
     var y: CGFloat
     var zIndex: CGFloat
     var width: CGFloat
     var height: CGFloat
 }
-
-//SessionDescription
-
-//IceCandidate
 
 public struct WebRTCParameter: Codable{
     
@@ -45,32 +25,13 @@ public struct WebRTCParameter: Codable{
 }
 
 public struct AVConstraint: Codable{
-
-    init(){
-        self.audio = false
-        self.video = false
-    }
     
     var audio: Bool
-    var video: Bool
+    var video: [String: [String: Int]]
 }
 
 public struct ICEConfiguration: Codable{
     
-    /*
-     const configuration = {
-     iceServers: [{
-     //url: 'stun:stun.l.google.com:19302',
-     url: "stun:stage-ct-e1.minischool.co.kr:3478",
-     urls: "stun:stage-ct-e1.minischool.co.kr:3478"
-     }, {
-     credential: "********",
-     url: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp",
-     urls: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp",
-     username: "minischool"
-     }]
-     };
-     */
     init() {
         self.iceServers = []
     }

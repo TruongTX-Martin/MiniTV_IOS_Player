@@ -79,6 +79,7 @@ extension MSPlayer{
 
         #if arch(arm64)
         // Using metal (arm64 only)
+        print("arch(arm64)")
         let renderer = RTCMTLVideoView(frame: videoView.frame)
         renderer.videoContentMode = .scaleAspectFill
         #else
@@ -86,13 +87,8 @@ extension MSPlayer{
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
         #endif
         
-        //좌우반전(거울처럼)
-        switch UIDevice.current.orientation {
-        case .portrait:
-            renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        default:
-            renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
-        }
+//        //좌우반전(거울처럼)
+        renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         if isLocal {
             Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)

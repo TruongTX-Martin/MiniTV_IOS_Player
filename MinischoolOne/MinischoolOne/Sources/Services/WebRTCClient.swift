@@ -40,6 +40,8 @@ final class WebRTCClient: NSObject {
     
     private weak var localRenderer: RTCVideoRenderer?
     private weak var remoteRenderer: RTCVideoRenderer?
+    
+    private var localVideoMandatory: [String: Int]?
 
     @available(*, unavailable)
     override init() {
@@ -70,6 +72,8 @@ final class WebRTCClient: NSObject {
         let iceConfiguration = webRTCParameter.iceConfiguration
         let constraints = webRTCParameter.constraints
         
+        self.localVideoMandatory = constraints.video["mandatory"]
+        
         let config = RTCConfiguration()
         config.iceServers = [
             RTCIceServer(urlStrings: iceConfiguration.iceServers.map({ (url) -> String in
@@ -86,13 +90,11 @@ final class WebRTCClient: NSObject {
         config.continualGatheringPolicy = .gatherContinually
         
         let mandatoryConstraints = [kRTCMediaConstraintsOfferToReceiveAudio: constraints.audio ? kRTCMediaConstraintsValueTrue : kRTCMediaConstraintsValueFalse,
-                                            kRTCMediaConstraintsOfferToReceiveVideo: constraints.video ? kRTCMediaConstraintsValueTrue : kRTCMediaConstraintsValueFalse]
+                                            kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue]
         let rTCMediaConstraints = RTCMediaConstraints(mandatoryConstraints: mandatoryConstraints,
                                               optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
 
         self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: rTCMediaConstraints, delegate: nil)
-
-//        print(self.peerConnection.debugDescription)
 
         super.init()
         self.createMediaSenders()
@@ -155,13 +157,15 @@ final class WebRTCClient: NSObject {
             }).last,
         
             // choose highest fps
-            let fps = (format.videoSupportedFrameRateRanges.sorted { return $0.maxFrameRate < $1.maxFrameRate }.last) else {
+//            let fps = (format.videoSupportedFrameRateRanges.sorted { return $0.maxFrameRate < $1.maxFrameRate }.last),
+            
+            let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] else {
             return
         }
 
         capturer.startCapture(with: frontCamera,
                               format: format,
-                              fps: Int(fps.maxFrameRate))
+                              fps: maxFrameRate)
         
         self.localVideoTrack?.add(renderer)
         self.localRenderer = renderer
@@ -281,7 +285,6 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
     }
     
     func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        debugPrint("peerConnection RTCIceCandidate 11111: \(self.delegate)")
         self.delegate?.webRTCClient(self, didDiscoverLocalCandidate: candidate)
     }
     
