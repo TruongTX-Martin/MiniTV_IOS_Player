@@ -281,6 +281,7 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
     }
     
     func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
+        debugPrint("peerConnection RTCIceCandidate 11111: \(self.delegate)")
         self.delegate?.webRTCClient(self, didDiscoverLocalCandidate: candidate)
     }
     

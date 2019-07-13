@@ -116,6 +116,7 @@ extension MSPlayer {
     //    WebRTC Control
     public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
         Client.prepare(webRTCParameter : webRTCParameter)
+        Client.shared.webRTCClient.delegate = self
     }
     
     public func stopWebRTC() {

@@ -50,7 +50,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 //        let request = URLRequest(url: url)
 //        self.createLocalVideo(Frame(x: 20, y: 50, z: 99, width: 50, height: 100))
 
-        let url = URL(string: "http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
+//        let url = URL(string: "http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
+        let url = URL(string: "http://192.168.1.57:8080/?role=s&id=aaa&ck=bbb")
+        
         print("openUrl \(url.debugDescription)")
         let request = URLRequest(url: url!)
         webView.load(request)
