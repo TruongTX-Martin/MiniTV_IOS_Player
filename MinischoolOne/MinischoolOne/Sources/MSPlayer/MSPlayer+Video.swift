@@ -87,7 +87,7 @@ extension MSPlayer{
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
         #endif
         
-//        //좌우반전(거울처럼)
+        //좌우반전(거울처럼)
         renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         
         if isLocal {

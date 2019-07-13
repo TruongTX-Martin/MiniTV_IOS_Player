@@ -34,6 +34,8 @@ public class MSPlayer : NSObject {
     }
     
     public func run() {
-        self.openUrl()
+        self.openUrl("http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
+        //self.openUrl("http://192.168.1.57:8080/?role=s&id=aaa&ck=bbb")
+
     }
 }

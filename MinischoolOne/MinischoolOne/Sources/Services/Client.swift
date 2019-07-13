@@ -12,23 +12,11 @@ public class Client {
     
     static var shared : Client!
     
-//    var signalClient: SignalingClient!
     var webRTCClient: WebRTCClient!
 
-    /*
-    private init() {
-        
-        let config = Config.default
-        self.signalClient = SignalingClient(serverUrl: config.signalingServerUrl)
-        self.webRTCClient = WebRTCClient(iceServers: config.webRTCIceServers)
-    }
-     */
-    
     public init(webRTCParameter : WebRTCParameter) {
     
         self.webRTCClient = WebRTCClient(webRTCParameter)
-//        let config = Config.default
-//        self.webRTCClient = WebRTCClient(iceServers: config.webRTCIceServers)
     }
     
     public static func prepare(webRTCParameter : WebRTCParameter) {
