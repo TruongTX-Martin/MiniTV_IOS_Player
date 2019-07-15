@@ -77,6 +77,11 @@ extension MSPlayer {
             case "speakerOff" :
                 self.speakerOff()
             
+            case "changeStatusTo" :
+                if let status: MSPlayerStatus = self.jsonTo(json: json as? String) {
+                    self.changeStatusTo(status)
+                }
+
             default:
                 printError("\(function) is not defined in ios native")
         }
@@ -187,4 +192,13 @@ extension MSPlayer {
     public func speakerOn() {
         Client.shared.webRTCClient.speakerOn()
     }
+
+    public func changeStatusTo(_ status: MSPlayerStatus) {
+        MSPlayer(self, didChangedStatus: status)
+    }
+    
+    func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
+    
+    }
+    
 }

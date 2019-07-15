@@ -52,7 +52,6 @@ extension MSPlayer{
                 self.localVideoView.removeFromSuperview()
             }
             self.localVideoView = UIView(frame: modifiedFrame)
-//            self.containerView.addSubview(self.localVideoView)
 
             if frame.zIndex <= 2 {
                 self.bringLocalVideoToFront()
@@ -65,7 +64,6 @@ extension MSPlayer{
                 self.remoteVideoView.removeFromSuperview()
             }
             self.remoteVideoView = UIView(frame: modifiedFrame)
-//            self.containerView.addSubview(self.remoteVideoView)
 
             if frame.zIndex <= 2 {
                 self.bringRemoteVideoToFront()
