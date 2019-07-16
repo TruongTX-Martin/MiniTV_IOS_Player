@@ -27,9 +27,9 @@ extension MSPlayer {
             
             case "startWebRTC" :
                 print("startWebRTC start")
-                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
-                    self.startWebRTC(webRTCParameter)
-                }
+//                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
+//                    self.startWebRTC(webRTCParameter)
+//                }
             
             case "stopWebRTC" :
                 self.stopWebRTC()

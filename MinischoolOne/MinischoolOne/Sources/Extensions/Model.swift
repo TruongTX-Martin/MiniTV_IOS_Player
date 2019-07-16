@@ -32,10 +32,6 @@ public struct AVConstraint: Codable{
 
 public struct ICEConfiguration: Codable{
     
-    init() {
-        self.iceServers = []
-    }
-    
     var iceServers: [Url]
 }
 

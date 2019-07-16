@@ -16,7 +16,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         let contentController = WKUserContentController()
         contentController.add(self, name: "jsToNative")
         
-        let js = "window.isNative = true; window.NativeInfo = {ck:'\(self.classKey!)', token: '\(self.token!)', serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion!)'}"
+        let js = "window.isNative = true; window.NativeInfo = {serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion!)'}"
         let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         contentController.addUserScript(userScript)
         

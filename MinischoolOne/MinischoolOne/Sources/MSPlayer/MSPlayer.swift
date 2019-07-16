@@ -20,8 +20,7 @@ public class MSPlayer : NSObject {
     internal var webView: WKWebView!
     
     public var url: String!
-    public var classKey: String!
-    public var token: String!
+    public var classKeyAndToken: String!
     public var role: String!
     public var serviceAppVersion: String!
     public var frameworkVersion: String! = "1.0"
@@ -30,7 +29,7 @@ public class MSPlayer : NSObject {
     weak var viewController: UIViewController?
     public weak var delegate: MSPlayerDelegate?
     
-    public init(_ containerView: UIView, viewController: UIViewController, serviceAppVersion: String, url: String, classKey: String, token: String, role: String) {
+    public init(_ containerView: UIView, viewController: UIViewController, serviceAppVersion: String, url: String, classKeyAndToken: String, role: String) {
         super.init()
 
         self.containerView = containerView
@@ -38,22 +37,20 @@ public class MSPlayer : NSObject {
         self.serviceAppVersion = serviceAppVersion
 
         self.url = url
-        //https://stage-p2.minischool.co.kr/preview/Y2sxNTYxOTY2MjMxMjY1e4a0a4be-4924-4557-a28a-025ade7451b1?ref=a
-        self.classKey = classKey
-        self.token = token
+
+        self.classKeyAndToken = classKeyAndToken
         self.role = role
 
+        self.initWebRTC()
+        
         self.initWebview()
         
         self.delegate?.MSPlayer(self, didChangedStatus: MSPlayerStatus.waiting)
     }
     
     public func run() {
-        let urlComplete = "\(self.url!)?hash=\(self.classKey!)\(self.token!)&role=\(self.role!)"
+        let urlComplete = "\(self.url!)?hash=\(self.classKeyAndToken!)&role=\(self.role!)"
         print(urlComplete)
         self.openUrl(urlComplete)
-
-//        self.openUrl("http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
-        //self.openUrl("http://192.168.1.57:8080/?role=s&id=aaa&ck=bbb")
     }
 }
