@@ -49,10 +49,11 @@ public class MSPlayer : NSObject {
     }
     
     public func run() {
-//        let urlComplete = "\(self.url!)?hash=\(self.classKey!)\(self.token!)&role=\(self.role!)"
-//        self.openUrl(urlComplete)
+        let urlComplete = "\(self.url!)?hash=\(self.classKey!)\(self.token!)&role=\(self.role!)"
+        print(urlComplete)
+        self.openUrl(urlComplete)
 
-        self.openUrl("http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
+//        self.openUrl("http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb")
         //self.openUrl("http://192.168.1.57:8080/?role=s&id=aaa&ck=bbb")
     }
 }

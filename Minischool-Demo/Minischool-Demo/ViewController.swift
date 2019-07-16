@@ -28,15 +28,13 @@ class ViewController: UIViewController, MSPlayerDelegate {
     
     //https://stage-p2.minischool.co.kr/preview/Y2sxNTYxOTY2MjMxMjY1e4a0a4be-4924-4557-a28a-025ade7451b1?ref=a
 
-    //http://172.16.3.95:8080/?role=s&id=aaa&ck=bbb
-    //http://192.168.1.57:8080/?role=s&id=aaa&ck=bbb
-    
     let serviceAppVersion = "1.0"
-    let url = "https://stage-p2.minischool.co.kr/preview/"
-    let classKey = ""
-    let token = ""
-    let role = "t"
-
+    let url = "http://172.16.3.95:8080"
+//    let url = "https://stage-p2.minischool.co.kr/preview/"
+    let classKey = "Y2sxNTYxOTY2MjMxMjY"
+    let token = "1e4a0a4be-4924-4557-a28a-025ade7451b1"
+    let role = "s"
+    // 클래스 룸
     override func viewDidLoad() {
         super.viewDidLoad()
         self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, url: url, classKey: classKey, token: token, role: role)

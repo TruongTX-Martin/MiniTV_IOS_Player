@@ -236,6 +236,10 @@ final class WebRTCClient: NSObject {
         let buffer = RTCDataBuffer(data: data, isBinary: true)
         self.remoteDataChannel?.sendData(buffer)
     }
+    
+    func closePeerConnection() {
+        self.peerConnection.close()
+    }
 }
 
 extension WebRTCClient: RTCPeerConnectionDelegate {

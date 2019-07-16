@@ -76,6 +76,18 @@ extension MSPlayer {
             
             case "speakerOff" :
                 self.speakerOff()
+
+            case "onWait" : //수업 룸에 참여하여 교사를 기다리는 중
+                self.changeStatusTo(MSPlayerStatus.waiting)
+
+            case "onStarted" : //교사와 연결되어 수업을 진행
+                self.changeStatusTo(MSPlayerStatus.started)
+            
+            case "onEnded" : //수업이 종료됨
+                self.changeStatusTo(MSPlayerStatus.ended)
+            
+            case "onError" : //에러가 발생
+                self.changeStatusTo(MSPlayerStatus.errorOcccured)
             
             case "changeStatusTo" :
                 if let status: MSPlayerStatus = self.jsonTo(json: json as? String) {
@@ -123,7 +135,11 @@ extension MSPlayer {
     }
     
     public func stopWebRTC() {
-        
+        if let webRTCClient = Client.shared.webRTCClient {
+            webRTCClient.stopRenderRemoteVideo()
+            webRTCClient.stopCaptureLocalVideo()
+            webRTCClient.closePeerConnection()
+        }
     }
     
     //    Video Control
@@ -194,11 +210,6 @@ extension MSPlayer {
     }
 
     public func changeStatusTo(_ status: MSPlayerStatus) {
-        MSPlayer(self, didChangedStatus: status)
+        self.delegate?.MSPlayer(self, didChangedStatus: status)
     }
-    
-    func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
-    
-    }
-    
 }
