@@ -14,20 +14,36 @@ class ViewController: UIViewController, MSPlayerDelegate {
 //    @IBOutlet weak var containerView: UIView!
     var player: MSPlayer!
     
-    let serviceAppVersion = "1.0"
-    let url = "http://172.16.3.95:8080"
-//    let url = "https://stage-p2.minischool.co.kr/preview/"
-
-    let classKeyAndToken = "Y2sxNTYzMjU4NDQ3MTAydG9rZW4xMDE1NjE2OTA2Nzg5NDM="
-    let role = "s"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
+        let segmented = UserDefaults.standard.integer(forKey: "segmented")
+
+        let server1 = UserDefaults.standard.string(forKey: "server1") ?? ""
+        let server2 = UserDefaults.standard.string(forKey: "server2") ?? ""
+        let classKeyAndToken = UserDefaults.standard.string(forKey: "classKeyAndToken") ?? ""
+
+        let server = segmented == 0 ? server1 : server2
+        let url = "http://\(server)"
+
+        let serviceAppVersion = "1.0"
+        let role = "s"
+
         self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, url: url, classKeyAndToken: classKeyAndToken, role: role)
         
         self.player.delegate = self
         
         self.player.run()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.player.closeAll()
     }
 
     func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {

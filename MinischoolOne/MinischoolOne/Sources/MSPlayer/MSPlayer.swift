@@ -55,4 +55,9 @@ public class MSPlayer : NSObject {
         print(urlComplete)
         self.openUrl(urlComplete)
     }
+    
+    @objc public func closeAll() {
+        self.stopWebRTC()
+        self.webView = nil
+    }
 }

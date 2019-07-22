@@ -16,6 +16,7 @@
 		494FFDDE22CDEBBF00B38B59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494FFDDC22CDEBBF00B38B59 /* LaunchScreen.storyboard */; };
 		4967FE9B22CDFCC800466C4D /* MinischoolOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4967FE9C22CDFCC800466C4D /* MinischoolOne.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4975B04F22E56DAB0072A738 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4975B04E22E56DAB0072A738 /* InitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		494FFDDD22CDEBBF00B38B59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		494FFDDF22CDEBBF00B38B59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		494FFDE522CDEBD000B38B59 /* MinischoolOne.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MinischoolOne.xcodeproj; path = ../MinischoolOne/MinischoolOne.xcodeproj; sourceTree = "<group>"; };
+		4975B04E22E56DAB0072A738 /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		4989FDB722E43C66007C3E83 /* Minischool-Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minischool-Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		4989FDBA22E43CCC007C3E83 /* UIViewController+ViewControllerObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerObjC.m"; sourceTree = "<group>"; };
 		49DAC02122CDEA4C0051FD17 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */,
 				494FFDD522CDEBBE00B38B59 /* ViewController.swift */,
 				494FFDD722CDEBBE00B38B59 /* Main.storyboard */,
+				4975B04E22E56DAB0072A738 /* InitViewController.swift */,
 				494FFDDA22CDEBBF00B38B59 /* Assets.xcassets */,
 				494FFDDC22CDEBBF00B38B59 /* LaunchScreen.storyboard */,
 				494FFDDF22CDEBBF00B38B59 /* Info.plist */,
@@ -229,6 +232,7 @@
 			files = (
 				494FFDD622CDEBBE00B38B59 /* ViewController.swift in Sources */,
 				494FFDD422CDEBBE00B38B59 /* AppDelegate.swift in Sources */,
+				4975B04F22E56DAB0072A738 /* InitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
