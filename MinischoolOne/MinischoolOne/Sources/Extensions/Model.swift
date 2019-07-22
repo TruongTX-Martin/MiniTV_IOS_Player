@@ -41,7 +41,7 @@ public struct Url: Codable{
     var urls: String
     var username: String?
 }
-
+@objc
 public enum MSPlayerStatus: Int, Codable {
     case waiting = 100
     case started = 200

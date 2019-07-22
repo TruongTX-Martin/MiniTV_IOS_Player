@@ -1,22 +1,20 @@
 //
-//  ViewController.swift
+//  UIViewController+ViewControllerObjC.h
 //  Minischool-Demo
 //
-//  Created by JONGYOUNG CHUNG on 04/07/2019.
+//  Created by JONGYOUNG CHUNG on 21/07/2019.
 //  Copyright © 2019 Minischool. All rights reserved.
 //
 
-import UIKit
-import MinischoolOne
+#import <UIKit/UIKit.h>
+#import "MinischoolOne"
 
-class ViewController: UIViewController, MSPlayerDelegate {
+@interface ViewController: UIViewController, MSPlayerDelegate ()
+    MSPlayer player;
 
-//    @IBOutlet weak var containerView: UIView!
-    var player: MSPlayer!
-    
-    let serviceAppVersion = "1.0"
-    let url = "http://172.16.3.95:8080"
-//    let url = "https://stage-p2.minischool.co.kr/preview/"
+NSString serviceAppVersion = "1.0";
+NSString url = "http://172.16.3.95:8080";
+    //    let url = "https://stage-p2.minischool.co.kr/preview/"
 
     let classKeyAndToken = "Y2sxNTYzMjU4NDQ3MTAydG9rZW4xMDE1NjE2OTA2Nzg5NDM="
     let role = "s"
@@ -42,9 +40,10 @@ class ViewController: UIViewController, MSPlayerDelegate {
             print("errorOcccured")
         }
     }
-    
+
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
         print(error.localizedDescription)
     }
-}
+@end
 
+NS_ASSUME_NONNULL_END

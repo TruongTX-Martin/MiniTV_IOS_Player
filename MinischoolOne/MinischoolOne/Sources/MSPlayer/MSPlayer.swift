@@ -10,9 +10,13 @@ import Foundation
 import WebRTC
 import WebKit
 
+@objc
 public protocol MSPlayerDelegate: class {
     func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus)
+    func MSPlayer(_ player: MSPlayer, errorOccured error: Error)
 }
+
+@objc(MSPlayer)
 public class MSPlayer : NSObject {
 
     internal var localVideoView: UIView!
@@ -25,11 +29,11 @@ public class MSPlayer : NSObject {
     public var serviceAppVersion: String!
     public var frameworkVersion: String! = "1.0"
 
-    weak var containerView: UIView!
+    public weak var containerView: UIView!
     weak var viewController: UIViewController?
     public weak var delegate: MSPlayerDelegate?
     
-    public init(_ containerView: UIView, viewController: UIViewController, serviceAppVersion: String, url: String, classKeyAndToken: String, role: String) {
+    @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String, classKeyAndToken: String, role: String) {
         super.init()
 
         self.containerView = containerView
@@ -44,11 +48,9 @@ public class MSPlayer : NSObject {
         self.initWebRTC()
         
         self.initWebview()
-        
-        self.delegate?.MSPlayer(self, didChangedStatus: MSPlayerStatus.waiting)
     }
     
-    public func run() {
+    @objc public func run() {
         let urlComplete = "\(self.url!)?hash=\(self.classKeyAndToken!)&role=\(self.role!)"
         print(urlComplete)
         self.openUrl(urlComplete)

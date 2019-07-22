@@ -15,7 +15,9 @@ extension MSPlayer {
         
         guard let function = dictionary["function"] as? String else { return }
         print(function)
-        
+        print("JSToNative containerView.frame: \(self.containerView.frame)")
+        print("JSToNative webView: \(self.webView.frame)")
+
         let json: Any? = dictionary["data"]
         if let json = json {
             print(json)
@@ -100,6 +102,7 @@ extension MSPlayer {
     }
     
     func jsonTo<T: Codable>(json: Any?) -> T? {
+        
         do {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: (json as! String).data(using: .utf8)!)
@@ -110,6 +113,7 @@ extension MSPlayer {
     }
 
     func jsonFrom<T: Codable>(obj: T) -> String? {
+        
         do {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
@@ -122,8 +126,10 @@ extension MSPlayer {
     }
 
     func printError(_ message : String) {
-        print(message)
-        self.callJS(jsFunctionName: "console.log", data: "\(message)")
+//        print(message)
+        let errorMessage = "Native Framwork Error: \(message)"
+        self.callJS(jsFunctionName: "console.log", data: errorMessage)
+        self.deliverError(errorMessage)
     }
     
     //    JSToNative
@@ -204,12 +210,26 @@ extension MSPlayer {
     public func speakerOff() {
         Client.shared.webRTCClient.speakerOff()
     }
-    
+
     public func speakerOn() {
         Client.shared.webRTCClient.speakerOn()
     }
-
+    
     public func changeStatusTo(_ status: MSPlayerStatus) {
         self.delegate?.MSPlayer(self, didChangedStatus: status)
+    }
+    
+    public func onError(_ status: MSPlayerStatus) {
+
+    }
+    
+    public func deliverError(_ message: String) {
+
+        let error = MSPlayerError.runtimeError(message)
+        self.delegate?.MSPlayer(self, errorOccured: error)
+    }
+    
+    enum MSPlayerError: Error {
+        case runtimeError(String)
     }
 }
