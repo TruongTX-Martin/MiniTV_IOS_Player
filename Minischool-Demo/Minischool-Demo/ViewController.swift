@@ -23,13 +23,16 @@ class ViewController: UIViewController, MSPlayerDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         
-        let segmented = UserDefaults.standard.integer(forKey: "segmented")
+        let segmentedServer = UserDefaults.standard.integer(forKey: "segmentedServer")
+        let segmentedToken = UserDefaults.standard.integer(forKey: "segmentedToken")
 
         let server1 = UserDefaults.standard.string(forKey: "server1") ?? ""
         let server2 = UserDefaults.standard.string(forKey: "server2") ?? ""
-        let classKeyAndToken = UserDefaults.standard.string(forKey: "classKeyAndToken") ?? ""
+        let classKeyAndToken1 = UserDefaults.standard.string(forKey: "classKeyAndToken") ?? ""
+        let classKeyAndToken2 = UserDefaults.standard.string(forKey: "classKeyAndToken2") ?? ""
 
-        let server = segmented == 0 ? server1 : server2
+        let server = segmentedServer == 0 ? server1 : server2
+        let classKeyAndToken = segmentedToken == 0 ? classKeyAndToken1 : classKeyAndToken2
         let url = "http://\(server)"
 
         let serviceAppVersion = "1.0"

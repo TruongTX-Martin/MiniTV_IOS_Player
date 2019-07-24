@@ -21,6 +21,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         contentController.addUserScript(userScript)
         
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+        webConfiguration.preferences.javaScriptEnabled = true
         webConfiguration.userContentController = contentController
         
         self.containerView.isOpaque = false
