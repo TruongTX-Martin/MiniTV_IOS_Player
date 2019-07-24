@@ -51,7 +51,7 @@ public class MSPlayer : NSObject {
     }
     
     @objc public func run() {
-        let urlComplete = "\(self.url!)?hash=\(self.classKeyAndToken!)&role=\(self.role!)"
+        let urlComplete = "\(self.url!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)"
         print(urlComplete)
         self.openUrl(urlComplete)
     }
