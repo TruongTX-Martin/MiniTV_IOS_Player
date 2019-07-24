@@ -11,32 +11,6 @@ import WebRTC
 
 extension MSPlayer{
     
-    func initVideoView() {
-        
-        #if arch(arm64)
-        // Using metal (arm64 only)
-        let localRenderer = RTCMTLVideoView(frame: self.localVideoView?.frame ?? CGRect.zero)
-        let remoteRenderer = RTCMTLVideoView(frame: self.remoteVideoView?.frame ?? CGRect.zero)
-        localRenderer.videoContentMode = .scaleAspectFill
-        remoteRenderer.videoContentMode = .scaleAspectFill
-        #else
-        // Using OpenGLES for the rest
-        let localRenderer = RTCEAGLVideoView(frame: self.localVideoView?.frame ?? CGRect.zero)
-        let remoteRenderer = RTCEAGLVideoView(frame: self.remoteVideoView?.frame ?? CGRect.zero)
-        #endif
-        //좌우반전(거울처럼)
-        localRenderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-        Client.shared.webRTCClient.startCaptureLocalVideo(renderer: localRenderer)
-        Client.shared.webRTCClient.renderRemoteVideo(to: remoteRenderer)
-        
-        if let localVideoView = self.localVideoView {
-            self.embedView(localRenderer, into: localVideoView)
-        }
-        if let remoteVideoView = self.remoteVideoView {
-            self.embedView(remoteRenderer, into: remoteVideoView)
-        }
-    }
-    
     func createVideo(isLocal: Bool, frame: Frame) {
         
         
@@ -87,7 +61,12 @@ extension MSPlayer{
         
         if isLocal {
             //좌우반전(거울처럼)
-            renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            if UIDevice.current.orientation.isLandscape {
+//                renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            } else {
+//                renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
+//            }
+            
             Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
         }else{
             Client.shared.webRTCClient.renderRemoteVideo(to: renderer)

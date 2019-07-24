@@ -57,7 +57,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     public func openUrl(_ urlString: String) {
         let url = URL(string: urlString)
 
-        print("openUrl \(url.debugDescription)")
+        print("openUrl containerView.frame: \(self.containerView.frame)")
         let request = URLRequest(url: url!)
         webView.load(request)
     }
@@ -116,6 +116,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
+        print("didFinish containerView.frame: \(self.containerView.frame)")
         print("didFinish \(url as Any)")
     }
     

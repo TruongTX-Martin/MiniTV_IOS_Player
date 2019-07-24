@@ -15,8 +15,6 @@ extension MSPlayer {
         
         guard let function = dictionary["function"] as? String else { return }
         print(function)
-        print("JSToNative containerView.frame: \(self.containerView.frame)")
-        print("JSToNative webView: \(self.webView.frame)")
 
         let json: Any? = dictionary["data"]
         if let json = json {
@@ -90,6 +88,24 @@ extension MSPlayer {
             
             case "onError" : //에러가 발생
                 self.changeStatusTo(MSPlayerStatus.errorOcccured)
+            
+            case "bringWebViewToFront" :
+                self.bringWebViewToFront()
+            
+            case "bringLocalVideoToFront" :
+                self.bringLocalVideoToFront()
+            
+            case "bringRemoteVideoToFront" :
+                self.bringRemoteVideoToFront()
+            
+            case "sendWebViewToBack" :
+                self.sendWebViewToBack()
+            
+            case "sendLocalVideoToBack" :
+                self.sendLocalVideoToBack()
+            
+            case "sendRemoteVideoToBack" :
+                self.sendRemoteVideoToBack()
             
             case "changeStatusTo" :
                 if let status: MSPlayerStatus = self.jsonTo(json: json as? String) {
