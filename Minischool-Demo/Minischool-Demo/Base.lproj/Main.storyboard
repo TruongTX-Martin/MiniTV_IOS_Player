@@ -77,7 +77,7 @@
                                         </state>
                                         <connections>
                                             <action selector="tapGo:" destination="Tv5-HF-qFk" eventType="touchUpInside" id="xrj-m7-4v8"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="YKR-Ma-bx2"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="YKR-Ma-bx2"/>
                                         </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-Pe-qxk">

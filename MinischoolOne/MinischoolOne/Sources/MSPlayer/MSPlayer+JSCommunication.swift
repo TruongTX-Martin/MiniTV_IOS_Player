@@ -154,6 +154,11 @@ extension MSPlayer {
     public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
+        if let webRTCClient = Client.shared.webRTCClient {
+            webRTCClient.speakerOn()
+        }else{
+            print("webRTCClient is not ready, can't speaker on")
+        }
     }
     
     public func stopWebRTC() {
@@ -161,6 +166,9 @@ extension MSPlayer {
             webRTCClient.stopRenderRemoteVideo()
             webRTCClient.stopCaptureLocalVideo()
             webRTCClient.closePeerConnection()
+            self.speakerOff()
+        }else{
+            print("webRTCClient is not ready, nothing to stop")
         }
     }
     

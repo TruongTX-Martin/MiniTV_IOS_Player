@@ -22,7 +22,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.allowsPictureInPictureMediaPlayback = true
         webConfiguration.mediaTypesRequiringUserActionForPlayback = []
+
         webConfiguration.preferences.javaScriptEnabled = true
         webConfiguration.userContentController = contentController
         
@@ -46,6 +48,8 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        
+        webView.isUserInteractionEnabled = true
     }
     
     func openEmbeded() {

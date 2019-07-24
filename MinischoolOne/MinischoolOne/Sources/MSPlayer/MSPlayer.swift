@@ -22,7 +22,7 @@ public class MSPlayer : NSObject {
     internal var localVideoView: UIView!
     internal var remoteVideoView: UIView!
     internal var webView: WKWebView!
-    
+
     public var url: String!
     public var classKeyAndToken: String!
     public var role: String!
