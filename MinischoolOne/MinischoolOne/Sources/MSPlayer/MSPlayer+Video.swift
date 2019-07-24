@@ -22,6 +22,11 @@ extension MSPlayer{
         // video view 생성
         
         if isLocal {
+            if self.localVideoView != nil, self.localVideoView.isHidden {
+                self.localVideoView.isHidden = false
+                return
+            }
+            
             if self.localVideoView?.superview != nil {
                 self.localVideoView.removeFromSuperview()
             }
@@ -34,6 +39,11 @@ extension MSPlayer{
             }
             
         }else{
+            if self.remoteVideoView != nil, self.remoteVideoView.isHidden {
+                self.remoteVideoView.isHidden = false
+                return
+            }
+
             if self.remoteVideoView?.superview != nil {
                 self.remoteVideoView.removeFromSuperview()
             }
@@ -86,6 +96,12 @@ extension MSPlayer{
             if self.remoteVideoView?.superview != nil {
                 self.remoteVideoView.removeFromSuperview()
             }
+        }
+    }
+    
+    func hideVideo(isLocal: Bool) {
+        if let videoView = isLocal ? self.localVideoView : self.remoteVideoView{
+            videoView.isHidden = true
         }
     }
     

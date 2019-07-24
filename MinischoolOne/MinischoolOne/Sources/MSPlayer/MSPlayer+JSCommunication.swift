@@ -40,15 +40,15 @@ extension MSPlayer {
                 }
             
             case "destroyLocalVideo" :
-                self.destroyLocalVideo()
-            
+                self.hideVideo(isLocal: true)
+
             case "createRemoteVideo" :
                 if let frame: Frame = self.jsonTo(json: json as? String) {
                     self.createRemoteVideo(frame)
                 }
             
             case "destroyRemoteVideo" :
-                self.destroyRemoteVideo()
+                self.hideVideo(isLocal: false)
             
             case "onReceiveOffer" :
                 if let sdp: SessionDescription = self.jsonTo(json: json as? String) {
