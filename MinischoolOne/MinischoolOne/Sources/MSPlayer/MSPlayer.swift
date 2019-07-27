@@ -33,6 +33,10 @@ public class MSPlayer : NSObject {
     weak var viewController: UIViewController?
     public weak var delegate: MSPlayerDelegate?
     
+    private var observer: NSKeyValueObservation?
+    var localVideoViewOriginalFrame: Frame!
+    var remoteVideoViewOriginalFrame: Frame!
+
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String, classKeyAndToken: String, role: String) {
         super.init()
 
@@ -45,9 +49,16 @@ public class MSPlayer : NSObject {
         self.classKeyAndToken = classKeyAndToken
         self.role = role
 
-        self.initWebRTC()
+//        self.initWebRTC()
+        self.speakerOn1()
         
         self.initWebview()
+        
+        observer = self.containerView.layer.observe(\.bounds) { object, _ in
+            print(object.bounds)
+            self.relocateLocalVideoFrame()
+            self.relocateRemoteVideoFrame()
+        }
     }
     
     @objc public func run() {
@@ -60,4 +71,23 @@ public class MSPlayer : NSObject {
         self.stopWebRTC()
         self.webView = nil
     }
+    
+    
+    // Force speaker
+    func speakerOn1() {
+        print("speakerOn1")
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            //            try audioSession.setCategory(.playback, mode: .default, options: [])
+            //
+            //            try audioSession.overrideOutputAudioPort(.speaker)
+            try audioSession.setActive(true)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+    }
+
+    
 }

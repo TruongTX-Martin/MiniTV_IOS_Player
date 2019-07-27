@@ -40,11 +40,22 @@ extension MSPlayer {
         self.containerView.sendSubviewToBack(self.webView)
     }
     
-    public func setLocalVideoFrame(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
-        self.localVideoView.frame = CGRect(x: x, y: y, width: width, height: height)
+    public func relocateLocalVideoFrame() {
+        if let frame = self.localVideoViewOriginalFrame {
+            self.localVideoView.frame = self.getModifiedFrame(frame: frame)
+        }
     }
     
-    public func setRemoteVideoFrame(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
-        self.remoteVideoView.frame = CGRect(x: x, y: y, width: width, height: height)
+    public func relocateRemoteVideoFrame() {
+        if let frame = self.remoteVideoViewOriginalFrame {
+            self.remoteVideoView.frame = self.getModifiedFrame(frame: frame)
+        }
+    }
+    
+    public func getModifiedFrame(frame: Frame) -> CGRect {
+        let widthProportion : CGFloat = self.containerView.frame.width / 1920
+        let heightProportion : CGFloat = self.containerView.frame.height / 1080
+        
+        return CGRect(x: frame.x * widthProportion, y: frame.y * heightProportion, width: frame.width * widthProportion, height: frame.height * heightProportion)
     }
 }

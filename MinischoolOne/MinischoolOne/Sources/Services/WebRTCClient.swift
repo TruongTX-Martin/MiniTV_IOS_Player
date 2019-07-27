@@ -81,6 +81,8 @@ final class WebRTCClient: NSObject {
         self.createMediaSenders()
         self.configureAudioSession()
         self.peerConnection.delegate = self
+        
+        self.rtcAudioSession.add(self)
     }
     
     // MARK: Signaling
@@ -283,6 +285,59 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
     }
 }
 
+extension WebRTCClient: RTCAudioSessionDelegate {
+    func audioSessionDidBeginInterruption(_ session: RTCAudioSession) {
+        print("RTCAudioSessionDelegate-audioSessionDidBeginInterruption")
+    }
+    func audioSessionDidEndInterruption(_ session: RTCAudioSession, shouldResumeSession: Bool) {
+        print("RTCAudioSessionDelegate-audioSessionDidEndInterruption")
+    }
+    func audioSessionDidChangeRoute(_ session: RTCAudioSession, reason: AVAudioSession.RouteChangeReason, previousRoute: AVAudioSessionRouteDescription) {
+        print("RTCAudioSessionDelegate-audioSessionDidChangeRoute reason:\(reason) previousRoute:\(previousRoute)")
+    }
+    func audioSessionMediaServerTerminated(_ session: RTCAudioSession) {
+        print("RTCAudioSessionDelegate-audioSessionMediaServerTerminated")
+    }
+    func audioSessionMediaServerReset(_ session: RTCAudioSession) {
+        print("RTCAudioSessionDelegate-audioSessionMediaServerReset")
+    }
+    func audioSession(_ session: RTCAudioSession, didChangeCanPlayOrRecord canPlayOrRecord: Bool) {
+        print("RTCAudioSessionDelegate-audioSession didChangeCanPlayOrRecord")
+    }
+    func audioSessionDidStartPlayOrRecord(_ session: RTCAudioSession) {
+        print("RTCAudioSessionDelegate-audioSessionDidStartPlayOrRecord")
+    }
+    func audioSessionDidStartPlaudioSessionDidStopPlayOrRecordayOrRecord(_ session: RTCAudioSession) {
+        print("RTCAudioSessionDelegate-audioSessionDidStartPlaudioSessionDidStopPlayOrRecordayOrRecord")
+    }
+    func audioSession(_ audioSession: RTCAudioSession, didChangeOutputVolume outputVolume: Float) {
+        print("RTCAudioSessionDelegate-audioSession didChangeOutputVolume")
+    }
+    func audioSession(_ audioSession: RTCAudioSession, didDetectPlayoutGlitch totalNumberOfGlitches: Int64) {
+        print("RTCAudioSessionDelegate-audioSession didDetectPlayoutGlitch totalNumberOfGlitches:\(totalNumberOfGlitches)")
+    }
+    func audioSession(_ audioSession: RTCAudioSession, willSetActive active: Bool) {
+        print("RTCAudioSessionDelegate-audioSession willSetActive")
+    }
+    func audioSession(_ audioSession: RTCAudioSession, didSetActive active: Bool) {
+        print("RTCAudioSessionDelegate-audioSession didSetActive")
+    }
+    func audioSession(_ audioSession: RTCAudioSession, failedToSetActive active: Bool, error: Error) {
+        print("RTCAudioSessionDelegate-audioSession failedToSetActive")
+    }
+}
+
+extension WebRTCClient: RTCAudioSessionActivationDelegate {
+    
+    func audioSessionDidActivate(_ session: AVAudioSession) {
+        print("RTCAudioSessionActivationDelegate-audioSessionDidActivate")
+    }
+    
+    func audioSessionDidDeactivate(_ session: AVAudioSession) {
+        print("RTCAudioSessionActivationDelegate-audioSessionDidDeactivate")
+    }
+}
+
 // MARK:- Audio control
 extension WebRTCClient {
     func muteAudio() {
@@ -304,8 +359,9 @@ extension WebRTCClient {
             
             self.rtcAudioSession.lockForConfiguration()
             do {
-                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
-                try self.rtcAudioSession.overrideOutputAudioPort(.none)
+//                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
+//                try self.rtcAudioSession.overrideOutputAudioPort(.none)
+                try self.rtcAudioSession.setActive(false)
                 print("speakerOff completed")
             } catch let error {
                 debugPrint("Error setting AVAudioSession category: \(error)")
@@ -314,28 +370,39 @@ extension WebRTCClient {
         }
     }
     
-    // Force speaker
     func speakerOn() {
         print("speakerOn")
+        
+        /*
+         RTCAudioSessionDelegate-audioSessionDidChangeRoute reason:AVAudioSessionRouteChangeReason previousRoute:<AVAudioSessionRouteDescription: 0x2809b1520,
+         inputs = (
+         "<AVAudioSessionPortDescription: 0x2809b0830, type = MicrophoneBuiltIn; name = iPhone \Ub9c8\Uc774\Ud06c; UID = Built-In Microphone; selectedDataSource = \Uc55e\Uba74>"
+         );
+         outputs = (
+         "<AVAudioSessionPortDescription: 0x2809b0e20, type = Speaker; name = \Uc2a4\Ud53c\Ucee4; UID = Speaker; selectedDataSource = (null)>"
+         )>
+         */
+        
         self.audioQueue.async { [weak self] in
             guard let self = self else {
                 print("not initialized")
                 return
             }
-            
             self.rtcAudioSession.lockForConfiguration()
             do {
+                try self.rtcAudioSession.setActive(true)
                 try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
                 try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
-                try self.rtcAudioSession.setActive(true)
                 print("speakerOn completed")
             } catch let error {
                 debugPrint("Couldn't force audio to speaker: \(error)")
             }
             self.rtcAudioSession.unlockForConfiguration()
+            print("self.rtcAudioSession.outputDataSource \(self.rtcAudioSession.outputDataSource)")
         }
+//        speakerOn1()
     }
-    
+
     private func setAudioEnabled(_ isEnabled: Bool) {
         let audioTracks = self.peerConnection.transceivers.compactMap { return $0.sender.track as? RTCAudioTrack }
         audioTracks.forEach { $0.isEnabled = isEnabled }

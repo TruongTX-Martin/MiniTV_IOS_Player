@@ -12,12 +12,14 @@ import WebRTC
 extension MSPlayer{
     
     func createVideo(isLocal: Bool, frame: Frame) {
-        
-        
-        let widthProportion : CGFloat = self.containerView.frame.width / 1920
-        let heightProportion : CGFloat = self.containerView.frame.height / 1080
 
-        let modifiedFrame = CGRect(x: frame.x * widthProportion, y: frame.y * heightProportion, width: frame.width * widthProportion, height: frame.height * heightProportion)
+        if isLocal {
+            self.localVideoViewOriginalFrame = frame
+        }else{
+            self.remoteVideoViewOriginalFrame = frame
+        }
+        
+        let modifiedFrame = self.getModifiedFrame(frame: frame)
         
         // video view 생성
         

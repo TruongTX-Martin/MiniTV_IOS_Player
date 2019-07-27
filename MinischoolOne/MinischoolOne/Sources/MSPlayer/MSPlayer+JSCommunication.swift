@@ -14,11 +14,11 @@ extension MSPlayer {
     public func JSToNative(dictionary: [String: Any]) {
         
         guard let function = dictionary["function"] as? String else { return }
-        print(function)
+        print("JSToNative function: \(function)")
 
         let json: Any? = dictionary["data"]
         if let json = json {
-            print(json)
+            print("JSToNative parameter: \(json)")
         }else{
             printError("\(function) has no parameter")
         }
@@ -27,9 +27,9 @@ extension MSPlayer {
             
             case "startWebRTC" :
                 print("startWebRTC start")
-//                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
-//                    self.startWebRTC(webRTCParameter)
-//                }
+                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
+                    self.startWebRTC(webRTCParameter)
+                }
             
             case "stopWebRTC" :
                 self.stopWebRTC()
@@ -152,10 +152,13 @@ extension MSPlayer {
     
     //    WebRTC Control
     public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
+        print("startWebRTC")
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
         if let webRTCClient = Client.shared.webRTCClient {
-            webRTCClient.speakerOn()
+//            webRTCClient.speakerOff()
+//            webRTCClient.speakerOn()
+//            webRTCClient.speakerOn1()
         }else{
             print("webRTCClient is not ready, can't speaker on")
         }
@@ -237,6 +240,7 @@ extension MSPlayer {
 
     public func speakerOn() {
         Client.shared.webRTCClient.speakerOn()
+//        Client.shared.webRTCClient.speakerOn1()
     }
     
     public func changeStatusTo(_ status: MSPlayerStatus) {

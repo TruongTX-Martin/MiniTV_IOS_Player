@@ -25,6 +25,7 @@ extension MSPlayer: WebRTCClientDelegate {
     }
     
     func initWebRTC() {
+        print("initWebRTC")
         let url1 = Url(credential: nil, url: "stun:stage-ct-e1.minischool.co.kr:3478", urls: "stun:stage-ct-e1.minischool.co.kr:3478", username: nil)
         let url2 = Url(credential: "kmskms1!", url: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp", urls: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp", username: "minischool")
         
@@ -32,10 +33,10 @@ extension MSPlayer: WebRTCClientDelegate {
         
         let videoConst =
                    [ "mandatory": [
-                        "minWidth": 320,
-                        "maxWidth": 320,
-                        "minHeight": 240,
-                        "maxHeight": 240,
+                        "minWidth": 160,
+                        "maxWidth": 160,
+                        "minHeight": 120,
+                        "maxHeight": 120,
                         "maxFrameRate": 10
                     ]
                 ]

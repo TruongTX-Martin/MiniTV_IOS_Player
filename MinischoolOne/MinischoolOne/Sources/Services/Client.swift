@@ -20,6 +20,7 @@ public class Client {
     }
     
     public static func prepare(webRTCParameter : WebRTCParameter) {
+        print("Client prepare")
         Client.shared = Client(webRTCParameter: webRTCParameter)
     }
 }
