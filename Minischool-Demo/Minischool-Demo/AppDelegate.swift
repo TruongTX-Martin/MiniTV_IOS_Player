@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print("params = \(params)")
         
         var targetPath = infraPath
+        var protocolHeader = "https"
         switch infraPath {
         case "ekp-dev":
             targetPath = "dev-p3.ekidpro.com"
@@ -48,9 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case "hs-stage":
             targetPath = "stage-hs-p3.minischool.co.kr"
         default:
-            targetPath = infraPath
+            protocolHeader = "http"
         }
-        let targetUrl = url.absoluteString.replacingOccurrences(of: infraPath, with: targetPath).replacingOccurrences(of: scheme, with: "http")
+        let targetUrl = url.absoluteString.replacingOccurrences(of: infraPath, with: targetPath).replacingOccurrences(of: scheme, with: protocolHeader)
         
         print("targetUrl: \(targetUrl)")
         UserDefaults.standard.set(targetUrl, forKey: "url")
