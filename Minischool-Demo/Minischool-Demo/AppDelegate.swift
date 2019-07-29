@@ -24,17 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Process the URL.
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
-            let infraPath = components.host,
-            let rest = components.path,
-            let params = components.queryItems else {
-                print("Invalid URL or album path missing")
+            let scheme = components.scheme
+            , let infraPath = components.host
+            //, let rest = components.path
+            //, let params = components.queryItems
+            else {
+                print("Invalid URL")
                 return false
         }
         
         // msp3://ekp-dev/preview/Y2sxNTY0MjE5ODQxNDc5dG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=?lang=en
-        print("infraPath = \(infraPath)")
-        print("rest = \(rest)")
-        print("params = \(params)")
+        print("scheme = \(scheme)")
+//        print("infraPath = \(infraPath)")
+//        print("rest = \(rest)")
+//        print("params = \(params)")
         
         var targetPath = infraPath
         switch infraPath {
@@ -47,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         default:
             targetPath = infraPath
         }
-        let targetUrl = url.absoluteString.replacingOccurrences(of: infraPath, with: targetPath).replacingOccurrences(of: "msp3", with: "http")
+        let targetUrl = url.absoluteString.replacingOccurrences(of: infraPath, with: targetPath).replacingOccurrences(of: scheme, with: "http")
         
         print("targetUrl: \(targetUrl)")
         UserDefaults.standard.set(targetUrl, forKey: "url")
