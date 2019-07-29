@@ -23,7 +23,7 @@ public class MSPlayer : NSObject {
     internal var remoteVideoView: UIView!
     internal var webView: WKWebView!
 
-    public var url: String!
+    public var serverAddress: String!
     public var classKeyAndToken: String!
     public var role: String!
     public var serviceAppVersion: String!
@@ -36,20 +36,43 @@ public class MSPlayer : NSObject {
     private var observer: NSKeyValueObservation?
     var localVideoViewOriginalFrame: Frame!
     var remoteVideoViewOriginalFrame: Frame!
-
-    @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String, classKeyAndToken: String, role: String) {
+    
+    private var urlComplete = ""
+    
+    @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
-
+        
         self.containerView = containerView
         self.viewController = viewController
         self.serviceAppVersion = serviceAppVersion
-
-        self.url = url
-
+        
+        self.serverAddress = serverAddress
+        
         self.classKeyAndToken = classKeyAndToken
         self.role = role
+        
+        urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
 
-//        self.initWebRTC()
+        self.initialize()
+        
+    }
+
+    
+    @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
+        super.init()
+        
+        self.containerView = containerView
+        self.viewController = viewController
+        self.serviceAppVersion = serviceAppVersion
+        
+        self.serverAddress = url
+        
+        urlComplete = url
+
+        self.initialize()
+    }
+
+    private func initialize() {
         self.speakerOn1()
         
         self.initWebview()
@@ -62,8 +85,7 @@ public class MSPlayer : NSObject {
     }
     
     @objc public func run() {
-        let urlComplete = "\(self.url!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
-        print(urlComplete)
+        print("MSPlayer urlComplete: \(urlComplete)")
         self.openUrl(urlComplete)
     }
     
@@ -71,7 +93,6 @@ public class MSPlayer : NSObject {
         self.stopWebRTC()
         self.webView = nil
     }
-    
     
     // Force speaker
     func speakerOn1() {

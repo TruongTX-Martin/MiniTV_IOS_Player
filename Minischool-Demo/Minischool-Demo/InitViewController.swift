@@ -22,6 +22,13 @@ class InitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let nav = self.navigationController {
+            nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            nav.navigationBar.shadowImage = UIImage()
+            nav.navigationBar.isTranslucent = true
+            nav.view.backgroundColor = .clear
+        }
+        
         self.server1.text = UserDefaults.standard.string(forKey: "server1") ?? "172.16.3.95:8080"
         self.server2.text = UserDefaults.standard.string(forKey: "server2") ?? "172.16.3.95:8080"
         self.classKeyAndToken.text = UserDefaults.standard.string(forKey: "classKeyAndToken") ?? "Y2sxNTYzMjU4NDQ3MTAydG9rZW4xMDE1NjE2OTA2Nzg5NDM="
@@ -40,6 +47,7 @@ class InitViewController: UIViewController {
         UserDefaults.standard.set(self.classKeyAndToken2.text, forKey: "classKeyAndToken2")
         UserDefaults.standard.set(self.segmentedServer.selectedSegmentIndex, forKey: "segmentedServer")
         UserDefaults.standard.set(self.segmentedToken.selectedSegmentIndex, forKey: "segmentedToken")
+        UserDefaults.standard.set("", forKey: "url")
     }
     
     @objc func dismissKeyboard() {
