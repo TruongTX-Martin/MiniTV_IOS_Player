@@ -16,18 +16,21 @@ extension MSPlayer {
         guard let function = dictionary["function"] as? String else { return }
         print("JSToNative function: \(function)")
 
-        let json: Any? = dictionary["data"]
-        if let json = json {
+        let parameterData: Any? = dictionary["data"]
+        if let json = parameterData {
             print("JSToNative parameter: \(json)")
         }else{
             printError("\(function) has no parameter")
         }
         
+        let jsonData = ["function" : function, "parameter" : parameterData]
+        self.callBackLog(payload: jsonData)
+        
         switch function {
             
             case "startWebRTC" :
                 print("startWebRTC start")
-                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: json) {
+                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
                     self.startWebRTC(webRTCParameter)
                 }
             
@@ -35,7 +38,7 @@ extension MSPlayer {
                 self.stopWebRTC()
             
             case "createLocalVideo" :
-                if let frame: Frame = self.jsonTo(json: json as? String) {
+                if let frame: Frame = self.jsonTo(json: parameterData as? String) {
                     self.createLocalVideo(frame)
                 }
             
@@ -43,7 +46,7 @@ extension MSPlayer {
                 self.hideVideo(isLocal: true)
 
             case "createRemoteVideo" :
-                if let frame: Frame = self.jsonTo(json: json as? String) {
+                if let frame: Frame = self.jsonTo(json: parameterData as? String) {
                     self.createRemoteVideo(frame)
                 }
             
@@ -51,17 +54,17 @@ extension MSPlayer {
                 self.hideVideo(isLocal: false)
             
             case "onReceiveOffer" :
-                if let sdp: SessionDescription = self.jsonTo(json: json as? String) {
+                if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
                     self.onReceiveOffer(sdp)
                 }
             
             case "onReceiveAnswer" :
-                if let sdp: SessionDescription = self.jsonTo(json: json as? String) {
+                if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
                     self.onReceiveAnswer(sdp)
                 }
             
             case "onReceiveIceCandidate" :
-                if let candidate: IceCandidate = self.jsonTo(json: json as? String) {
+                if let candidate: IceCandidate = self.jsonTo(json: parameterData as? String) {
                     self.onReceiveIceCandidate(candidate)
                 }
 
@@ -87,7 +90,7 @@ extension MSPlayer {
                 self.changeStatusTo(MSPlayerStatus.ended)
             
             case "onError" : //에러가 발생
-                self.changeStatusTo(MSPlayerStatus.errorOcccured)
+                self.deliverError(parameterData.debugDescription)
             
             case "bringWebViewToFront" :
                 self.bringWebViewToFront()
@@ -108,7 +111,7 @@ extension MSPlayer {
                 self.sendRemoteVideoToBack()
             
             case "changeStatusTo" :
-                if let status: MSPlayerStatus = self.jsonTo(json: json as? String) {
+                if let status: MSPlayerStatus = self.jsonTo(json: parameterData as? String) {
                     self.changeStatusTo(status)
                 }
 
@@ -245,10 +248,6 @@ extension MSPlayer {
     
     public func changeStatusTo(_ status: MSPlayerStatus) {
         self.delegate?.MSPlayer(self, didChangedStatus: status)
-    }
-    
-    public func onError(_ status: MSPlayerStatus) {
-
     }
     
     public func deliverError(_ message: String) {

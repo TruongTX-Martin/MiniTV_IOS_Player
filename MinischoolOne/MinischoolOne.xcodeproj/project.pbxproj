@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */; };
+		49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EA922EF321900A239FE /* MSPlayer+API.swift */; };
+		49954EAF22EFD02100A239FE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EAE22EFD02100A239FE /* String.swift */; };
 		49DABFFD22CDEA0A0051FD17 /* MinischoolOne.h in Headers */ = {isa = PBXBuildFile; fileRef = 49DABFFB22CDEA0A0051FD17 /* MinischoolOne.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49DAC03722CDEA4C0051FD17 /* Pods-MinischoolPlayer-acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 49DAC00C22CDEA4C0051FD17 /* Pods-MinischoolPlayer-acknowledgements.markdown */; };
 		49DAC03822CDEA4C0051FD17 /* Pods-MinischoolPlayer.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49DAC00D22CDEA4C0051FD17 /* Pods-MinischoolPlayer.debug.xcconfig */; };
@@ -61,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Layout.swift"; sourceTree = "<group>"; };
+		49954EA922EF321900A239FE /* MSPlayer+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+API.swift"; sourceTree = "<group>"; };
+		49954EAE22EFD02100A239FE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		49DABFF822CDEA0A0051FD17 /* MinischoolOne.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MinischoolOne.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DABFFB22CDEA0A0051FD17 /* MinischoolOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinischoolOne.h; sourceTree = "<group>"; };
 		49DABFFC22CDEA0A0051FD17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				49DAC05422CDEAE80051FD17 /* MSPlayer+WebRTC.swift */,
 				49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */,
 				49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */,
+				49954EA922EF321900A239FE /* MSPlayer+API.swift */,
 			);
 			path = MSPlayer;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				49DAC05722CDEAE80051FD17 /* RTCStates.swift */,
 				49DAC05822CDEAE80051FD17 /* SessionDescription.swift */,
 				49DAC05922CDEAE80051FD17 /* IceCandidate.swift */,
+				49954EAE22EFD02100A239FE /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -452,8 +458,10 @@
 			files = (
 				49DAC04A22CDEA4C0051FD17 /* Compression.swift in Sources */,
 				49DAC03E22CDEA4C0051FD17 /* Starscream-dummy.m in Sources */,
+				49954EAF22EFD02100A239FE /* String.swift in Sources */,
 				49DAC06A22CDEAE80051FD17 /* MSPlayer+WebRTC.swift in Sources */,
 				49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */,
+				49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */,
 				49DAC04922CDEA4C0051FD17 /* SSLClientCertificate.swift in Sources */,
 				49DAC06822CDEAE80051FD17 /* Client.swift in Sources */,
 				49DAC03922CDEA4C0051FD17 /* Pods-MinischoolPlayer-dummy.m in Sources */,

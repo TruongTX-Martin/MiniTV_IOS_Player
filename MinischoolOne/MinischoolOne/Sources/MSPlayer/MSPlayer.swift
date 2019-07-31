@@ -54,11 +54,10 @@ public class MSPlayer : NSObject {
         urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
 
         self.initialize()
-        
     }
 
     
-    @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
+    @objc public init?(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
         super.init()
         
         self.containerView = containerView
@@ -70,6 +69,8 @@ public class MSPlayer : NSObject {
         urlComplete = url
 
         self.initialize()
+        
+        self.classKeyAndToken = url.betweenChar("/", "?")
     }
 
     private func initialize() {
