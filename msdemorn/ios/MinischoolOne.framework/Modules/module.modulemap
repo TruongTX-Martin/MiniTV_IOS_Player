@@ -1,0 +1,11 @@
+framework module MinischoolOne {
+  umbrella header "MinischoolOne.h"
+
+  export *
+  module * { export * }
+}
+
+module MinischoolOne.Swift {
+    header "MinischoolOne-Swift.h"
+    requires objc
+}
