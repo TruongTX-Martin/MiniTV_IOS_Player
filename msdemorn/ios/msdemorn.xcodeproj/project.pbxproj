@@ -19,8 +19,8 @@
 		49954EC322F1955000A239FE /* MinischoolViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EC222F1955000A239FE /* MinischoolViewManager.swift */; };
 		49954ED522F19ED500A239FE /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EBE22F194F900A239FE /* WebRTC.framework */; };
 		49954ED622F19ED500A239FE /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EBE22F194F900A239FE /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49954EE322F1B6DA00A239FE /* MinischoolOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EE222F1B6CD00A239FE /* MinischoolOne.framework */; };
-		49954EE422F1B6DA00A239FE /* MinischoolOne.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EE222F1B6CD00A239FE /* MinischoolOne.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49B34EE222F2835C003895B2 /* MinischoolOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B34EE022F28350003895B2 /* MinischoolOne.framework */; };
+		49B34EE322F2835C003895B2 /* MinischoolOne.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49B34EE022F28350003895B2 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F70F65FEA1BBD1B77644486F /* libPods-msdemorn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9081B85878774053B31906 /* libPods-msdemorn.a */; };
 /* End PBXBuildFile section */
 
@@ -32,20 +32,6 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = msdemorn;
 		};
-		49954EE122F1B6CD00A239FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49954EDD22F1B6CD00A239FE /* MinischoolOne.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 49DABFF822CDEA0A0051FD17;
-			remoteInfo = MinischoolOne;
-		};
-		49954EE522F1B6DA00A239FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49954EDD22F1B6CD00A239FE /* MinischoolOne.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 49DABFF722CDEA0A0051FD17;
-			remoteInfo = MinischoolOne;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,7 +41,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				49954EE422F1B6DA00A239FE /* MinischoolOne.framework in Embed Frameworks */,
+				49B34EE322F2835C003895B2 /* MinischoolOne.framework in Embed Frameworks */,
 				49954ED622F19ED500A239FE /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -83,7 +69,7 @@
 		49954EB822F1835500A239FE /* Counter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Counter.m; sourceTree = "<group>"; };
 		49954EBE22F194F900A239FE /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		49954EC222F1955000A239FE /* MinischoolViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinischoolViewManager.swift; sourceTree = "<group>"; };
-		49954EDD22F1B6CD00A239FE /* MinischoolOne.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MinischoolOne.xcodeproj; path = ../../MinischoolOne/MinischoolOne.xcodeproj; sourceTree = "<group>"; };
+		49B34EE022F28350003895B2 /* MinischoolOne.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MinischoolOne.framework; sourceTree = "<group>"; };
 		4E9C1B78B5F948C6CDC42F6F /* Pods-msdemorn-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msdemorn-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-msdemorn-tvOSTests/Pods-msdemorn-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F548B34AE2BFA8900464509 /* libPods-msdemorn-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-msdemorn-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5D82BE5DEC36015946BC08 /* Pods-msdemorn-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msdemorn-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-msdemorn-tvOS/Pods-msdemorn-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49954EE322F1B6DA00A239FE /* MinischoolOne.framework in Frameworks */,
+				49B34EE222F2835C003895B2 /* MinischoolOne.framework in Frameworks */,
 				F70F65FEA1BBD1B77644486F /* libPods-msdemorn.a in Frameworks */,
 				49954ED522F19ED500A239FE /* WebRTC.framework in Frameworks */,
 			);
@@ -159,7 +145,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49954EDD22F1B6CD00A239FE /* MinischoolOne.xcodeproj */,
+				49B34EE022F28350003895B2 /* MinischoolOne.framework */,
 				49954EBE22F194F900A239FE /* WebRTC.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
@@ -169,14 +155,6 @@
 				A3F4EBDCDB5AF1D518F63EEC /* libPods-msdemornTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		49954EDE22F1B6CD00A239FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				49954EE222F1B6CD00A239FE /* MinischoolOne.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -262,7 +240,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				49954EE622F1B6DA00A239FE /* PBXTargetDependency */,
 			);
 			name = msdemorn;
 			productName = msdemorn;
@@ -301,12 +278,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 49954EDE22F1B6CD00A239FE /* Products */;
-					ProjectRef = 49954EDD22F1B6CD00A239FE /* MinischoolOne.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* msdemorn */,
@@ -314,16 +285,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		49954EE222F1B6CD00A239FE /* MinischoolOne.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MinischoolOne.framework;
-			remoteRef = 49954EE122F1B6CD00A239FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -453,11 +414,6 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* msdemorn */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-		49954EE622F1B6DA00A239FE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MinischoolOne;
-			targetProxy = 49954EE522F1B6DA00A239FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

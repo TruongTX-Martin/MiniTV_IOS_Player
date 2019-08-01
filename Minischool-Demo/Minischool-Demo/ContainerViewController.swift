@@ -11,9 +11,8 @@ import MinischoolOne
 
 class ContainerViewController: UIViewController, MSPlayerDelegate {
 
-//    @IBOutlet weak var containerView: UIView!
     var player: MSPlayer!
-    
+    @IBOutlet weak var goButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +54,8 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
         self.player.delegate = self
         
         self.player.run()
+        
+        self.view.bringSubviewToFront(self.goButton)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,6 +77,10 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
     
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
         print(error.localizedDescription)
+    }
+    
+    @IBAction func tapGo(_ sender: Any) {
+        self.player.speakerOn1()
     }
 }
 

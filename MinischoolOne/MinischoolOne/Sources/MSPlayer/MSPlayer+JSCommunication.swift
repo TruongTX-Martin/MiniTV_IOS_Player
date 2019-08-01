@@ -115,6 +115,12 @@ extension MSPlayer {
                     self.changeStatusTo(status)
                 }
 
+            case "backLoggingOn" :
+                self.backLoggingOn = true
+
+            case "backLoggingOff" :
+                self.backLoggingOn = false
+
             default:
                 printError("\(function) is not defined in ios native")
         }
@@ -159,9 +165,7 @@ extension MSPlayer {
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
 //        if let webRTCClient = Client.shared?.webRTCClient {
-////            webRTCClient.speakerOff()
-////            webRTCClient.speakerOn()
-////            webRTCClient.speakerOn1()
+//            webRTCClient.speakerOn()
 //        }else{
 //            print("webRTCClient is not ready, can't speaker on")
 //        }
@@ -174,7 +178,7 @@ extension MSPlayer {
             webRTCClient.closePeerConnection()
             self.speakerOff()
         }else{
-            print("webRTCClient is not ready, nothing to stop")
+            printError("webRTCClient is not ready, nothing to stop")
         }
     }
     
@@ -210,7 +214,7 @@ extension MSPlayer {
         }
     }
     public func  onReceiveAnswer(_ sdp: SessionDescription) {
-        
+        printError("onReceiveAnswer has not been implemented")
     }
     public func  onReceiveIceCandidate(_ candidate: IceCandidate) {
         Client.shared.webRTCClient.set(remoteCandidate: candidate.rtcIceCandidate)

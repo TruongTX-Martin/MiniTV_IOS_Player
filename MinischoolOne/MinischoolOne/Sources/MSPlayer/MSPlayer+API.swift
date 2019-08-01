@@ -10,20 +10,26 @@ import Foundation
 
 extension MSPlayer {
     func callBackLog(payload: [String: Any]) {
+        if !self.backLoggingOn {
+            return
+        }
         DispatchQueue.global().async {
             self.callAPI(payload: payload)
         }
     }
+    
     func callAPI(payload: [String: Any]) {
         
-        let payloadData = try! JSONSerialization.data(withJSONObject: payload, options: JSONSerialization.WritingOptions.prettyPrinted)
-        let payloadString = String(data: payloadData, encoding: String.Encoding.utf8)
-//        print("callAPI payloadString: \(payloadString)")
+        guard let payloadData = try? JSONSerialization.data(withJSONObject: payload, options: JSONSerialization.WritingOptions.prettyPrinted)
+        , let payloadString = String(data: payloadData, encoding: String.Encoding.utf8)
+        else { return }
+
+        //        print("callAPI payloadString: \(payloadString)")
 
         let class_key = self.classKeyAndToken.substring(0..<20)
         let token = self.classKeyAndToken.substring(from: 20)
-        
-        let json: [String: Any] =
+
+        let json: [String: String] =
         [
             "class_key": class_key,
 //            "connect_number": 0,
@@ -34,15 +40,6 @@ extension MSPlayer {
 //            "user_session_key": "string",
             "token": token
         ]
-        /*
-         
-         {
-         "code": "p3-ios-debug",
-         "class_key": "string",
-         "token": "string",
-         "payload": "logloglog"
-         }
-         */
         
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
 

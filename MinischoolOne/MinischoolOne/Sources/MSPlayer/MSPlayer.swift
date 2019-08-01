@@ -39,6 +39,8 @@ public class MSPlayer : NSObject {
     
     private var urlComplete = ""
     
+    var backLoggingOn = false
+    
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
         
@@ -96,15 +98,14 @@ public class MSPlayer : NSObject {
     }
     
     // Force speaker
-    func speakerOn1() {
+    public func speakerOn1() {
         print("speakerOn1")
         
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
-            //            try audioSession.setCategory(.playback, mode: .default, options: [])
-            //
-            //            try audioSession.overrideOutputAudioPort(.speaker)
+            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
+            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
             try audioSession.setActive(true)
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
