@@ -80,7 +80,7 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
     }
     
     @IBAction func tapGo(_ sender: Any) {
-        self.player.speakerOn1()
+        self.player.speakerForceOn()
     }
 }
 

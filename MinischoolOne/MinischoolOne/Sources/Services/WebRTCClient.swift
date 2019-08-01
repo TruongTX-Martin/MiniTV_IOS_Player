@@ -264,11 +264,11 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
     
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
         debugPrint("peerConnection new connection state: \(newState)")
-//        self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
-//        if newState == RTCIceConnectionState.connected {
+        self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
+        if newState == RTCIceConnectionState.connected {
 //            self.speakerOn()
-//            self.speakerOn()
-//        }
+            self.speakerForceOn()
+        }
     }
     
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {
@@ -396,6 +396,19 @@ extension WebRTCClient {
         }
     }
     
+    // Force speaker
+    public func speakerForceOn() {
+        print("speakerForceOn")
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback)
+            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+    }
     func speakerOn() {
         print("speakerOn")
 
@@ -406,9 +419,9 @@ extension WebRTCClient {
             }
             self.rtcAudioSession.lockForConfiguration()
             do {
-                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
+                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playback.rawValue)
                 try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
-                try self.rtcAudioSession.setActive(true)
+//                try self.rtcAudioSession.setActive(true)
             } catch let error {
                 debugPrint("Couldn't force audio to speaker: \(error)")
             }

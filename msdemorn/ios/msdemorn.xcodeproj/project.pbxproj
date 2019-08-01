@@ -13,9 +13,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4313915C6C59175A1F1D9F56 /* libPods-msdemornTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F4EBDCDB5AF1D518F63EEC /* libPods-msdemornTests.a */; };
-		49954EB522F182B200A239FE /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EB422F182B200A239FE /* Counter.swift */; };
 		49954EB722F182F600A239FE /* MinischoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EB622F182F600A239FE /* MinischoolView.swift */; };
-		49954EB922F1835500A239FE /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49954EB822F1835500A239FE /* Counter.m */; };
+		49954EB922F1835500A239FE /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 49954EB822F1835500A239FE /* Bridge.m */; };
 		49954EC322F1955000A239FE /* MinischoolViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EC222F1955000A239FE /* MinischoolViewManager.swift */; };
 		49954ED522F19ED500A239FE /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EBE22F194F900A239FE /* WebRTC.framework */; };
 		49954ED622F19ED500A239FE /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49954EBE22F194F900A239FE /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,9 +63,8 @@
 		2A52D69CE9BFFA05159DD080 /* Pods-msdemorn-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msdemorn-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-msdemorn-tvOSTests/Pods-msdemorn-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38AC615F773A64E7BC10AB49 /* Pods-msdemornTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-msdemornTests.debug.xcconfig"; path = "Target Support Files/Pods-msdemornTests/Pods-msdemornTests.debug.xcconfig"; sourceTree = "<group>"; };
 		49954EB322F182B200A239FE /* msdemorn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "msdemorn-Bridging-Header.h"; sourceTree = "<group>"; };
-		49954EB422F182B200A239FE /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		49954EB622F182F600A239FE /* MinischoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinischoolView.swift; sourceTree = "<group>"; };
-		49954EB822F1835500A239FE /* Counter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Counter.m; sourceTree = "<group>"; };
+		49954EB822F1835500A239FE /* Bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
 		49954EBE22F194F900A239FE /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		49954EC222F1955000A239FE /* MinischoolViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinischoolViewManager.swift; sourceTree = "<group>"; };
 		49B34EE022F28350003895B2 /* MinischoolOne.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MinischoolOne.framework; sourceTree = "<group>"; };
@@ -133,8 +131,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				49954EB422F182B200A239FE /* Counter.swift */,
-				49954EB822F1835500A239FE /* Counter.m */,
+				49954EB822F1835500A239FE /* Bridge.m */,
 				49954EB322F182B200A239FE /* msdemorn-Bridging-Header.h */,
 				49954EC222F1955000A239FE /* MinischoolViewManager.swift */,
 				49954EB622F182F600A239FE /* MinischoolView.swift */,
@@ -401,8 +398,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				49954EC322F1955000A239FE /* MinischoolViewManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				49954EB522F182B200A239FE /* Counter.swift in Sources */,
-				49954EB922F1835500A239FE /* Counter.m in Sources */,
+				49954EB922F1835500A239FE /* Bridge.m in Sources */,
 				49954EB722F182F600A239FE /* MinischoolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +500,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "msdemorn-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -533,6 +530,7 @@
 				PRODUCT_NAME = msdemorn;
 				SWIFT_OBJC_BRIDGING_HEADER = "msdemorn-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

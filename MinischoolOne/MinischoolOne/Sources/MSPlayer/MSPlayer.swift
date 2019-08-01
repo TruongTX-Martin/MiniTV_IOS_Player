@@ -76,7 +76,7 @@ public class MSPlayer : NSObject {
     }
 
     private func initialize() {
-        self.speakerOn1()
+        self.soundPrepare()
         
         self.initWebview()
         
@@ -97,16 +97,27 @@ public class MSPlayer : NSObject {
         self.webView = nil
     }
     
-    // Force speaker
-    public func speakerOn1() {
-        print("speakerOn1")
+    public func soundPrepare() {
+        print("soundPrepare")
         
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
-            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
-            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
             try audioSession.setActive(true)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+    }
+    
+    // Force speaker
+    public func speakerForceOn() {
+        print("speakerForceOn")
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback)
+            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }
