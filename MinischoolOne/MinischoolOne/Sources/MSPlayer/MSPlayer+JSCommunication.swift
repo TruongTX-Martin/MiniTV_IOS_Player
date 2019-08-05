@@ -176,7 +176,7 @@ extension MSPlayer {
             webRTCClient.stopRenderRemoteVideo()
             webRTCClient.stopCaptureLocalVideo()
             webRTCClient.closePeerConnection()
-            self.speakerOff()
+            //self.speakerOff()
         }else{
             printError("webRTCClient is not ready, nothing to stop")
         }

@@ -83,6 +83,8 @@ final class WebRTCClient: NSObject {
         self.peerConnection.delegate = self
         
         self.rtcAudioSession.add(self)
+        
+        self.startCapture()
     }
     
     // MARK: Signaling
@@ -124,7 +126,8 @@ final class WebRTCClient: NSObject {
     }
     
     // MARK: Media
-    func startCaptureLocalVideo(renderer: RTCVideoRenderer) {
+//    func startCaptureLocalVideo(renderer: RTCVideoRenderer) {
+    func startCapture() {
         guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else {
             return
         }
@@ -145,14 +148,17 @@ final class WebRTCClient: NSObject {
             let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] else {
             return
         }
-
         capturer.startCapture(with: frontCamera,
                               format: format,
                               fps: maxFrameRate)
         
+    }
+    
+    func startLocalVideo(renderer: RTCVideoRenderer) {
         self.localVideoTrack?.add(renderer)
         self.localRenderer = renderer
     }
+
     
     func stopCaptureLocalVideo() {
         guard let renderer = self.localRenderer else { return }
@@ -176,8 +182,9 @@ final class WebRTCClient: NSObject {
     private func configureAudioSession() {
         self.rtcAudioSession.lockForConfiguration()
         do {
+            try self.rtcAudioSession.setActive(true)
             try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
-            try self.rtcAudioSession.setMode(AVAudioSession.Mode.voiceChat.rawValue)
+            try self.rtcAudioSession.setMode(AVAudioSession.Mode.default.rawValue)
         } catch let error {
             debugPrint("Error changeing AVAudioSession category: \(error)")
         }
@@ -297,8 +304,11 @@ extension WebRTCClient: RTCAudioSessionDelegate {
         print("RTCAudioSessionDelegate-audioSessionDidEndInterruption")
     }
     func audioSessionDidChangeRoute(_ session: RTCAudioSession, reason: AVAudioSession.RouteChangeReason, previousRoute: AVAudioSessionRouteDescription) {
-        print("RTCAudioSessionDelegate-audioSessionDidChangeRoute reason:\(self.getReasonString(reason: reason)) previousRoute:\n\(previousRoute.debugDescription)")
+        print("RTCAudioSessionDelegate-audioSessionDidChangeRoute reason:\(self.getReasonString(reason: reason))")
+        print("previousRoute:\n\(previousRoute.debugDescription)")
+        print("currentRoute:\n\(session.currentRoute.debugDescription)")
     }
+    
     func getReasonString(reason: AVAudioSession.RouteChangeReason) -> String {
         switch reason {
         case .unknown:
@@ -403,12 +413,13 @@ extension WebRTCClient {
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
-            try audioSession.setCategory(AVAudioSession.Category.playback)
+            try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
             try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }
     }
+    
     func speakerOn() {
         print("speakerOn")
 
@@ -419,16 +430,13 @@ extension WebRTCClient {
             }
             self.rtcAudioSession.lockForConfiguration()
             do {
-                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playback.rawValue)
+                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
                 try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
-//                try self.rtcAudioSession.setActive(true)
             } catch let error {
                 debugPrint("Couldn't force audio to speaker: \(error)")
             }
             self.rtcAudioSession.unlockForConfiguration()
-            print("self.rtcAudioSession.outputDataSource \(self.rtcAudioSession.outputDataSource)")
         }
-//        speakerOn1()
     }
 
     private func setAudioEnabled(_ isEnabled: Bool) {

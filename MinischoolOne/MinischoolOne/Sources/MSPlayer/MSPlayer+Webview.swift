@@ -123,7 +123,6 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
-        print("didFinish containerView.frame: \(self.containerView.frame)")
         print("didFinish \(url as Any)")
     }
     
@@ -131,7 +130,10 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         let stringJS = "\(jsFunctionName)(\(data))"
         DispatchQueue.main.async {
             print("callJS: \(stringJS)")
-            self.webView.evaluateJavaScript(stringJS, completionHandler: {(result, error) in
+            guard let webView = self.webView else {
+                return
+            }
+            webView.evaluateJavaScript(stringJS, completionHandler: {(result, error) in
                 if let result = result {
                     print(result)
                 }

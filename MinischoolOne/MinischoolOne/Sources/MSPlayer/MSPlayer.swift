@@ -53,7 +53,8 @@ public class MSPlayer : NSObject {
         self.classKeyAndToken = classKeyAndToken
         self.role = role
         
-        urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
+//        urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
+        urlComplete = "\(self.serverAddress!)/student/\(self.classKeyAndToken!)&role=\(self.role!)"
 
         self.initialize()
     }
@@ -76,7 +77,7 @@ public class MSPlayer : NSObject {
     }
 
     private func initialize() {
-        self.soundPrepare()
+//        self.soundPrepare()
         
         self.initWebview()
         
@@ -93,7 +94,9 @@ public class MSPlayer : NSObject {
     }
     
     @objc public func closeAll() {
+        print("closeAll")
         self.stopWebRTC()
+//        webView.load(URLRequest(url: URL(string:"about:blank")!))
         self.webView = nil
     }
     
@@ -107,21 +110,5 @@ public class MSPlayer : NSObject {
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }
-    }
-    
-    // Force speaker
-    public func speakerForceOn() {
-        print("speakerForceOn")
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.playback)
-            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-        } catch let error as NSError {
-            print("audioSession error: \(error.localizedDescription)")
-        }
-    }
-
-    
+    }    
 }

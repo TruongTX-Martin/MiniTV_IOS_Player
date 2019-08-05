@@ -24,6 +24,8 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
             nav.view.backgroundColor = .clear
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
         let serviceAppVersion = "1.0"
         let role = ""
         
@@ -47,7 +49,7 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
 
             let server = segmentedServer == 0 ? server1 : server2
             let classKeyAndToken = segmentedToken == 0 ? classKeyAndToken1 : classKeyAndToken2
-            let serverAddress = "http://\(server)"
+            let serverAddress = "\(server)"
 
             self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, serverAddress: serverAddress, classKeyAndToken: classKeyAndToken, role: role)
         }
@@ -55,10 +57,16 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
         
         self.player.run()
         
-        self.view.bringSubviewToFront(self.goButton)
+        //self.view.bringSubviewToFront(self.goButton)
+    }
+    
+    @objc func didEnterBackground(_ notification: Notification) {
+        print("didEnterBackground")
+        self.player.closeAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        print("viewWillDisappear")
         self.player.closeAll()
     }
 
@@ -80,7 +88,7 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
     }
     
     @IBAction func tapGo(_ sender: Any) {
-        self.player.speakerForceOn()
+//        self.player.speakerForceOn()
     }
 }
 

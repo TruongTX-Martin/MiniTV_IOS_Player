@@ -66,6 +66,8 @@ extension MSPlayer{
         print("arch(arm64)")
         let renderer = RTCMTLVideoView(frame: videoView.frame)
         renderer.videoContentMode = .scaleAspectFill
+        
+//        renderer.rotationOverride = NSValue(nonretainedObject: RTCVideoRotation._0)
         #else
         // Using OpenGLES for the rest
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
@@ -79,7 +81,8 @@ extension MSPlayer{
 //                renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
 //            }
             
-            Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
+//            Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
+            Client.shared.webRTCClient.startLocalVideo(renderer: renderer)
         }else{
             Client.shared.webRTCClient.renderRemoteVideo(to: renderer)
         }
