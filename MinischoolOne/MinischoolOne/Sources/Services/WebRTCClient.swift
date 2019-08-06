@@ -438,7 +438,7 @@ extension WebRTCClient {
             self.rtcAudioSession.unlockForConfiguration()
         }
     }
-
+    
     private func setAudioEnabled(_ isEnabled: Bool) {
         let audioTracks = self.peerConnection.transceivers.compactMap { return $0.sender.track as? RTCAudioTrack }
         audioTracks.forEach { $0.isEnabled = isEnabled }

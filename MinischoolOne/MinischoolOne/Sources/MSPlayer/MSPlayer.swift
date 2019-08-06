@@ -79,6 +79,8 @@ public class MSPlayer : NSObject {
     private func initialize() {
 //        self.soundPrepare()
         
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         self.initWebview()
         
         observer = self.containerView.layer.observe(\.bounds) { object, _ in
