@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Process the URL.
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
             let scheme = components.scheme
-            , let infraPath = components.host
+            //, let infraPath = components.host
             //, let rest = components.path
             //, let params = components.queryItems
             else {
@@ -36,19 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // msp3://ekp-dev/preview/Y2sxNTY0MjE5ODQxNDc5dG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=?lang=en
         print("scheme = \(scheme)")
         
-        var targetPath = infraPath
-        var protocolHeader = "https"
-        switch infraPath {
-        case "ekp-dev":
-            targetPath = "dev-p3.ekidpro.com"
-        case "ms-stage":
-            targetPath = "stage-p3.minischool.co.kr"
-        case "hs-stage":
-            targetPath = "stage-hs-p3.minischool.co.kr"
-        default:
-            protocolHeader = "http"
-        }
-        let targetUrl = url.absoluteString.replacingOccurrences(of: infraPath, with: targetPath).replacingOccurrences(of: scheme, with: protocolHeader)
+        let protocolHeader = "https"
+
+        let targetUrl = url.absoluteString.replacingOccurrences(of: scheme, with: protocolHeader)
         
         print("targetUrl: \(targetUrl)")
         UserDefaults.standard.set(targetUrl, forKey: "url")
