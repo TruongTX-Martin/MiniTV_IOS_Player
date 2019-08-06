@@ -28,9 +28,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>7</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<string>8</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) camera use</string>
 	<key>NSMicrophoneUsageDescription</key>
