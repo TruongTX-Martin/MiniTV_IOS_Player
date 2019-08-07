@@ -131,7 +131,7 @@ final class WebRTCClient: NSObject {
         guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else {
             return
         }
-
+        
         guard
             let frontCamera = (RTCCameraVideoCapturer.captureDevices().first { $0.position == .front }),
         
@@ -140,18 +140,18 @@ final class WebRTCClient: NSObject {
                 let width1 = CMVideoFormatDescriptionGetDimensions(f1.formatDescription).width
                 let width2 = CMVideoFormatDescriptionGetDimensions(f2.formatDescription).width
                 return width1 < width2
-            }).last,
+            }).last else { return }
         
             // choose highest fps
 //            let fps = (format.videoSupportedFrameRateRanges.sorted { return $0.maxFrameRate < $1.maxFrameRate }.last),
             
-            let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] else {
-            return
-        }
+        guard let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] else { return }
+
+        let f = AVCaptureSession.Preset.low
+        //Cannot convert value of type 'AVCaptureSession.Preset' to expected argument type 'AVCaptureDevice.Format'
         capturer.startCapture(with: frontCamera,
                               format: format,
                               fps: maxFrameRate)
-        
     }
     
     func startLocalVideo(renderer: RTCVideoRenderer) {

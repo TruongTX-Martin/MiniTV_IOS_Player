@@ -126,6 +126,21 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         print("didFinish \(url as Any)")
     }
     
+    public func webView(_ webView: WKWebView,
+                 didReceive challenge: URLAuthenticationChallenge,
+                 completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+    {
+        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
+        {
+            let cred = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+            completionHandler(.useCredential, cred)
+        }
+        else
+        {
+            completionHandler(.performDefaultHandling, nil)
+        }
+    }
+    
     func callJS(jsFunctionName: String, data: String) {
         let stringJS = "\(jsFunctionName)(\(data))"
         DispatchQueue.main.async {
