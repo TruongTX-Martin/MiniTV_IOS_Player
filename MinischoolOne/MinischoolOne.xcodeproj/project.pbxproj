@@ -31,7 +31,7 @@
 		49DAC04A22CDEA4C0051FD17 /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC02D22CDEA4C0051FD17 /* Compression.swift */; };
 		49DAC04B22CDEA4C0051FD17 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC02E22CDEA4C0051FD17 /* SSLSecurity.swift */; };
 		49DAC04C22CDEA4C0051FD17 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC02F22CDEA4C0051FD17 /* WebSocket.swift */; };
-		49DAC06622CDEAE80051FD17 /* MSPlayer+Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */; };
+		49DAC06622CDEAE80051FD17 /* MSPlayer+WKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05022CDEAE80051FD17 /* MSPlayer+WKWebview.swift */; };
 		49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05122CDEAE80051FD17 /* MSPlayer+Video.swift */; };
 		49DAC06822CDEAE80051FD17 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05222CDEAE80051FD17 /* Client.swift */; };
 		49DAC06922CDEAE80051FD17 /* MSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05322CDEAE80051FD17 /* MSPlayer.swift */; };
@@ -92,7 +92,7 @@
 		49DAC02D22CDEA4C0051FD17 /* Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compression.swift; sourceTree = "<group>"; };
 		49DAC02E22CDEA4C0051FD17 /* SSLSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSLSecurity.swift; sourceTree = "<group>"; };
 		49DAC02F22CDEA4C0051FD17 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
-		49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Webview.swift"; sourceTree = "<group>"; };
+		49DAC05022CDEAE80051FD17 /* MSPlayer+WKWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MSPlayer+WKWebview.swift"; sourceTree = "<group>"; };
 		49DAC05122CDEAE80051FD17 /* MSPlayer+Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Video.swift"; sourceTree = "<group>"; };
 		49DAC05222CDEAE80051FD17 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		49DAC05322CDEAE80051FD17 /* MSPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSPlayer.swift; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 				493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */,
 				49DAC05122CDEAE80051FD17 /* MSPlayer+Video.swift */,
 				49DAC05422CDEAE80051FD17 /* MSPlayer+WebRTC.swift */,
-				49DAC05022CDEAE80051FD17 /* MSPlayer+Webview.swift */,
+				49DAC05022CDEAE80051FD17 /* MSPlayer+WKWebview.swift */,
 				49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */,
 				49954EA922EF321900A239FE /* MSPlayer+API.swift */,
 			);
@@ -470,7 +470,7 @@
 				493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */,
 				49DAC04B22CDEA4C0051FD17 /* SSLSecurity.swift in Sources */,
 				49FC3D6822CFB1910049AF22 /* Model.swift in Sources */,
-				49DAC06622CDEAE80051FD17 /* MSPlayer+Webview.swift in Sources */,
+				49DAC06622CDEAE80051FD17 /* MSPlayer+WKWebview.swift in Sources */,
 				49DAC06D22CDEAE80051FD17 /* SessionDescription.swift in Sources */,
 				49DAC06E22CDEAE80051FD17 /* IceCandidate.swift in Sources */,
 				49DAC06C22CDEAE80051FD17 /* RTCStates.swift in Sources */,

@@ -76,7 +76,7 @@ extension MSPlayer{
         if isLocal {
             //좌우반전(거울처럼)
 //            if UIDevice.current.orientation.isLandscape {
-//                renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+                renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
 //            } else {
 //                renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
 //            }

@@ -32,24 +32,24 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         self.containerView.backgroundColor = UIColor.clear
         
         let customFrame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 0.0, height: self.containerView.frame.size.height))
-        self.webView = WKWebView (frame: customFrame , configuration: webConfiguration)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        self.containerView.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        webView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        webView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        webView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+        self.wkWebView = WKWebView (frame: customFrame , configuration: webConfiguration)
+        wkWebView.translatesAutoresizingMaskIntoConstraints = false
+        self.containerView.addSubview(wkWebView)
+        wkWebView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        wkWebView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        wkWebView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        wkWebView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        wkWebView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
-        webView.isOpaque = false
-        webView.backgroundColor = UIColor.clear
-        webView.scrollView.backgroundColor = UIColor.clear
-        webView.scrollView.bounces = false
+        wkWebView.isOpaque = false
+        wkWebView.backgroundColor = UIColor.clear
+        wkWebView.scrollView.backgroundColor = UIColor.clear
+        wkWebView.scrollView.bounces = false
 
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
+        wkWebView.uiDelegate = self
+        wkWebView.navigationDelegate = self
         
-        webView.isUserInteractionEnabled = true
+        wkWebView.isUserInteractionEnabled = true
     }
     
     func openEmbeded() {
@@ -57,7 +57,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         let url = URL(fileURLWithPath: localFile!)
         let request = URLRequest(url: url)
 
-        webView.load(request)
+        wkWebView.load(request)
     }
 
     
@@ -66,7 +66,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 
         print("openUrl containerView.frame: \(self.containerView.frame)")
         let request = URLRequest(url: url!)
-        webView.load(request)
+        wkWebView.load(request)
     }
 
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
@@ -145,7 +145,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         let stringJS = "\(jsFunctionName)(\(data))"
         DispatchQueue.main.async {
             print("callJS: \(stringJS)")
-            guard let webView = self.webView else {
+            guard let webView = self.wkWebView else {
                 return
             }
             webView.evaluateJavaScript(stringJS, completionHandler: {(result, error) in
@@ -168,3 +168,4 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         }
     }
 }
+

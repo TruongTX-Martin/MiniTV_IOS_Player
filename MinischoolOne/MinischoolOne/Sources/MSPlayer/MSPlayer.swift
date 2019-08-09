@@ -21,7 +21,8 @@ public class MSPlayer : NSObject {
 
     internal var localVideoView: UIView!
     internal var remoteVideoView: UIView!
-    internal var webView: WKWebView!
+    internal var wkWebView: WKWebView!
+    internal var webView2: UIWebView!
 
     public var serverAddress: String!
     public var classKeyAndToken: String!
@@ -99,7 +100,7 @@ public class MSPlayer : NSObject {
         print("closeAll")
         self.stopWebRTC()
 //        webView.load(URLRequest(url: URL(string:"about:blank")!))
-        self.webView = nil
+        self.wkWebView = nil
     }
     
     public func soundPrepare() {

@@ -17,11 +17,11 @@ extension MSPlayer {
         print("JSToNative function: \(function)")
 
         let parameterData: Any? = dictionary["data"]
-        if let json = parameterData {
-            print("JSToNative parameter: \(json)")
-        }else{
-            printError("\(function) has no parameter")
-        }
+//        if let json = parameterData {
+//            print("JSToNative parameter: \(json)")
+//        }else{
+//            printError("\(function) has no parameter")
+//        }
         
         let jsonData = ["function" : function, "parameter" : parameterData]
         self.callBackLog(payload: jsonData)
