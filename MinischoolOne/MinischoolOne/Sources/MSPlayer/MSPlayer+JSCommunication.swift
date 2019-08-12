@@ -17,11 +17,11 @@ extension MSPlayer {
         print("JSToNative function: \(function)")
 
         let parameterData: Any? = dictionary["data"]
-//        if let json = parameterData {
-//            print("JSToNative parameter: \(json)")
-//        }else{
-//            printError("\(function) has no parameter")
-//        }
+        if let json = parameterData {
+            print("JSToNative parameter: \(json)")
+        }else{
+            printError("\(function) has no parameter")
+        }
         
         let jsonData = ["function" : function, "parameter" : parameterData]
         self.callBackLog(payload: jsonData)
@@ -262,5 +262,22 @@ extension MSPlayer {
     
     enum MSPlayerError: Error {
         case runtimeError(String)
+    }
+    
+    public func openUrl(_ urlString: String) {
+        if self.useWKWebview {
+            self.openUrlWK(urlString)
+        } else {
+            self.openUrlUI(urlString)
+        }
+    }
+    
+    public func callJS(jsFunctionName: String, data: String) {
+        if self.useWKWebview {
+            self.callJSWK(jsFunctionName: jsFunctionName, data: data)
+        } else {
+            self.callJSUI(jsFunctionName: jsFunctionName, data: data)
+        }
+
     }
 }

@@ -11,7 +11,7 @@ import WebKit
 
 extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     
-    func initWebview() {
+    func initWKWebview() {
         
         let contentController = WKUserContentController()
         contentController.add(self, name: "jsToNative")
@@ -61,7 +61,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     }
 
     
-    public func openUrl(_ urlString: String) {
+    public func openUrlWK(_ urlString: String) {
         let url = URL(string: urlString)
 
         print("openUrl containerView.frame: \(self.containerView.frame)")
@@ -141,7 +141,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         }
     }
     
-    func callJS(jsFunctionName: String, data: String) {
+    func callJSWK(jsFunctionName: String, data: String) {
         let stringJS = "\(jsFunctionName)(\(data))"
         DispatchQueue.main.async {
             print("callJS: \(stringJS)")

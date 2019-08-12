@@ -22,7 +22,7 @@ public class MSPlayer : NSObject {
     internal var localVideoView: UIView!
     internal var remoteVideoView: UIView!
     internal var wkWebView: WKWebView!
-    internal var webView2: UIWebView!
+    internal var uiWebView: UIWebView!
 
     public var serverAddress: String!
     public var classKeyAndToken: String!
@@ -41,6 +41,8 @@ public class MSPlayer : NSObject {
     private var urlComplete = ""
     
     var backLoggingOn = false
+    
+    var useWKWebview = true
     
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
@@ -82,8 +84,12 @@ public class MSPlayer : NSObject {
         
         UIApplication.shared.isIdleTimerDisabled = true
         
-        self.initWebview()
-        
+        if self.useWKWebview {
+            self.initWKWebview()
+        }else{
+            self.initUIWebview()
+        }
+
         observer = self.containerView.layer.observe(\.bounds) { object, _ in
             print(object.bounds)
             self.relocateLocalVideoFrame()
