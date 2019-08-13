@@ -125,4 +125,76 @@ extension MSPlayer{
         containerView.layoutIfNeeded()
     }
     
+    @objc func timerCallback(){
+
+        print("timerCallback movieClipLayers.count: \(self.movieClipLayers.count)")
+
+        var countReadyToPlay = 0
+        for item in self.movieClipLayers {
+            let movieClipLayer = item.value
+            guard let player = movieClipLayer.player else { continue }
+            
+            print("player.currentItem: \(player.currentItem?.debugDescription)")
+            
+            if player.currentItem?.status == AVPlayerItem.Status.readyToPlay {
+                countReadyToPlay += 1
+            }
+        }
+        
+        print("countReadyToPlay: \(countReadyToPlay)")
+        
+        if countReadyToPlay >= self.movieClipLayers.count {
+            self.timer?.invalidate()
+            self.loadVideoDone()
+        }
+
+    }
+    
+    func loadMovieClip(movieClip: MovieClip) {
+        
+        print("loadMovieClip: \(movieClip.src)")
+        
+        let url = URL(string:movieClip.src)
+        
+        let player = AVPlayer(url: url!)
+        let playerLayer = AVPlayerLayer(player: player)
+        self.movieClipLayers[movieClip.id] = playerLayer
+        
+        if self.timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func loadMovieClips(movieClips: [MovieClip]) {
+
+        for movieClip in movieClips {
+            self.loadMovieClip(movieClip: movieClip)
+        }
+    }
+    
+    func createMovieClip(frame: MovieClipFrame) {
+        print("createMovieClip: frame: \(frame)")
+        for item in self.movieClipLayers {
+            print("createMovieClip: item.key: \(item.key)")
+        }
+        guard let playerLayer = self.movieClipLayers[frame.id] else { return }
+        let modifiedFrame = self.getModifiedFrame(frame: Frame(x: frame.x, y: frame.y, zIndex: frame.zIndex, width: frame.width, height: frame.height))
+        playerLayer.frame = modifiedFrame
+        
+        self.containerView.layer.addSublayer(playerLayer)
+        if let player = playerLayer.player {
+            print("player.play()")
+            player.play()
+        }
+    }
+    
+    func destoryMovieClip(id: Int) {
+        print("destoryMovieClip movieClipLayers.count: \(self.movieClipLayers.count)")
+
+        guard let playerLayer = self.movieClipLayers[id] else { return }
+        playerLayer.player?.pause()
+        playerLayer.player?.seek(to: .zero)
+        playerLayer.removeFromSuperlayer()
+    }
+    
 }

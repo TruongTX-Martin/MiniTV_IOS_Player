@@ -265,7 +265,7 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
         self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
         if newState == RTCIceConnectionState.connected {
 //            self.speakerOn()
-//            self.speakerForceOn()
+            self.speakerForceOn()
         }
     }
     

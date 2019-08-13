@@ -22,7 +22,7 @@ public class MSPlayer : NSObject {
     internal var localVideoView: UIView!
     internal var remoteVideoView: UIView!
     internal var wkWebView: WKWebView!
-    internal var uiWebView: UIWebView!
+//    internal var uiWebView: UIWebView!
 
     public var serverAddress: String!
     public var classKeyAndToken: String!
@@ -43,6 +43,10 @@ public class MSPlayer : NSObject {
     var backLoggingOn = false
     
     var useWKWebview = true
+    
+    var movieClipLayers : [Int: AVPlayerLayer] = [:]
+    
+    var timer : Timer?
     
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
@@ -87,7 +91,7 @@ public class MSPlayer : NSObject {
         if self.useWKWebview {
             self.initWKWebview()
         }else{
-            self.initUIWebview()
+//            self.initUIWebview()
         }
 
         observer = self.containerView.layer.observe(\.bounds) { object, _ in
@@ -107,6 +111,11 @@ public class MSPlayer : NSObject {
         self.stopWebRTC()
 //        webView.load(URLRequest(url: URL(string:"about:blank")!))
         self.wkWebView = nil
+        
+        for layer in self.movieClipLayers {
+            layer.value.player = nil
+        }
+        self.movieClipLayers.removeAll()
     }
     
     public func soundPrepare() {

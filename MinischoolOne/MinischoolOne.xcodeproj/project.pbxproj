@@ -41,7 +41,6 @@
 		49DAC06E22CDEAE80051FD17 /* IceCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC05922CDEAE80051FD17 /* IceCandidate.swift */; };
 		49DAC07422CDEAE80051FD17 /* WebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */; };
 		49E7F43322D5DD18002F6F46 /* MSPlayer+JSCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */; };
-		49F8D89A22FD18D8004AF3EF /* MSPlayer+UIWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D89922FD18D8004AF3EF /* MSPlayer+UIWebview.swift */; };
 		49FC3D6822CFB1910049AF22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC3D6722CFB1910049AF22 /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +102,6 @@
 		49DAC05922CDEAE80051FD17 /* IceCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IceCandidate.swift; sourceTree = "<group>"; };
 		49DAC06322CDEAE80051FD17 /* WebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRTCClient.swift; sourceTree = "<group>"; };
 		49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+JSCommunication.swift"; sourceTree = "<group>"; };
-		49F8D89922FD18D8004AF3EF /* MSPlayer+UIWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MSPlayer+UIWebview.swift"; sourceTree = "<group>"; };
 		49FC3D6722CFB1910049AF22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -316,7 +314,6 @@
 				49DAC05122CDEAE80051FD17 /* MSPlayer+Video.swift */,
 				49DAC05422CDEAE80051FD17 /* MSPlayer+WebRTC.swift */,
 				49DAC05022CDEAE80051FD17 /* MSPlayer+WKWebview.swift */,
-				49F8D89922FD18D8004AF3EF /* MSPlayer+UIWebview.swift */,
 				49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */,
 				49954EA922EF321900A239FE /* MSPlayer+API.swift */,
 			);
@@ -464,7 +461,6 @@
 				49954EAF22EFD02100A239FE /* String.swift in Sources */,
 				49DAC06A22CDEAE80051FD17 /* MSPlayer+WebRTC.swift in Sources */,
 				49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */,
-				49F8D89A22FD18D8004AF3EF /* MSPlayer+UIWebview.swift in Sources */,
 				49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */,
 				49DAC04922CDEA4C0051FD17 /* SSLClientCertificate.swift in Sources */,
 				49DAC06822CDEAE80051FD17 /* Client.swift in Sources */,
@@ -616,7 +612,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = N8UKLSN47S;
+				DEVELOPMENT_TEAM = HS8WA856NV;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -652,7 +648,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = N8UKLSN47S;
+				DEVELOPMENT_TEAM = HS8WA856NV;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

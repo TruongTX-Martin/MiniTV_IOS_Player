@@ -24,7 +24,7 @@ extension MSPlayer {
         }
         
         let jsonData = ["function" : function, "parameter" : parameterData]
-        self.callBackLog(payload: jsonData)
+        self.callBackLog(payload: jsonData as [String : Any])
         
         switch function {
             
@@ -120,17 +120,47 @@ extension MSPlayer {
 
             case "backLoggingOff" :
                 self.backLoggingOn = false
+            
+            case "loadVideo" :
 
+                if let movieClipList: MovieClipList = self.jsonTo(json: parameterData as? String) {
+                    self.loadMovieClips(movieClips: movieClipList.videoList)
+                }
+            
+            case "createVideo" :
+                if let frame: MovieClipFrame = self.jsonTo(json: parameterData as? String) {
+                    self.createMovieClip(frame: frame)
+                }
+            
+            case "destroyVideo" :
+                if let base: Base = self.jsonTo(json: parameterData as? String) {
+                    self.destoryMovieClip(id: base.id)
+                }
+
+            case "setBackground" :
+                if let base: Base = self.jsonTo(json: parameterData as? String) {
+                    self.destoryMovieClip(id: base.id)
+                }
+
+            
             default:
                 printError("\(function) is not defined in ios native")
         }
     }
     
+    func jsonToArray<T: Codable>(json: Any?) -> [T]? {
+        do {
+            return try JSONDecoder().decode([T].self, from: (json as! String).data(using: .utf8)!)
+        } catch let parsingError {
+            printError("Parsing error: \(parsingError)")
+        }
+        return nil
+    }
+    
     func jsonTo<T: Codable>(json: Any?) -> T? {
         
         do {
-            let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: (json as! String).data(using: .utf8)!)
+            return try JSONDecoder().decode(T.self, from: (json as! String).data(using: .utf8)!)
         } catch let parsingError {
             printError("Parsing error: \(parsingError)")
         }
@@ -232,6 +262,10 @@ extension MSPlayer {
         let json = jsonFrom(obj: candidate)
         self.callJS(jsFunctionName: "NativeToJS.sendIceCandidate", data: "\(json!)")
     }
+    public func  loadVideoDone() {
+        print("loadVideoDone")
+        self.callJS(jsFunctionName: "NativeToJS.loadVideoDone", data: "")
+    }
     
     public func muteAudio() {
         Client.shared.webRTCClient.muteAudio()
@@ -268,7 +302,7 @@ extension MSPlayer {
         if self.useWKWebview {
             self.openUrlWK(urlString)
         } else {
-            self.openUrlUI(urlString)
+//            self.openUrlUI(urlString)
         }
     }
     
@@ -276,7 +310,7 @@ extension MSPlayer {
         if self.useWKWebview {
             self.callJSWK(jsFunctionName: jsFunctionName, data: data)
         } else {
-            self.callJSUI(jsFunctionName: jsFunctionName, data: data)
+//            self.callJSUI(jsFunctionName: jsFunctionName, data: data)
         }
 
     }
