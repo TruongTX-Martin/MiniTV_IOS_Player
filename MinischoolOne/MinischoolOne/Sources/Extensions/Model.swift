@@ -13,9 +13,10 @@ public struct Frame: Codable {
     
     var x: CGFloat = 0.0
     var y: CGFloat = 0.0
-    var zIndex: CGFloat = 0.0
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
+    var zIndex: CGFloat = 0.0
+    var canvasOver: Bool = true
 }
 
 public struct WebRTCParameter: Codable{
@@ -35,27 +36,33 @@ public struct ICEConfiguration: Codable{
     var iceServers: [Url]
 }
 
-public struct MovieClipList: Codable{
+public struct ResourceList: Codable{
     
-    var videoList: [MovieClip]
+    var resourceList: [Resource]
 }
 
-public struct MovieClip: Codable{
+public struct Resource: Codable{
     
     var id: Int
     var src: String
+    var assetType:AssetType
 }
 
+public enum AssetType: String, Codable {
+    case image
+    case sound
+    case video
+}
 public struct MovieClipFrame: Codable{
     
     var id: Int = 0
     
     var x: CGFloat = 0.0
     var y: CGFloat = 0.0
-    var zIndex: CGFloat = 0.0
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
-    
+    var zIndex: CGFloat = 0.0
+    var canvasOver: Bool = true
 }
 
 
@@ -77,4 +84,9 @@ public enum MSPlayerStatus: Int, Codable {
     case started = 200
     case ended = 300
     case errorOcccured = 900
+}
+
+public enum ZINDEX: CGFloat {
+    case Background = 10000.0
+    case Canvas = 2000.0
 }

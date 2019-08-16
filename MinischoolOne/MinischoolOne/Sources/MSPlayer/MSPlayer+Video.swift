@@ -20,87 +20,57 @@ extension MSPlayer{
         }
         
         let modifiedFrame = self.getModifiedFrame(frame: frame)
-        
+
         // video view 생성
         
         if isLocal {
-            if self.localVideoView != nil, self.localVideoView.isHidden {
-                self.localVideoView.isHidden = false
-                return
-            }
-            
             if self.localVideoView?.superview != nil {
                 self.localVideoView.removeFromSuperview()
             }
-            self.localVideoView = UIView(frame: modifiedFrame)
-
-            if frame.zIndex <= 2 {
-                self.bringLocalVideoToFront()
-            }else{
-                self.sendLocalVideoToBack()
-            }
-            
         }else{
-            if self.remoteVideoView != nil, self.remoteVideoView.isHidden {
-                self.remoteVideoView.isHidden = false
-                return
-            }
-
             if self.remoteVideoView?.superview != nil {
                 self.remoteVideoView.removeFromSuperview()
             }
-            self.remoteVideoView = UIView(frame: modifiedFrame)
-
-            if frame.zIndex <= 2 {
-                self.bringRemoteVideoToFront()
-            }else{
-                self.sendRemoteVideoToBack()
-            }
         }
         
-        let videoView = isLocal ? self.localVideoView! : self.remoteVideoView!
-        self.containerView.addSubview(videoView)
+        let videoView = UIView(frame: modifiedFrame)
 
-        #if arch(arm64)
-        // Using metal (arm64 only)
-        print("arch(arm64)")
+        let z = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue + 1
+        self.insertSubview(view: videoView, z: z)
+
         let renderer = RTCMTLVideoView(frame: videoView.frame)
-        renderer.videoContentMode = .scaleAspectFill
-        
-//        renderer.rotationOverride = NSValue(nonretainedObject: RTCVideoRotation._0)
-        #else
-        // Using OpenGLES for the rest
-        let renderer = RTCEAGLVideoView(frame: videoView.frame)
-        #endif
-        
+
+        let scaleY = self.baseView.frame.height / self.containerView.frame.height
+        print("scaleY = \(scaleY)")
         if isLocal {
             //좌우반전(거울처럼)
-//            if UIDevice.current.orientation.isLandscape {
-                renderer.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-//            } else {
-//                renderer.transform = CGAffineTransform(scaleX: 1.0, y: -1.0)
-//            }
-            
-//            Client.shared.webRTCClient.startCaptureLocalVideo(renderer: renderer)
+            renderer.transform = CGAffineTransform(scaleX: -1.0, y: scaleY)
             Client.shared.webRTCClient.startLocalVideo(renderer: renderer)
         }else{
+            renderer.transform = CGAffineTransform(scaleX: 1, y: scaleY)
             Client.shared.webRTCClient.renderRemoteVideo(to: renderer)
         }
         self.embedView(renderer, into: videoView)
+
+        if isLocal {
+            self.localVideoView = videoView
+        }else{
+            self.remoteVideoView = videoView
+        }
     }
     
     func destroyVideo(isLocal: Bool) {
+        
+        var videoView: UIView?
         if isLocal {
-            
             Client.shared.webRTCClient.stopCaptureLocalVideo()
-            if self.localVideoView?.superview != nil {
-                self.localVideoView.removeFromSuperview()
-            }
+            videoView = self.localVideoView
         }else{
             Client.shared.webRTCClient.stopRenderRemoteVideo()
-            if self.remoteVideoView?.superview != nil {
-                self.remoteVideoView.removeFromSuperview()
-            }
+            videoView = self.remoteVideoView
+        }
+        if videoView?.superview != nil {
+            videoView?.removeFromSuperview()
         }
     }
     
@@ -110,19 +80,25 @@ extension MSPlayer{
         }
     }
     
-    private func embedView(_ view: UIView, into containerView: UIView) {
-        containerView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
-                                                                    options: [],
-                                                                    metrics: nil,
-                                                                    views: ["view":view]))
+    private func reorderZIndex() {
         
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
+    }
+    
+    private func embedView(_ view: UIView, into parentView: UIView) {
+        print("embedView - view.frame: \(view.frame)")
+
+        parentView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
                                                                     options: [],
                                                                     metrics: nil,
                                                                     views: ["view":view]))
-        containerView.layoutIfNeeded()
+
+        parentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
+                                                                    options: [],
+                                                                    metrics: nil,
+                                                                    views: ["view":view]))
+        parentView.layoutIfNeeded()
     }
     
     @objc func timerCallback(){
@@ -134,41 +110,65 @@ extension MSPlayer{
             let movieClipLayer = item.value
             guard let player = movieClipLayer.player else { continue }
             
-            print("player.currentItem: \(player.currentItem?.debugDescription)")
-            
             if player.currentItem?.status == AVPlayerItem.Status.readyToPlay {
                 countReadyToPlay += 1
             }
         }
         
-        print("countReadyToPlay: \(countReadyToPlay)")
+        let stillLoadingImagesCount = self.backgroundImages.filter({$0.value == nil}).count
+        print("countReadyToPlay: \(countReadyToPlay), stillLoadingImagesCount: \(stillLoadingImagesCount)")
         
-        if countReadyToPlay >= self.movieClipLayers.count {
+        if countReadyToPlay >= self.movieClipLayers.count, stillLoadingImagesCount == 0
+        {
             self.timer?.invalidate()
-            self.loadVideoDone()
+            self.loadResourceDone()
         }
-
     }
     
-    func loadMovieClip(movieClip: MovieClip) {
+    func loadImage(_ resource: Resource) {
         
-        print("loadMovieClip: \(movieClip.src)")
+        print("loadImage: \(resource.src)")
         
-        let url = URL(string:movieClip.src)
+        let url = URL(string:resource.src)
+        
+        let data = try? Data(contentsOf: url!)
+        self.backgroundImages[resource.id] = UIImage(data: data!)
+    }
+    
+    func loadMovieClip(_ resource: Resource) {
+        
+        print("loadMovieClip: \(resource.src)")
+        
+        let url = URL(string:resource.src)
         
         let player = AVPlayer(url: url!)
         let playerLayer = AVPlayerLayer(player: player)
-        self.movieClipLayers[movieClip.id] = playerLayer
+        self.movieClipLayers[resource.id] = playerLayer
+    }
+    
+    func loadResources(resources: [Resource]) {
+        
+        self.resourceList = resources
+        
+        for resource in resources.filter({$0.assetType == .image}) {
+            self.backgroundImages[resource.id] = nil
+        }
+        
+        DispatchQueue.global().async {
+
+            for resource in resources {
+                switch resource.assetType {
+                case .image:
+                    self.loadImage(resource)
+                case .video:
+                    self.loadMovieClip(resource)
+                case .sound: break
+                }
+            }
+        }
         
         if self.timer == nil {
             self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
-        }
-    }
-    
-    func loadMovieClips(movieClips: [MovieClip]) {
-
-        for movieClip in movieClips {
-            self.loadMovieClip(movieClip: movieClip)
         }
     }
     
@@ -178,10 +178,11 @@ extension MSPlayer{
             print("createMovieClip: item.key: \(item.key)")
         }
         guard let playerLayer = self.movieClipLayers[frame.id] else { return }
-        let modifiedFrame = self.getModifiedFrame(frame: Frame(x: frame.x, y: frame.y, zIndex: frame.zIndex, width: frame.width, height: frame.height))
+        let modifiedFrame = self.getModifiedFrame(frame: Frame(x: frame.x, y: frame.y, width: frame.width, height: frame.height, zIndex: frame.zIndex, canvasOver: frame.canvasOver))
         playerLayer.frame = modifiedFrame
         
-        self.containerView.layer.addSublayer(playerLayer)
+        self.baseView.layer.addSublayer(playerLayer)
+//        playerLayer.zPosition = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue
         if let player = playerLayer.player {
             print("player.play()")
             player.play()

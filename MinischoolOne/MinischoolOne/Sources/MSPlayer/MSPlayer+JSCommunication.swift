@@ -91,7 +91,7 @@ extension MSPlayer {
             
             case "onError" : //에러가 발생
                 self.deliverError(parameterData.debugDescription)
-            
+            /*
             case "bringWebViewToFront" :
                 self.bringWebViewToFront()
             
@@ -109,7 +109,7 @@ extension MSPlayer {
             
             case "sendRemoteVideoToBack" :
                 self.sendRemoteVideoToBack()
-            
+            */
             case "changeStatusTo" :
                 if let status: MSPlayerStatus = self.jsonTo(json: parameterData as? String) {
                     self.changeStatusTo(status)
@@ -121,10 +121,10 @@ extension MSPlayer {
             case "backLoggingOff" :
                 self.backLoggingOn = false
             
-            case "loadVideo" :
+            case "loadResource" :
 
-                if let movieClipList: MovieClipList = self.jsonTo(json: parameterData as? String) {
-                    self.loadMovieClips(movieClips: movieClipList.videoList)
+                if let resourceList: ResourceList = self.jsonTo(json: parameterData as? String) {
+                    self.loadResources(resources: resourceList.resourceList)
                 }
             
             case "createVideo" :
@@ -137,11 +137,14 @@ extension MSPlayer {
                     self.destoryMovieClip(id: base.id)
                 }
 
-            case "setBackground" :
+            case "createBGImage" :
                 if let base: Base = self.jsonTo(json: parameterData as? String) {
-                    self.destoryMovieClip(id: base.id)
+                    self.backgroundImage?.removeFromSuperview()
+                    self.setBackground(base.id)
                 }
-
+            
+            case "destroyBGImage" :
+                self.backgroundImage.removeFromSuperview()
             
             default:
                 printError("\(function) is not defined in ios native")
@@ -262,9 +265,9 @@ extension MSPlayer {
         let json = jsonFrom(obj: candidate)
         self.callJS(jsFunctionName: "NativeToJS.sendIceCandidate", data: "\(json!)")
     }
-    public func  loadVideoDone() {
-        print("loadVideoDone")
-        self.callJS(jsFunctionName: "NativeToJS.loadVideoDone", data: "")
+    public func  loadResourceDone() {
+        print("loadResourceDone")
+        self.callJS(jsFunctionName: "NativeToJS.loadResourceDone", data: "")
     }
     
     public func muteAudio() {

@@ -28,18 +28,18 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         webConfiguration.preferences.javaScriptEnabled = true
         webConfiguration.userContentController = contentController
         
-        self.containerView.isOpaque = false
-        self.containerView.backgroundColor = UIColor.clear
+        self.baseView.isOpaque = false
+        self.baseView.backgroundColor = UIColor.clear
         
-        let customFrame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 0.0, height: self.containerView.frame.size.height))
+        let customFrame = CGRect.init(origin: CGPoint.zero, size: self.baseView.frame.size)
         self.wkWebView = WKWebView (frame: customFrame , configuration: webConfiguration)
-        wkWebView.translatesAutoresizingMaskIntoConstraints = false
-        self.containerView.addSubview(wkWebView)
-        wkWebView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        wkWebView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        wkWebView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        wkWebView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        wkWebView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+        self.insertSubview(view: self.wkWebView, z: ZINDEX.Canvas.rawValue)
+//        wkWebView.translatesAutoresizingMaskIntoConstraints = false
+//        wkWebView.topAnchor.constraint(equalTo: baseView.topAnchor).isActive = true
+//        wkWebView.rightAnchor.constraint(equalTo: baseView.rightAnchor).isActive = true
+//        wkWebView.leftAnchor.constraint(equalTo: baseView.leftAnchor).isActive = true
+//        wkWebView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor).isActive = true
+//        wkWebView.heightAnchor.constraint(equalTo: baseView.heightAnchor).isActive = true
         
         wkWebView.isOpaque = false
         wkWebView.backgroundColor = UIColor.clear
@@ -50,6 +50,8 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         wkWebView.navigationDelegate = self
         
         wkWebView.isUserInteractionEnabled = true
+        
+        print("self.wkWebView.frame: \(self.wkWebView.frame)")
     }
     
     func openEmbeded() {
@@ -64,7 +66,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
     public func openUrlWK(_ urlString: String) {
         let url = URL(string: urlString)
 
-        print("openUrl containerView.frame: \(self.containerView.frame)")
+        print("openUrl containerView.frame: \(self.baseView.frame)")
         let request = URLRequest(url: url!)
         wkWebView.load(request)
     }

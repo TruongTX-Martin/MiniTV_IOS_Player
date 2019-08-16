@@ -158,6 +158,8 @@ final class WebRTCClient: NSObject {
         }
         guard let targetFormat = selectedFormat else { return }
         
+        print("targetFormat: \(targetFormat.formatDescription)")
+        
         capturer.startCapture(with: frontCamera, format: targetFormat, fps: maxFrameRate)
     }
     
