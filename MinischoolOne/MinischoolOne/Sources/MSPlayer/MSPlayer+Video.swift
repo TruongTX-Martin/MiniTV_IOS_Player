@@ -20,6 +20,11 @@ extension MSPlayer{
         }
         
         let modifiedFrame = self.getModifiedFrame(frame: frame)
+        
+        print("createVideo - modifiedFrame: \(modifiedFrame)")
+        print("createVideo - self.baseView.frame: \(self.baseView.frame)")
+        print("createVideo - self.wkWebView.frame: \(self.wkWebView.frame)")
+        print("createVideo - self.backgroundImage?.frame: \(self.backgroundImage?.frame)")
 
         // video view 생성
         
@@ -40,7 +45,7 @@ extension MSPlayer{
 
         let renderer = RTCMTLVideoView(frame: videoView.frame)
 
-        let scaleY = self.baseView.frame.height / self.containerView.frame.height
+        let scaleY = self.getCameraCaptureScaleY()
         print("scaleY = \(scaleY)")
         if isLocal {
             //좌우반전(거울처럼)
@@ -57,6 +62,34 @@ extension MSPlayer{
         }else{
             self.remoteVideoView = videoView
         }
+    }
+    
+    func getCameraCaptureScaleY() -> CGFloat{
+        var scaleY = self.baseView.frame.height / self.containerView.frame.height
+
+        guard let format = Client.shared.webRTCClient.videoCaptureFormat else { return scaleY }
+        
+        print(format.formatDescription)
+        
+        let camera:CMVideoDimensions = CMVideoFormatDescriptionGetDimensions( format.formatDescription )
+        
+        let H1 = self.baseView.frame.height
+        let W1 = self.baseView.frame.width
+
+        let H2 = CGFloat(camera.height)
+        let W2 = CGFloat(camera.width)
+        
+
+        // W1 : H1 = W2 : H2 * x
+        // H1*W2 = W1*H2*x
+        // x = H1 * W2 / (W1 * H2)
+        
+        scaleY = H1 * W2 / (W1 * H2)
+
+        print("\(W1) : \(H1) = \(W2) : \(H2) * \(scaleY)")
+
+        return scaleY
+
     }
     
     func destroyVideo(isLocal: Bool) {

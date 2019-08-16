@@ -42,6 +42,8 @@ final class WebRTCClient: NSObject {
     private weak var remoteRenderer: RTCVideoRenderer?
     
     private var localVideoMandatory: [String: Int]?
+    
+    public var videoCaptureFormat: AVCaptureDevice.Format?
 
     @available(*, unavailable)
     override init() {
@@ -140,7 +142,7 @@ final class WebRTCClient: NSObject {
         // 포맷 설정
         let targetWidth = Int32( maxWidth )
         let targetHeight = Int32( maxHeight )
-        var selectedFormat:AVCaptureDevice.Format?
+//        var selectedFormat:AVCaptureDevice.Format?
         var currentDiff = INT_MAX
         
         let formats = RTCCameraVideoCapturer.supportedFormats(for: frontCamera )
@@ -150,13 +152,13 @@ final class WebRTCClient: NSObject {
             let pixelFormat:FourCharCode = CMFormatDescriptionGetMediaSubType( format.formatDescription )
             let diff = abs(targetWidth - dimension.width) + abs( targetHeight - dimension.height)
             if( diff < currentDiff ) {
-                selectedFormat = format
+                self.videoCaptureFormat = format
                 currentDiff = diff
             } else if( diff == currentDiff && pixelFormat == capturer.preferredOutputPixelFormat()) {
-                selectedFormat = format
+                self.videoCaptureFormat = format
             }
         }
-        guard let targetFormat = selectedFormat else { return }
+        guard let targetFormat = self.videoCaptureFormat else { return }
         
         print("targetFormat: \(targetFormat.formatDescription)")
         
