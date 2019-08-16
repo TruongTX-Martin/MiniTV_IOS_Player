@@ -30,8 +30,7 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
         let role = ""
         
         
-        UserDefaults.standard.set("https://172.16.3.95:8080/student.html?hash=Y2sxNTY0OTgxNjUxNzQydG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=", forKey: "url")
-
+        //UserDefaults.standard.set("https://172.16.3.95:8080/student.html?hash=Y2sxNTY0OTgxNjUxNzQydG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=", forKey: "url")
         
         
         let url = UserDefaults.standard.string(forKey: "url") ?? ""
