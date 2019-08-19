@@ -104,7 +104,7 @@ extension MSPlayer {
         if oldCount == 0 {
             parent.addSubview(view)
         }else {
-            for v in parent.subviews {
+            for v in parent.subviews.sorted(by: { $0.tag < $1.tag}) {
                 //자신보다 z index 큰 뷰를 발견하면 그 뷰 아래 놓는다(그 뷰 보다 앞)
                 if v.tag > Int(z) {
                     print("\(z) is aboveSubview \(v.tag)")

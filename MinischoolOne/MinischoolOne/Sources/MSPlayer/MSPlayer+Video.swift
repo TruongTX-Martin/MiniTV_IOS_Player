@@ -11,8 +11,12 @@ import WebRTC
 
 extension MSPlayer{
     
-    func createVideo(isLocal: Bool, frame: Frame) {
+    func createCaptureVideo(isLocal: Bool, frame: Frame) {
 
+        if Client.shared == nil {
+            return
+        }
+        
         if isLocal {
             self.localVideoViewOriginalFrame = frame
         }else{
@@ -20,11 +24,6 @@ extension MSPlayer{
         }
         
         let modifiedFrame = self.getModifiedFrame(frame: frame)
-        
-        print("createVideo - modifiedFrame: \(modifiedFrame)")
-        print("createVideo - self.baseView.frame: \(self.baseView.frame)")
-        print("createVideo - self.wkWebView.frame: \(self.wkWebView.frame)")
-        print("createVideo - self.backgroundImage?.frame: \(self.backgroundImage?.frame)")
 
         // video view 생성
         
@@ -44,8 +43,9 @@ extension MSPlayer{
         self.insertSubview(view: videoView, z: z)
 
         let renderer = RTCMTLVideoView(frame: videoView.frame)
+        renderer.rotationOverride = nil
 
-        let scaleY = self.getCameraCaptureScaleY()
+        let scaleY = self.getCameraCaptureScaleY(size: CGSize(width: frame.width, height: frame.height))
         print("scaleY = \(scaleY)")
         if isLocal {
             //좌우반전(거울처럼)
@@ -64,17 +64,17 @@ extension MSPlayer{
         }
     }
     
-    func getCameraCaptureScaleY() -> CGFloat{
+    func getCameraCaptureScaleY(size:CGSize) -> CGFloat{
         var scaleY = self.baseView.frame.height / self.containerView.frame.height
 
-        guard let format = Client.shared.webRTCClient.videoCaptureFormat else { return scaleY }
+        guard let format = Client.shared?.webRTCClient.videoCaptureFormat else { return scaleY }
         
         print(format.formatDescription)
         
         let camera:CMVideoDimensions = CMVideoFormatDescriptionGetDimensions( format.formatDescription )
         
-        let H1 = self.baseView.frame.height
-        let W1 = self.baseView.frame.width
+        let H1 = size.height
+        let W1 = size.width
 
         let H2 = CGFloat(camera.height)
         let W2 = CGFloat(camera.width)
@@ -136,7 +136,7 @@ extension MSPlayer{
     
     @objc func timerCallback(){
 
-        print("timerCallback movieClipLayers.count: \(self.movieClipLayers.count)")
+        print("timerCallback movieClipLayers.count: \(self.movieClips.count)")
 
         var countReadyToPlay = 0
         for item in self.movieClipLayers {
@@ -151,7 +151,7 @@ extension MSPlayer{
         let stillLoadingImagesCount = self.backgroundImages.filter({$0.value == nil}).count
         print("countReadyToPlay: \(countReadyToPlay), stillLoadingImagesCount: \(stillLoadingImagesCount)")
         
-        if countReadyToPlay >= self.movieClipLayers.count, stillLoadingImagesCount == 0
+        if countReadyToPlay >= self.movieClips.count, stillLoadingImagesCount == 0
         {
             self.timer?.invalidate()
             self.loadResourceDone()
@@ -213,8 +213,12 @@ extension MSPlayer{
         guard let playerLayer = self.movieClipLayers[frame.id] else { return }
         let modifiedFrame = self.getModifiedFrame(frame: Frame(x: frame.x, y: frame.y, width: frame.width, height: frame.height, zIndex: frame.zIndex, canvasOver: frame.canvasOver))
         playerLayer.frame = modifiedFrame
+        let view = UIView(frame: modifiedFrame)
+        view.layer.addSublayer(playerLayer)
+        self.movieClips[frame.id] = view
+
+        self.insertSubview(view: view, z: frame.zIndex)
         
-        self.baseView.layer.addSublayer(playerLayer)
 //        playerLayer.zPosition = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue
         if let player = playerLayer.player {
             print("player.play()")
@@ -223,12 +227,15 @@ extension MSPlayer{
     }
     
     func destoryMovieClip(id: Int) {
-        print("destoryMovieClip movieClipLayers.count: \(self.movieClipLayers.count)")
+        print("destoryMovieClip movieClipLayers.count: \(self.movieClips.count)")
 
         guard let playerLayer = self.movieClipLayers[id] else { return }
         playerLayer.player?.pause()
         playerLayer.player?.seek(to: .zero)
         playerLayer.removeFromSuperlayer()
+        
+        guard let view = self.movieClips[id] else { return }
+        view.removeFromSuperview()
     }
     
 }

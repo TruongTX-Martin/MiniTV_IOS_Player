@@ -49,6 +49,7 @@ public class MSPlayer : NSObject {
     let maxHeight = CGFloat(1080)
     
     var movieClipLayers : [Int: AVPlayerLayer] = [:]
+    var movieClips : [Int: UIView] = [:]
     var backgroundImages : [Int: UIImage?] = [:]
     var backgroundImage : UIImageView!
     var resourceList: [Resource] = []
@@ -153,10 +154,8 @@ public class MSPlayer : NSObject {
 //        webView.load(URLRequest(url: URL(string:"about:blank")!))
         self.wkWebView = nil
         
-        for layer in self.movieClipLayers {
-            layer.value.player = nil
-        }
         self.movieClipLayers.removeAll()
+        self.movieClips.removeAll()
         self.backgroundImages.removeAll()
         self.resourceList.removeAll()
     }

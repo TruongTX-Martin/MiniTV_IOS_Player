@@ -146,6 +146,9 @@ extension MSPlayer {
             case "destroyBGImage" :
                 self.backgroundImage.removeFromSuperview()
             
+            case "onLoadPage" :
+                self.onLoadPage()
+            
             default:
                 printError("\(function) is not defined in ios native")
         }
@@ -217,11 +220,11 @@ extension MSPlayer {
     
     //    Video Control
     public func createLocalVideo(_ frame: Frame) {
-        self.createVideo(isLocal: true, frame: frame)
+        self.createCaptureVideo(isLocal: true, frame: frame)
     }
     
     public func createRemoteVideo(_ frame: Frame) {
-        self.createVideo(isLocal: false, frame: frame)
+        self.createCaptureVideo(isLocal: false, frame: frame)
     }
     
     public func destroyLocalVideo() {
@@ -285,6 +288,10 @@ extension MSPlayer {
     public func speakerOn() {
         Client.shared.webRTCClient.speakerOn()
 //        Client.shared.webRTCClient.speakerOn1()
+    }
+    
+    public func onLoadPage() {
+        print("onLoadPage")
     }
     
     public func changeStatusTo(_ status: MSPlayerStatus) {
