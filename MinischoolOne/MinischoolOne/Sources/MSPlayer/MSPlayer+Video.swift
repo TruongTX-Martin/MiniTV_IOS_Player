@@ -42,10 +42,12 @@ extension MSPlayer{
         let z = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue + 1
         self.insertSubview(view: videoView, z: z)
 
-        let renderer = RTCMTLVideoView(frame: videoView.frame)
-        renderer.rotationOverride = nil
+//        let renderer = RTCMTLVideoView(frame: videoView.frame)
+//        renderer.rotationOverride = nil
+//        let scaleY = self.getCameraCaptureScaleY(size: CGSize(width: frame.width, height: frame.height))
 
-        let scaleY = self.getCameraCaptureScaleY(size: CGSize(width: frame.width, height: frame.height))
+        let renderer = RTCEAGLVideoView(frame: videoView.frame)
+        let scaleY = CGFloat(1.0)
         print("scaleY = \(scaleY)")
         if isLocal {
             //좌우반전(거울처럼)
