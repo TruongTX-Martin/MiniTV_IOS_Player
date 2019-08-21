@@ -169,7 +169,6 @@ final class WebRTCClient: NSObject {
         self.localVideoTrack?.add(renderer)
         self.localRenderer = renderer
     }
-
     
     func stopCaptureLocalVideo() {
         guard let renderer = self.localRenderer else { return }
@@ -268,8 +267,8 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
         debugPrint("peerConnection new connection state: \(newState)")
         self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
         if newState == RTCIceConnectionState.connected {
-//            self.speakerOn()
-            self.speakerForceOn()
+            self.speakerOn()
+//            self.speakerForceOn()
         }
     }
     
@@ -354,7 +353,7 @@ extension WebRTCClient: RTCAudioSessionDelegate {
         print("RTCAudioSessionDelegate-audioSessionDidStartPlaudioSessionDidStopPlayOrRecordayOrRecord")
     }
     func audioSession(_ audioSession: RTCAudioSession, didChangeOutputVolume outputVolume: Float) {
-        print("RTCAudioSessionDelegate-audioSession didChangeOutputVolume")
+        print("RTCAudioSessionDelegate-audioSession didChangeOutputVolume to \(audioSession.outputVolume)")
     }
     func audioSession(_ audioSession: RTCAudioSession, didDetectPlayoutGlitch totalNumberOfGlitches: Int64) {
         print("RTCAudioSessionDelegate-audioSession didDetectPlayoutGlitch totalNumberOfGlitches:\(totalNumberOfGlitches)")
@@ -422,6 +421,7 @@ extension WebRTCClient {
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
             try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+            print("audioSession.outputVolume: \(audioSession.outputVolume)")
         } catch let error as NSError {
             print("audioSession error: \(error.localizedDescription)")
         }
@@ -437,12 +437,13 @@ extension WebRTCClient {
             }
             self.rtcAudioSession.lockForConfiguration()
             do {
-                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
-                try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
+                try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue, with: AVAudioSession.CategoryOptions.defaultToSpeaker)
+//                try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
             } catch let error {
                 debugPrint("Couldn't force audio to speaker: \(error)")
             }
             self.rtcAudioSession.unlockForConfiguration()
+            print("self.rtcAudioSession.outputVolume: \(self.rtcAudioSession.outputVolume)")
         }
     }
     

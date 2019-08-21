@@ -59,6 +59,8 @@ extension MSPlayer{
         }
         self.embedView(renderer, into: videoView)
 
+        self.enableMoving(view: videoView)
+
         if isLocal {
             self.localVideoView = videoView
         }else{
@@ -221,6 +223,8 @@ extension MSPlayer{
 
         self.insertSubview(view: view, z: frame.zIndex)
         
+//        self.enableMoving(view: view)
+        
 //        playerLayer.zPosition = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue
         if let player = playerLayer.player {
             print("player.play()")
@@ -240,4 +244,18 @@ extension MSPlayer{
         view.removeFromSuperview()
     }
     
+    func enableMoving(view: UIView) {
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_: )))
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func draggedView(_ sender:UIPanGestureRecognizer){
+        if let view = sender.view {
+            let translation = sender.translation(in: self.baseView)
+            view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: self.baseView)
+        }
+    }
 }
