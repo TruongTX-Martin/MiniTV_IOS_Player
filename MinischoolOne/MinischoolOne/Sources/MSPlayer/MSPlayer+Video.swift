@@ -221,11 +221,9 @@ extension MSPlayer{
         view.layer.addSublayer(playerLayer)
         self.movieClips[frame.id] = view
 
-        self.insertSubview(view: view, z: frame.zIndex)
+        self.insertSubview(view: view, z: frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue)
         
 //        self.enableMoving(view: view)
-        
-//        playerLayer.zPosition = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue
         if let player = playerLayer.player {
             print("player.play()")
             player.play()

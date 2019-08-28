@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 import WebKit
+import MediaPlayer
 
 @objc
 public protocol MSPlayerDelegate: class {
@@ -106,6 +107,9 @@ public class MSPlayer : NSObject {
             self.relocateLocalVideoFrame()
             self.relocateRemoteVideoFrame()
         }
+        
+        MPVolumeView.setVolume(0.5)
+
     }
     
     private func initBackgroundView() {
@@ -178,4 +182,18 @@ public class MSPlayer : NSObject {
             print("audioSession error: \(error.localizedDescription)")
         }
     }    
+}
+
+
+
+
+extension MPVolumeView {
+    static func setVolume(_ volume: Float) {
+        let volumeView = MPVolumeView()
+        let slider = volumeView.subviews.first(where: { $0 is UISlider }) as? UISlider
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
+            slider?.value = volume
+        }
+    }
 }

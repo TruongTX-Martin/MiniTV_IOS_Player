@@ -29,10 +29,10 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
         let serviceAppVersion = "1.0"
         let role = ""
         
-        
-        //UserDefaults.standard.set("https://172.16.3.95:8080/student.html?hash=Y2sxNTY0OTgxNjUxNzQydG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=", forKey: "url")
-        
-        
+        //UserDefaults.standard.set("https://dev-p3.ekidpro.com/student/Y2sxNTY0OTgxNjUxNzQydG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=", forKey: "url")
+        //UserDefaults.standard.set("https://192.168.0.184:8080/student.html?hash=Y2sxNTY2NTQ5OTk4MTA2b75e3d8d31734854a0be338901a68169?lang=en", forKey: "url")
+        //UserDefaults.standard.set("https://192.168.0.184:8080/student.html?hash=Y2sxNTY0OTgxNjUxNzQydG9rZW5WMDAwMDAwMDAxQTAwMDAwMDAwODE0ODY0NDg4Mzg3NDk=", forKey: "url")
+
         let url = UserDefaults.standard.string(forKey: "url") ?? ""
         
         print("ContainerViewController url: \(url)")
