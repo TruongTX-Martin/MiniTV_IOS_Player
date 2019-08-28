@@ -113,7 +113,14 @@ public class MSPlayer : NSObject {
         print("initBackgroundView self.containerView.frame: \(self.containerView.frame)")
         self.containerView.setNeedsLayout()
         self.containerView.setNeedsDisplay()
-        self.baseView = UIView(frame: CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.width * 9 / 16))
+        let bounds = self.containerView.bounds
+        
+        if bounds.width / bounds.height <= 16 / 9 { // ex: ipad
+            self.baseView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.width * 9 / 16))
+        }else{ // wide - ex: iphone xs
+            self.baseView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.height * 16 / 9, height: bounds.height))
+        }
+        
         self.containerView.addSubview(baseView)
 //        self.baseView.autoresizingMask    = [.flexibleHeight, .flexibleWidth]
 

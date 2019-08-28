@@ -139,16 +139,18 @@ extension MSPlayer {
 
             case "createBGImage" :
                 if let base: Base = self.jsonTo(json: parameterData as? String) {
-                    self.backgroundImage?.removeFromSuperview()
                     self.setBackground(base.id)
                 }
             
             case "destroyBGImage" :
-                self.backgroundImage.removeFromSuperview()
-            
-            case "onLoadPage" :
-                self.onLoadPage()
-            
+                self.removeBackground()
+
+            case "onLoadPageStart" :
+                self.onLoadPageStart()
+
+            case "onLoadPageEnd" :
+                self.onLoadPageEnd()
+
             default:
                 printError("\(function) is not defined in ios native")
         }
@@ -290,8 +292,13 @@ extension MSPlayer {
 //        Client.shared.webRTCClient.speakerOn1()
     }
     
-    public func onLoadPage() {
-        print("onLoadPage")
+    public func onLoadPageStart() {
+        print("onLoadPageStart")
+        self.removeBackground()
+    }
+    
+    public func onLoadPageEnd() {
+        print("onLoadPageEnd")
     }
     
     public func changeStatusTo(_ status: MSPlayerStatus) {

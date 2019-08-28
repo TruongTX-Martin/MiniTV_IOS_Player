@@ -66,6 +66,7 @@ extension MSPlayer {
     }
     
     public func setBackground(_ id: Int) {
+        self.removeBackground()
         print("setBackground: \(id)")
         if let image =  self.backgroundImages[id] {
             self.backgroundImage = UIImageView(frame: self.baseView.bounds)
@@ -82,6 +83,15 @@ extension MSPlayer {
         }else{
             print("setBackground: no image - \(id)")
         }
+    }
+    
+    public func removeBackground() {
+        guard self.backgroundImage?.superview != nil else {
+            return
+        }
+        print("removeBackground")
+        self.backgroundImage.removeFromSuperview()
+        self.backgroundImage = nil
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
