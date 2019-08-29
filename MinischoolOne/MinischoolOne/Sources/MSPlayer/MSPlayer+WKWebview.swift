@@ -33,13 +33,8 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
         
         let customFrame = CGRect.init(origin: CGPoint.zero, size: self.baseView.frame.size)
         self.wkWebView = WKWebView (frame: customFrame , configuration: webConfiguration)
+        self.wkWebView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.insertSubview(view: self.wkWebView, z: ZINDEX.Canvas.rawValue)
-//        wkWebView.translatesAutoresizingMaskIntoConstraints = false
-//        wkWebView.topAnchor.constraint(equalTo: baseView.topAnchor).isActive = true
-//        wkWebView.rightAnchor.constraint(equalTo: baseView.rightAnchor).isActive = true
-//        wkWebView.leftAnchor.constraint(equalTo: baseView.leftAnchor).isActive = true
-//        wkWebView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor).isActive = true
-//        wkWebView.heightAnchor.constraint(equalTo: baseView.heightAnchor).isActive = true
         
         wkWebView.isOpaque = false
         wkWebView.backgroundColor = UIColor.clear

@@ -9,7 +9,6 @@
 import Foundation
 import WebRTC
 import WebKit
-import MediaPlayer
 
 @objc
 public protocol MSPlayerDelegate: class {
@@ -103,20 +102,16 @@ public class MSPlayer : NSObject {
         self.initWKWebview()
 
         observer = self.baseView.layer.observe(\.bounds) { object, _ in
-            print(object.bounds)
+            print("baseView changing bounds: \(object.bounds)")
             self.relocateLocalVideoFrame()
             self.relocateRemoteVideoFrame()
         }
-        
-        MPVolumeView.setVolume(0.5)
-
     }
     
     private func initBackgroundView() {
 
         print("initBackgroundView self.containerView.frame: \(self.containerView.frame)")
-        self.containerView.setNeedsLayout()
-        self.containerView.setNeedsDisplay()
+
         let bounds = self.containerView.bounds
         
         if bounds.width / bounds.height <= 16 / 9 { // ex: ipad
@@ -126,31 +121,11 @@ public class MSPlayer : NSObject {
         }
         
         self.containerView.addSubview(baseView)
-//        self.baseView.autoresizingMask    = [.flexibleHeight, .flexibleWidth]
+        self.baseView.autoresizingMask    = [.flexibleHeight, .flexibleWidth]
 
         self.baseView.center = self.containerView.center
         
         print("initBackgroundView self.baseView.frame: \(self.baseView.frame)")
-
-//        self.containerView.translatesAutoresizingMaskIntoConstraints = false
-//        self.baseView.translatesAutoresizingMaskIntoConstraints = false
-//        self.baseView.setNeedsUpdateConstraints()
-        
-//        self.baseView.topAnchor.constraint(equalTo: self.containerView.topAnchor).isActive = true
-//        self.baseView.rightAnchor.constraint(equalTo: self.containerView.rightAnchor).isActive = true
-//        self.baseView.leftAnchor.constraint(equalTo: self.containerView.leftAnchor).isActive = true
-//        self.baseView.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor).isActive = true
-//        self.baseView.widthAnchor.constraint(equalTo: self.containerView.widthAnchor).isActive = true
-
-        
-//        self.backgroundImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 16, height: 9))
-//        self.backgroundImage.backgroundColor = .green
-//        self.baseView.addSubview(self.backgroundImage)
-//
-//        self.backgroundImage.centerXAnchor.constraint(equalTo: self.baseView.centerXAnchor).isActive = true
-//        self.backgroundImage.centerYAnchor.constraint(equalTo: self.baseView.centerYAnchor).isActive = true
-//        self.backgroundImage.rightAnchor.constraint(equalTo: self.baseView.rightAnchor).isActive = true
-//        self.backgroundImage.leftAnchor.constraint(equalTo: self.baseView.leftAnchor).isActive = true
 
     }
     
@@ -182,18 +157,4 @@ public class MSPlayer : NSObject {
             print("audioSession error: \(error.localizedDescription)")
         }
     }    
-}
-
-
-
-
-extension MPVolumeView {
-    static func setVolume(_ volume: Float) {
-        let volumeView = MPVolumeView()
-        let slider = volumeView.subviews.first(where: { $0 is UISlider }) as? UISlider
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
-            slider?.value = volume
-        }
-    }
 }
