@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490317AD231CA8430031D3AF /* CustomeSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490317AC231CA8430031D3AF /* CustomeSchemeHandler.swift */; };
 		493B387D22CDFED200D19AC0 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 493B387A22CDFEC600D19AC0 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		493B388722CED44B00D19AC0 /* page.html in Resources */ = {isa = PBXBuildFile; fileRef = 493B388622CED3FE00D19AC0 /* page.html */; };
 		494FFDD422CDEBBE00B38B59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 		4967FE9B22CDFCC800466C4D /* MinischoolOne.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4967FE9C22CDFCC800466C4D /* MinischoolOne.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 494FFDEB22CDEBD000B38B59 /* MinischoolOne.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4975B04F22E56DAB0072A738 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4975B04E22E56DAB0072A738 /* InitViewController.swift */; };
+		49F405762318E28500B1A3C0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F405752318E28500B1A3C0 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		490317AC231CA8430031D3AF /* CustomeSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeSchemeHandler.swift; sourceTree = "<group>"; };
 		493B387A22CDFEC600D19AC0 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		493B388622CED3FE00D19AC0 /* page.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = page.html; sourceTree = "<group>"; };
 		494FFDD022CDEBBE00B38B59 /* Minischool-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Minischool-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +68,7 @@
 		4989FDB722E43C66007C3E83 /* Minischool-Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minischool-Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		4989FDBA22E43CCC007C3E83 /* UIViewController+ViewControllerObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewControllerObjC.m"; sourceTree = "<group>"; };
 		49DAC02122CDEA4C0051FD17 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		49F405752318E28500B1A3C0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				494FFDDF22CDEBBF00B38B59 /* Info.plist */,
 				4989FDB722E43C66007C3E83 /* Minischool-Demo-Bridging-Header.h */,
 				4989FDBA22E43CCC007C3E83 /* UIViewController+ViewControllerObjC.m */,
+				49F405752318E28500B1A3C0 /* WebViewController.swift */,
+				490317AC231CA8430031D3AF /* CustomeSchemeHandler.swift */,
 			);
 			path = "Minischool-Demo";
 			sourceTree = "<group>";
@@ -230,9 +236,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490317AD231CA8430031D3AF /* CustomeSchemeHandler.swift in Sources */,
 				494FFDD622CDEBBE00B38B59 /* ContainerViewController.swift in Sources */,
 				494FFDD422CDEBBE00B38B59 /* AppDelegate.swift in Sources */,
 				4975B04F22E56DAB0072A738 /* InitViewController.swift in Sources */,
+				49F405762318E28500B1A3C0 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +404,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Minischool-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -406,6 +415,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -423,6 +433,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Minischool-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,6 +443,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Minischool-Demo/Minischool-Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
