@@ -74,6 +74,10 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             completionHandler()
         }))
         
+        if let presenter = alertController.popoverPresentationController {
+            presenter.sourceView = webView
+        }
+
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
     
@@ -90,6 +94,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             completionHandler(false)
         }))
         
+        if let presenter = alertController.popoverPresentationController {
+            presenter.sourceView = webView
+        }
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
     
@@ -114,6 +121,9 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             completionHandler(nil)
         }))
         
+        if let presenter = alertController.popoverPresentationController {
+            presenter.sourceView = webView
+        }
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
     
