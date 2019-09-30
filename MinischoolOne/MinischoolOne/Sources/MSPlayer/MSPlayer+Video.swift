@@ -166,10 +166,8 @@ extension MSPlayer{
         
         print("loadImage: \(resource.src)")
         
-        let url = URL(string:resource.src)
-        
-        let data = try? Data(contentsOf: url!)
-        self.backgroundImages[resource.id] = UIImage(data: data!)
+        guard let url = URL(string:resource.src), let data = try? Data(contentsOf: url) else { return }
+        self.backgroundImages[resource.id] = UIImage(data: data)
     }
     
     func loadMovieClip(_ resource: Resource) {
