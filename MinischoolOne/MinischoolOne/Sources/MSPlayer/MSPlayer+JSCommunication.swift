@@ -32,6 +32,7 @@ extension MSPlayer {
                 print("startWebRTC start")
                 if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
                     self.startWebRTC(webRTCParameter)
+                    self.muteAudio()
                 }
             
             case "stopWebRTC" :
@@ -84,6 +85,7 @@ extension MSPlayer {
                 self.changeStatusTo(MSPlayerStatus.waiting)
 
             case "onStarted" : //교사와 연결되어 수업을 진행
+                self.unmuteAudio()
                 self.changeStatusTo(MSPlayerStatus.started)
             
             case "onEnded" : //수업이 종료됨
@@ -91,25 +93,7 @@ extension MSPlayer {
             
             case "onError" : //에러가 발생
                 self.deliverError(parameterData.debugDescription)
-            /*
-            case "bringWebViewToFront" :
-                self.bringWebViewToFront()
-            
-            case "bringLocalVideoToFront" :
-                self.bringLocalVideoToFront()
-            
-            case "bringRemoteVideoToFront" :
-                self.bringRemoteVideoToFront()
-            
-            case "sendWebViewToBack" :
-                self.sendWebViewToBack()
-            
-            case "sendLocalVideoToBack" :
-                self.sendLocalVideoToBack()
-            
-            case "sendRemoteVideoToBack" :
-                self.sendRemoteVideoToBack()
-            */
+
             case "changeStatusTo" :
                 if let status: MSPlayerStatus = self.jsonTo(json: parameterData as? String) {
                     self.changeStatusTo(status)
