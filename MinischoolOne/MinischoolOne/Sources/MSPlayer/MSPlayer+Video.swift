@@ -202,9 +202,10 @@ extension MSPlayer{
             }
         }
         
-        if self.timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        if self.timer != nil {
+            self.timer?.invalidate()
         }
+        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
     }
     
     func createMovieClip(frame: MovieClipFrame) {
