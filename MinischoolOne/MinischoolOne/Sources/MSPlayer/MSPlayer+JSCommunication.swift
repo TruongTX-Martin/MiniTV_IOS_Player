@@ -175,10 +175,10 @@ extension MSPlayer {
     func printError(_ message : String) {
 //        print(message)
         let errorMessage = "Native Framwork Error: \(message)"
-        self.callJS(jsFunctionName: "console.log", data: errorMessage)
+        self.sendNativeError(message)
         self.deliverError(errorMessage)
     }
-    
+        
     //    JSToNative
     
     //    WebRTC Control
@@ -261,6 +261,11 @@ extension MSPlayer {
         self.callJS(jsFunctionName: "NativeToJS.loadResourceDone", data: "")
     }
     
+    public func sendNativeError(_ message : String) {
+//        self.callJS(jsFunctionName: "console.log", data: errorMessage)
+        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: message)
+    }
+
     public func muteAudio() {
         Client.shared.webRTCClient.muteAudio()
     }

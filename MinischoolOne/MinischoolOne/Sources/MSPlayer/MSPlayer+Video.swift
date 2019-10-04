@@ -213,7 +213,10 @@ extension MSPlayer{
         for item in self.movieClipLayers {
             print("createMovieClip: item.key: \(item.key)")
         }
-        guard let playerLayer = self.movieClipLayers[frame.id] else { return }
+        guard let playerLayer = self.movieClipLayers[frame.id] else {
+            printError("there is no movie clip id: \(frame.id), can't create")
+            return
+        }
         let modifiedFrame = self.getModifiedFrame(frame: Frame(x: frame.x, y: frame.y, width: frame.width, height: frame.height, zIndex: frame.zIndex, canvasOver: frame.canvasOver))
         playerLayer.frame = modifiedFrame
         let view = UIView(frame: modifiedFrame)
@@ -232,12 +235,18 @@ extension MSPlayer{
     func destoryMovieClip(id: Int) {
         print("destoryMovieClip movieClipLayers.count: \(self.movieClips.count)")
 
-        guard let playerLayer = self.movieClipLayers[id] else { return }
+        guard let playerLayer = self.movieClipLayers[id] else{
+            return
+        }
         playerLayer.player?.pause()
         playerLayer.player?.seek(to: .zero)
         playerLayer.removeFromSuperlayer()
         
-        guard let view = self.movieClips[id] else { return }
+        guard let view = self.movieClips[id] else {
+            printError("there is no movie clip id: \(id), can't destroy")
+            return
+        }
+        
         view.removeFromSuperview()
     }
     

@@ -90,3 +90,8 @@ public enum ZINDEX: CGFloat {
     case Background = 10000.0
     case Canvas = 2000.0
 }
+
+public enum NativeError: Int {
+    case JSON_PARSE_ERROR = 0
+    case NO_VIDEO_ID = 1
+}
