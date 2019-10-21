@@ -17,14 +17,14 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) camera use</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) microphone use</string>
-    <key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
-    <key>UIRequiresFullScreen</key>
-    <true/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
