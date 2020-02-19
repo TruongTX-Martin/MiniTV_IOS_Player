@@ -17,7 +17,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let msp = MSPlayer(self.view, viewController: self, serviceAppVersion: "1.0", url: "https://dev-admin.ekidpro.com/bts")
+        let msp = MSPlayer(self.view, viewController: self, serviceAppVersion: "1.0", url: "https://dev-admin.minischool.co.kr/bts")
         msp?.run()
     }
 }
