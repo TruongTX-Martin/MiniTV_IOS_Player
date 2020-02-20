@@ -136,10 +136,11 @@ public class MSPlayer : NSObject {
     }
     
     @objc public func closeAll() {
-        print("closeAll")
+        print("[mini] closeAll")
         self.stopWebRTC()
 //        webView.load(URLRequest(url: URL(string:"about:blank")!))
         self.wkWebView = nil
+        self.baseView.removeFromSuperview()
         
         self.movieClipLayers.removeAll()
         self.movieClips.removeAll()

@@ -79,6 +79,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
             print("[mini] started")
         case .ended:
             print("[mini] ended")
+            self.player.closeAll()
         default:
             print("[mini] errorOcccured")
         }
