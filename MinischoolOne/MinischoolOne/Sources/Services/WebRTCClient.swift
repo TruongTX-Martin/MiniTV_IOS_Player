@@ -134,10 +134,10 @@ final class WebRTCClient: NSObject {
         guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else { return }
 
         guard let frontCamera = (RTCCameraVideoCapturer.captureDevices().first { $0.position == .front }) else { return }
-            
-        guard let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] else { return }
-        guard let maxWidth = self.localVideoMandatory?["maxWidth"] else { return }
-        guard let maxHeight = self.localVideoMandatory?["maxHeight"] else { return }
+        
+        let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] ?? 10
+        let maxWidth = self.localVideoMandatory?["maxWidth"] ?? 320
+        let maxHeight = self.localVideoMandatory?["maxHeight"] ?? 240
         
         // 포맷 설정
         let targetWidth = Int32( maxWidth )

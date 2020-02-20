@@ -86,7 +86,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     }
     
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
-        print("mini", error.localizedDescription)
+        print("[mini]", error.localizedDescription)
     }
     
 }
