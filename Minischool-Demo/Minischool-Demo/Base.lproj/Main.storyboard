@@ -1,137 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c8O-j1-Xmy">
-    <device id="retina6_1" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c8O-j1-Xmy">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment version="4608" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="IM1-jG-q9q">
-            <objects>
-                <navigationController id="sAg-Gh-9DU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GmX-bt-gq0">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Tv5-HF-qFk" kind="relationship" relationship="rootViewController" id="1Jk-oC-hhL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uMR-O6-ApB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-839" y="153"/>
-        </scene>
-        <!--Container View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="ContainerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ContainerViewController" customModule="Minischool_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="RRl-pJ-yTY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-839.0625" y="1869.5652173913045"/>
-        </scene>
-        <!--Init View Controller-->
-        <scene sceneID="Gi0-FR-Ofd">
-            <objects>
-                <viewController id="Tv5-HF-qFk" customClass="InitViewController" customModule="Minischool_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UwY-cz-qTS">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjR-4t-8SP">
-                                <rect key="frame" x="0.0" y="44" width="896" height="349"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ex5-AZ-pEC">
-                                        <rect key="frame" x="0.0" y="188" width="446" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a9m-Ws-fnG">
-                                        <rect key="frame" x="448" y="188" width="448" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dku-bi-UFi">
-                                        <rect key="frame" x="0.0" y="253" width="896" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <state key="normal" title="Go">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tapGo:" destination="Tv5-HF-qFk" eventType="touchUpInside" id="xrj-m7-4v8"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="YKR-Ma-bx2"/>
-                                        </connections>
-                                    </button>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-Pe-qxk">
-                                        <rect key="frame" x="0.0" y="140" width="896" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="classKeyAndToken 1"/>
-                                            <segment title="classKeyAndToken 2"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLE-V2-Jgm">
-                                        <rect key="frame" x="0.0" y="82" width="446" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zSC-pt-dLH">
-                                        <rect key="frame" x="448" y="82" width="448" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k2h-Xh-3nk">
-                                        <rect key="frame" x="0.0" y="35" width="896" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="server 1"/>
-                                            <segment title="server 2"/>
-                                        </segments>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="CfJ-ZS-K2E"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ia3-g6-mU0"/>
-                    <connections>
-                        <outlet property="classKeyAndToken" destination="ex5-AZ-pEC" id="QY8-h0-oMu"/>
-                        <outlet property="classKeyAndToken2" destination="a9m-Ws-fnG" id="EAv-TY-VMS"/>
-                        <outlet property="segmentedServer" destination="k2h-Xh-3nk" id="Ssw-xW-zVg"/>
-                        <outlet property="segmentedToken" destination="Qmj-Pe-qxk" id="USB-s5-GiD"/>
-                        <outlet property="server1" destination="NLE-V2-Jgm" id="qWv-m3-2sh"/>
-                        <outlet property="server2" destination="zSC-pt-dLH" id="lti-Qn-eXY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JJC-sI-8fF" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-839.0625" y="1002.8985507246377"/>
-        </scene>
         <!--Web View Controller-->
         <scene sceneID="9Sx-gz-b60">
             <objects>
@@ -139,11 +15,27 @@
                     <view key="view" contentMode="scaleToFill" id="uaY-v1-npc">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSu-Td-RKh">
+                                <rect key="frame" x="44" y="0.0" width="808" height="393"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rhB-bd-oDn" firstAttribute="trailing" secondItem="jSu-Td-RKh" secondAttribute="trailing" id="31x-Vy-vyQ"/>
+                            <constraint firstItem="jSu-Td-RKh" firstAttribute="leading" secondItem="rhB-bd-oDn" secondAttribute="leading" id="39Z-WO-ui7"/>
+                            <constraint firstItem="rhB-bd-oDn" firstAttribute="bottom" secondItem="jSu-Td-RKh" secondAttribute="bottom" id="o4L-RS-zY1"/>
+                            <constraint firstItem="jSu-Td-RKh" firstAttribute="top" secondItem="rhB-bd-oDn" secondAttribute="top" id="pUe-Hm-Eke"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rhB-bd-oDn"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowContainer" id="deN-xY-7jX"/>
+                        <outlet property="webView" destination="jSu-Td-RKh" id="jzr-Yk-rqP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap9-FS-Zym" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,7 +43,4 @@
             <point key="canvasLocation" x="-148.66071428571428" y="1002.8985507246377"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="deN-xY-7jX"/>
-    </inferredMetricsTieBreakers>
 </document>
