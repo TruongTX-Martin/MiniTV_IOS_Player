@@ -1,9 +1,9 @@
+## 지원 버전
 
-
+- IOS : 11.0 (2017년 9월 19일 출시)
+- H/W : iPhone 6 이후
 
 ## Architecture
-
-
 
 ## Usage
 
@@ -19,19 +19,21 @@ player 초기화
 self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, url: url)
 ```
 
-|        name       |       type       | default |     description    |
-|:-----------------:|:----------------:|:-------:|:------------------:|
+|       name        |       type       | default |    description     |
+| :---------------: | :--------------: | :-----: | :----------------: |
 |   containerView   |      UIView      |         | container ui view  |
-|   viewController  | UIViewController |         | ui view controller |
-| serviceAppVersion |      String      |   1.0   | app version        |
-|        url        |      String      |         | class link         |
+|  viewController   | UIViewController |         | ui view controller |
+| serviceAppVersion |      String      |   1.0   |    app version     |
+|        url        |      String      |         |     class link     |
 
 class 진입 및 실행
+
 ```
 self.player.run()
 ```
 
 class 종료
+
 ```
 @objc func didEnterBackground(_ notification: Notification) {
     print("didEnterBackground")
@@ -45,7 +47,6 @@ override func viewWillDisappear(_ animated: Bool) {
 ```
 
 **MSPlayerDelegate**
-
 
 ```
 self.player.delegate = self
@@ -70,17 +71,9 @@ func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
     }
 ```
 
-
 **MSPlayerStatus**
-* waiting : 수업 대기 중 
-* started : 수업 시작
-* ended : 수업 종료
-* errorOcccured : 에러 발생
 
-
-
-
-
-
-
-
+- waiting : 수업 대기 중
+- started : 수업 시작
+- ended : 수업 종료
+- errorOcccured : 에러 발생
