@@ -9,14 +9,15 @@
 import Foundation
 import WebKit
 
-extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
+extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, UIScrollViewDelegate{
     
     func initWKWebview() {
         
         let contentController = WKUserContentController()
         contentController.add(self, name: "jsToNative")
         
-        let js = "window.isNative = true; window.NativeInfo = {serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion!)'}"
+        let js = "window.isNative = true;" +
+            "window.NativeInfo = {serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion!)'}"
         let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         contentController.addUserScript(userScript)
         
@@ -43,6 +44,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
 
         wkWebView.uiDelegate = self
         wkWebView.navigationDelegate = self
+        wkWebView.scrollView.delegate = self
         
         wkWebView.isUserInteractionEnabled = true
         
@@ -125,6 +127,11 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler{
             presenter.sourceView = webView
         }
         self.viewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: - UIScrollViewDelegate
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+             scrollView.pinchGestureRecognizer?.isEnabled = false
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
