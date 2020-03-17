@@ -76,13 +76,16 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
         switch newStatus {
         case .waiting:
+            // 학생이 리소스 로딩을 완료하고 서버에 접속 시 발생 (수업 시작 전)
             print("[mini] waiting")
         case .started:
+            // 교사가 수업 시작 버튼을 클릭 시 발생
             print("[mini] started")
         case .ended:
+            // 교사가 수업 종료 버튼 클릭 시, 오류 발생 시 (플레이어 뷰는 유지하고 있는 상태)
             print("[mini] ended")
-            //self.player.closeAll()
         case .closed:
+            // 수업 종료, 오류 화면에서 "BACK" 버튼을 클릭 시 (플레이어 뷰 사라짐)
             self.webView.isHidden = false
         default:
             print("[mini] errorOcccured")
