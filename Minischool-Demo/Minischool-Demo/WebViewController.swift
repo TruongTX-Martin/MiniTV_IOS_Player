@@ -41,7 +41,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
            // show indicator
-        print("111")
+        //print("111")
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -63,6 +63,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     
     func runPlayer(urlStr: String) {
         print("Run >> ", urlStr)
+        self.webView.isHidden = true;
         let serviceAppVersion = "1.0"
         //let role = ""
         self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, url: urlStr)
@@ -80,6 +81,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
         case .ended:
             print("[mini] ended")
             self.player.closeAll()
+            self.webView.isHidden = false
         default:
             print("[mini] errorOcccured")
         }
