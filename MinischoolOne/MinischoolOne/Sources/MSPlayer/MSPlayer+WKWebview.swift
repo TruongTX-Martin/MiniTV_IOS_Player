@@ -138,6 +138,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
         print("didFinish \(url as Any)")
+        self.stopWebRTC()
     }
     
     public func webView(_ webView: WKWebView,
