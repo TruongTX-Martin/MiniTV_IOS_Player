@@ -90,6 +90,7 @@ extension MSPlayer {
             
             case "onEnded" : //수업이 종료됨
                 self.changeStatusTo(MSPlayerStatus.ended)
+                self.stopWebRTC()
             
             case "onError" : //에러가 발생
                 self.deliverError(parameterData.debugDescription)
@@ -135,6 +136,9 @@ extension MSPlayer {
             case "onLoadPageEnd" :
                 self.onLoadPageEnd()
 
+            case "goBack" :
+                self.closeAll()
+            
             default:
                 printError("\(function) is not defined in ios native")
         }
@@ -194,6 +198,7 @@ extension MSPlayer {
     }
     
     public func stopWebRTC() {
+        print("stopWebRTC")
         if let webRTCClient = Client.shared?.webRTCClient {
             webRTCClient.stopRenderRemoteVideo()
             self.hideVideo(isLocal: false)

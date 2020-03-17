@@ -83,6 +83,7 @@ public enum MSPlayerStatus: Int, Codable {
     case waiting = 100
     case started = 200
     case ended = 300
+    case closed = 400
     case errorOcccured = 900
 }
 

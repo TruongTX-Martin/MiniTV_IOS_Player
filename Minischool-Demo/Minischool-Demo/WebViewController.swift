@@ -63,7 +63,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     
     func runPlayer(urlStr: String) {
         print("Run >> ", urlStr)
-        self.webView.isHidden = true;
+        //let tmpUrl = "https://192.168.0.7:8080/student.html?hash=B5PAwLRboIAqTMwhD0XV67221c364e8a40cf98f80d30ac391e18&wz=0"
+        self.webView.isHidden = true
         let serviceAppVersion = "1.0"
         //let role = ""
         self.player = MinischoolOne.MSPlayer(self.view, viewController: self, serviceAppVersion: serviceAppVersion, url: urlStr)
@@ -80,7 +81,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
             print("[mini] started")
         case .ended:
             print("[mini] ended")
-            self.player.closeAll()
+            //self.player.closeAll()
+        case .closed:
             self.webView.isHidden = false
         default:
             print("[mini] errorOcccured")

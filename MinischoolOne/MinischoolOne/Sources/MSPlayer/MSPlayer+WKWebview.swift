@@ -173,6 +173,10 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     //Called from JS
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
+        if self.wkWebView == nil {
+            return
+        }
+        
         if message.name == "jsToNative" {
             
             if let dictionary: [String: String] = message.body as? Dictionary {
