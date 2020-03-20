@@ -120,6 +120,11 @@ public class MSPlayer : NSObject {
             self.baseView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.height * 16 / 9, height: bounds.height))
         }
         
+        let backgroundColorView = UIView(frame: self.baseView.bounds)
+        backgroundColorView.backgroundColor = UIColor.white
+        backgroundColorView.center = self.containerView.center
+        self.containerView.addSubview(backgroundColorView)
+        
         self.containerView.backgroundColor = UIColor.black
         self.containerView.addSubview(baseView)
         self.baseView.autoresizingMask    = [.flexibleHeight, .flexibleWidth]
