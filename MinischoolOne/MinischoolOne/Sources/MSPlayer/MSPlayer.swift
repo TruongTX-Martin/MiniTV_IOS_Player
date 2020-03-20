@@ -122,7 +122,7 @@ public class MSPlayer : NSObject {
         }
         
         self.backgroundColorView = UIView(frame: self.baseView.bounds)
-        self.backgroundColorView.backgroundColor = UIColor.gray
+        self.backgroundColorView.backgroundColor = UIColor.white
         self.backgroundColorView.center = self.containerView.center
         self.containerView.addSubview(self.backgroundColorView)
         
