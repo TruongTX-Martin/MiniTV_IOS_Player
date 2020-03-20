@@ -32,6 +32,7 @@ public class MSPlayer : NSObject {
 
     public weak var containerView: UIView!
     public var baseView: UIView!
+    public var backgroundColorView: UIView!
     weak var viewController: UIViewController?
     public weak var delegate: MSPlayerDelegate?
     
@@ -120,10 +121,10 @@ public class MSPlayer : NSObject {
             self.baseView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.height * 16 / 9, height: bounds.height))
         }
         
-        let backgroundColorView = UIView(frame: self.baseView.bounds)
-        backgroundColorView.backgroundColor = UIColor.white
-        backgroundColorView.center = self.containerView.center
-        self.containerView.addSubview(backgroundColorView)
+        self.backgroundColorView = UIView(frame: self.baseView.bounds)
+        self.backgroundColorView.backgroundColor = UIColor.gray
+        self.backgroundColorView.center = self.containerView.center
+        self.containerView.addSubview(self.backgroundColorView)
         
         self.containerView.backgroundColor = UIColor.black
         self.containerView.addSubview(baseView)
@@ -146,7 +147,10 @@ public class MSPlayer : NSObject {
         self.wkWebView = nil
         self.stopWebRTC()
         
+        self.backgroundColorView.removeFromSuperview()
+        self.backgroundColorView = nil
         self.baseView.removeFromSuperview()
+        self.baseView = nil
         
         self.movieClipLayers.removeAll()
         self.movieClips.removeAll()
