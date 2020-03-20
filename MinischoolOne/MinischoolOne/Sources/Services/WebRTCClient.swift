@@ -267,7 +267,8 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
         debugPrint("peerConnection new connection state: \(newState)")
         self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
         if newState == RTCIceConnectionState.connected {
-            self.speakerOn()
+            self.muteAudio()
+            //self.speakerOn()
 //            self.speakerForceOn()
         }
     }
@@ -383,16 +384,18 @@ extension WebRTCClient: RTCAudioSessionActivationDelegate {
 // MARK:- Audio control
 extension WebRTCClient {
     func muteAudio() {
+        print("[mini] WebRTCClient muteAudio")
         self.setAudioEnabled(false)
     }
     
     func unmuteAudio() {
+        print("[mini] WebRTCClient unmuteAudio")
         self.setAudioEnabled(true)
     }
     
     // Fallback to the default playing device: headphones/bluetooth/ear speaker
     func speakerOff() {
-        print("speakerOff")
+        print("[mini] speakerOff")
         self.audioQueue.async { [weak self] in
             guard let self = self else {
                 print("not initialized")
@@ -414,8 +417,8 @@ extension WebRTCClient {
     
     // Force speaker
     public func speakerForceOn() {
-        print("speakerForceOn")
-        
+        print("[mini] speakerForceOn")
+
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
@@ -428,7 +431,7 @@ extension WebRTCClient {
     }
     
     func speakerOn() {
-        print("speakerOn")
+        print("[mini] speakerOn")
 
         self.audioQueue.async { [weak self] in
             guard let self = self else {
@@ -448,8 +451,11 @@ extension WebRTCClient {
     }
     
     private func setAudioEnabled(_ isEnabled: Bool) {
-        let audioTracks = self.peerConnection.transceivers.compactMap { return $0.sender.track as? RTCAudioTrack }
-        audioTracks.forEach { $0.isEnabled = isEnabled }
+        let inputTracks = self.peerConnection.transceivers.compactMap { return $0.sender.track as? RTCAudioTrack }
+        inputTracks.forEach { $0.isEnabled = isEnabled }
+
+        let outputTracks = self.peerConnection.transceivers.compactMap { return $0.receiver.track as? RTCAudioTrack }
+        outputTracks.forEach { $0.isEnabled = isEnabled }
     }
 }
 

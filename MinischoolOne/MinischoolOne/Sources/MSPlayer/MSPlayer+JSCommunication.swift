@@ -32,7 +32,7 @@ extension MSPlayer {
                 print("startWebRTC start")
                 if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
                     self.startWebRTC(webRTCParameter)
-                    self.muteAudio()
+                    //self.muteAudio()
                 }
             
             case "stopWebRTC" :
