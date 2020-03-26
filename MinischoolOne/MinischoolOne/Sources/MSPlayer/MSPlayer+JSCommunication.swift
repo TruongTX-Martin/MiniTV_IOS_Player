@@ -137,6 +137,7 @@ extension MSPlayer {
                 self.onLoadPageEnd()
 
             case "goBack" :
+                self.stopWebRTC()
                 self.closeAll()
             
             default:
