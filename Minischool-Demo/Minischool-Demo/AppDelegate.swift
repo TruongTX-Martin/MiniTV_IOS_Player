@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
 
         let sendingAppID = options[.sourceApplication]
-        print("source application = \(sendingAppID ?? "Unknown")")
-        print("url = \(url)")
+        DLog.printLog("source application = \(sendingAppID ?? "Unknown")")
+        DLog.printLog("url = \(url)")
         
         CustomeSchemeHandler.sharedInstance.run(url: url)
 

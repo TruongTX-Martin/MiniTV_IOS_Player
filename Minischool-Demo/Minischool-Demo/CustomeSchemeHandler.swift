@@ -28,17 +28,17 @@ class CustomeSchemeHandler {
             //, let rest = components.path
             //, let params = components.queryItems
             else {
-                print("Invalid URL")
+                DLog.printLog("Invalid URL")
                 return
         }
         
-        print("scheme = \(scheme)")
+        DLog.printLog("scheme = \(scheme)")
         
         let protocolHeader = "https"
         
         let targetUrl = url.absoluteString.replacingOccurrences(of: scheme, with: protocolHeader)
         
-        print("targetUrl: \(targetUrl)")
+        DLog.printLog("targetUrl: \(targetUrl)")
         UserDefaults.standard.set(targetUrl, forKey: "url")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

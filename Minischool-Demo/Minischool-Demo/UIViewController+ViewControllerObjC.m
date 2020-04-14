@@ -31,18 +31,18 @@ NSString url = "http://172.16.3.95:8080";
     func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
         switch newStatus {
         case .waiting:
-            print("waiting")
+            DLog.printLog("waiting")
         case .started:
-            print("started")
+            DLog.printLog("started")
         case .ended:
-            print("ended")
+            DLog.printLog("ended")
         default:
-            print("errorOcccured")
+            DLog.printLog("errorOcccured")
         }
     }
 
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
-        print(error.localizedDescription)
+        DLog.printLog(error.localizedDescription)
     }
 @end
 

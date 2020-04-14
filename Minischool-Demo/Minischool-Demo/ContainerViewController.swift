@@ -35,7 +35,7 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
 
         let url = UserDefaults.standard.string(forKey: "url") ?? ""
         
-        print("ContainerViewController url: \(url)")
+        DLog.printLog("ContainerViewController url: \(url)")
 
         if url != "" {
             
@@ -65,30 +65,30 @@ class ContainerViewController: UIViewController, MSPlayerDelegate {
     }
     
     @objc func didEnterBackground(_ notification: Notification) {
-        print("didEnterBackground")
+        DLog.printLog("didEnterBackground")
         self.player.closeAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear")
+        DLog.printLog("viewWillDisappear")
         self.player.closeAll()
     }
 
     func MSPlayer(_ player: MSPlayer, didChangedStatus newStatus: MSPlayerStatus) {
         switch newStatus {
         case .waiting:
-            print("waiting")
+            DLog.printLog("waiting")
         case .started:
-            print("started")
+            DLog.printLog("started")
         case .ended:
-            print("ended")
+            DLog.printLog("ended")
         default:
-            print("errorOcccured")
+            DLog.printLog("errorOcccured")
         }
     }
     
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
-        print(error.localizedDescription)
+        DLog.printLog(error.localizedDescription)
     }
     
     @IBAction func tapGo(_ sender: Any) {

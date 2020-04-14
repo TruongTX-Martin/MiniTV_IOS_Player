@@ -36,7 +36,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     
    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation:
    WKNavigation!, withError error: Error) {
-       print(error.localizedDescription)
+       DLog.printLog(error.localizedDescription)
    }
    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -49,10 +49,10 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
             //urlStr is what you want
             
             if urlStr.contains("bts") {
-                print("allow URL ", urlStr)
+                DLog.printLog("allow URL \(urlStr)")
                 decisionHandler(.allow)
             }else{
-                print("cancel URL ", urlStr)
+                DLog.printLog("cancel URL \(urlStr)")
                 decisionHandler(.cancel)
                 self.runPlayer(urlStr: urlStr)
             }
@@ -62,7 +62,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
     }
     
     func runPlayer(urlStr: String) {
-        print("Run >> ", urlStr)
+        DLog.printLog("Run >> \(urlStr)")
         //let tmpUrl = "https://192.168.0.7:8080/student.html?hash=B5PAwLRboIAqTMwhD0XV67221c364e8a40cf98f80d30ac391e18&wz=0"
         self.webView.isHidden = true
         let serviceAppVersion = "1.0"
@@ -77,23 +77,24 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, M
         switch newStatus {
         case .waiting:
             // 학생이 리소스 로딩을 완료하고 서버에 접속 시 발생 (수업 시작 전)
-            print("[mini] waiting")
+            DLog.printLog("[mini] waiting")
         case .started:
             // 교사가 수업 시작 버튼을 클릭 시 발생
-            print("[mini] started")
+            DLog.printLog("[mini] started")
         case .ended:
             // 교사가 수업 종료 버튼 클릭 시, 오류 발생 시 (플레이어 뷰는 유지하고 있는 상태)
-            print("[mini] ended")
+            DLog.printLog("[mini] ended")
         case .closed:
             // 수업 종료, 오류 화면에서 "BACK" 버튼을 클릭 시 (플레이어 뷰 사라짐)
             self.webView.isHidden = false
         default:
-            print("[mini] errorOcccured")
+            DLog.printLog("[mini] errorOcccured")
         }
     }
     
     func MSPlayer(_ player: MSPlayer, errorOccured error: Error) {
-        print("[mini]", error.localizedDescription)
+        DLog.printLog("[mini] \(error.localizedDescription)")
     }
     
 }
+ 
