@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12CF0C052445AA440011496E /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF0C042445AA440011496E /* DLog.swift */; };
 		493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */; };
 		49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EA922EF321900A239FE /* MSPlayer+API.swift */; };
 		49954EAF22EFD02100A239FE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EAE22EFD02100A239FE /* String.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12CF0C042445AA440011496E /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Layout.swift"; sourceTree = "<group>"; };
 		49954EA922EF321900A239FE /* MSPlayer+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+API.swift"; sourceTree = "<group>"; };
 		49954EAE22EFD02100A239FE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12CF0C002445AA1B0011496E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				12CF0C042445AA440011496E /* DLog.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		49DABFEE22CDEA0A0051FD17 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +309,7 @@
 		49DAC04D22CDEAE80051FD17 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				12CF0C002445AA1B0011496E /* Utility */,
 				49DAC04E22CDEAE80051FD17 /* MSPlayer */,
 				49DAC05622CDEAE80051FD17 /* Extensions */,
 				49DAC06122CDEAE80051FD17 /* Services */,
@@ -459,6 +470,7 @@
 				49DAC04A22CDEA4C0051FD17 /* Compression.swift in Sources */,
 				49DAC03E22CDEA4C0051FD17 /* Starscream-dummy.m in Sources */,
 				49954EAF22EFD02100A239FE /* String.swift in Sources */,
+				12CF0C052445AA440011496E /* DLog.swift in Sources */,
 				49DAC06A22CDEAE80051FD17 /* MSPlayer+WebRTC.swift in Sources */,
 				49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */,
 				49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */,

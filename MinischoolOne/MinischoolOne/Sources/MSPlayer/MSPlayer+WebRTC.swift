@@ -12,7 +12,7 @@ import WebRTC
 extension MSPlayer: WebRTCClientDelegate {
     
     func webRTCClient(_ client: WebRTCClient, didDiscoverLocalCandidate candidate: RTCIceCandidate) {
-        print("discovered local candidate")
+        DLog.printLog("discovered local candidate")
         self.sendIceCandidate(IceCandidate(from: candidate))
     }
     
@@ -25,7 +25,7 @@ extension MSPlayer: WebRTCClientDelegate {
     }
     
     func initWebRTC() {
-        print("initWebRTC")
+        DLog.printLog("initWebRTC")
         let url1 = Url(credential: nil, url: "stun:stage-ct-e1.minischool.co.kr:3478", urls: "stun:stage-ct-e1.minischool.co.kr:3478", username: nil)
         let url2 = Url(credential: "kmskms1!", url: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp", urls: "turn:stage-ct-e1.minischool.co.kr:3478?transport=udp", username: "minischool")
         

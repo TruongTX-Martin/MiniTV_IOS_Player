@@ -14,11 +14,11 @@ extension MSPlayer {
     public func JSToNative(dictionary: [String: Any]) {
         
         guard let function = dictionary["function"] as? String else { return }
-        print("JSToNative function: \(function)")
+        DLog.printLog("JSToNative function: \(function)")
 
         let parameterData: Any? = dictionary["data"]
         if let json = parameterData {
-            print("JSToNative parameter: \(json)")
+            DLog.printLog("JSToNative parameter: \(json)")
         }else{
             printError("\(function) has no parameter")
         }
@@ -29,7 +29,7 @@ extension MSPlayer {
         switch function {
             
             case "startWebRTC" :
-                print("startWebRTC start")
+                DLog.printLog("startWebRTC start")
                 if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
                     self.startWebRTC(webRTCParameter)
                     //self.muteAudio()
@@ -178,7 +178,7 @@ extension MSPlayer {
     }
 
     func printError(_ message : String) {
-//        print(message)
+//        DLog.printLog(message)
         let errorMessage = "Native Framwork Error: \(message)"
         self.sendNativeError(message)
         self.deliverError(errorMessage)
@@ -188,18 +188,18 @@ extension MSPlayer {
     
     //    WebRTC Control
     public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
-        print("startWebRTC")
+        DLog.printLog("startWebRTC")
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
 //        if let webRTCClient = Client.shared?.webRTCClient {
 //            webRTCClient.speakerOn()
 //        }else{
-//            print("webRTCClient is not ready, can't speaker on")
+//            DLog.printLog("webRTCClient is not ready, can't speaker on")
 //        }
     }
     
     public func stopWebRTC() {
-        print("stopWebRTC")
+        DLog.printLog("stopWebRTC")
         if let webRTCClient = Client.shared?.webRTCClient {
             webRTCClient.stopRenderRemoteVideo()
             self.hideVideo(isLocal: false)
@@ -233,7 +233,7 @@ extension MSPlayer {
     public func  onReceiveOffer(_ sdp: SessionDescription) {
         Client.shared.webRTCClient.set(remoteSdp: sdp.rtcSessionDescription) { (err) in
             if let error = err {
-                print("webRTCClient.set has error!!!")
+                DLog.printLog("webRTCClient.set has error!!!")
                 self.printError(error.localizedDescription)
                 return
             }
@@ -263,7 +263,7 @@ extension MSPlayer {
         self.callJS(jsFunctionName: "NativeToJS.sendIceCandidate", data: "\(json!)")
     }
     public func  loadResourceDone() {
-        print("loadResourceDone")
+        DLog.printLog("loadResourceDone")
         self.callJS(jsFunctionName: "NativeToJS.loadResourceDone", data: "")
     }
     
@@ -290,12 +290,12 @@ extension MSPlayer {
     }
     
     public func onLoadPageStart() {
-        print("onLoadPageStart")
+        DLog.printLog("onLoadPageStart")
         self.removeBackground()
     }
     
     public func onLoadPageEnd() {
-        print("onLoadPageEnd")
+        DLog.printLog("onLoadPageEnd")
     }
     
     public func changeStatusTo(_ status: MSPlayerStatus) {

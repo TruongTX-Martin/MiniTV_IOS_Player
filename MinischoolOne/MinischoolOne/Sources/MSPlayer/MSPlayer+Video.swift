@@ -48,7 +48,7 @@ extension MSPlayer{
 
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
         let scaleY = CGFloat(1.0)
-        print("scaleY = \(scaleY)")
+        DLog.printLog("scaleY = \(scaleY)")
         if isLocal {
             //좌우반전(거울처럼)
             renderer.transform = CGAffineTransform(scaleX: -1.0, y: scaleY)
@@ -73,7 +73,7 @@ extension MSPlayer{
 
         guard let format = Client.shared?.webRTCClient.videoCaptureFormat else { return scaleY }
         
-        print(format.formatDescription)
+        DLog.printLog(format.formatDescription)
         
         let camera:CMVideoDimensions = CMVideoFormatDescriptionGetDimensions( format.formatDescription )
         
@@ -90,7 +90,7 @@ extension MSPlayer{
         
         scaleY = H1 * W2 / (W1 * H2)
 
-        print("\(W1) : \(H1) = \(W2) : \(H2) * \(scaleY)")
+        DLog.printLog("\(W1) : \(H1) = \(W2) : \(H2) * \(scaleY)")
 
         return scaleY
 
@@ -122,7 +122,7 @@ extension MSPlayer{
     }
     
     private func embedView(_ view: UIView, into parentView: UIView) {
-        print("embedView - view.frame: \(view.frame)")
+        DLog.printLog("embedView - view.frame: \(view.frame)")
 
         parentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -140,7 +140,7 @@ extension MSPlayer{
     
     @objc func timerCallback(){
 
-        print("timerCallback movieClipLayers.count: \(self.movieClips.count)")
+        DLog.printLog("timerCallback movieClipLayers.count: \(self.movieClips.count)")
 
         var countReadyToPlay = 0
         for item in self.movieClipLayers {
@@ -153,7 +153,7 @@ extension MSPlayer{
         }
         
         let stillLoadingImagesCount = self.backgroundImages.filter({$0.value == nil}).count
-        print("countReadyToPlay: \(countReadyToPlay), stillLoadingImagesCount: \(stillLoadingImagesCount)")
+        DLog.printLog("countReadyToPlay: \(countReadyToPlay), stillLoadingImagesCount: \(stillLoadingImagesCount)")
         
         if countReadyToPlay >= self.movieClips.count, stillLoadingImagesCount == 0
         {
@@ -164,7 +164,7 @@ extension MSPlayer{
     
     func loadImage(_ resource: Resource) {
         
-        print("loadImage: \(resource.src)")
+        DLog.printLog("loadImage: \(resource.src)")
         
         guard let url = URL(string:resource.src), let data = try? Data(contentsOf: url) else { return }
         self.backgroundImages[resource.id] = UIImage(data: data)
@@ -172,7 +172,7 @@ extension MSPlayer{
     
     func loadMovieClip(_ resource: Resource) {
         
-        print("loadMovieClip: \(resource.src)")
+        DLog.printLog("loadMovieClip: \(resource.src)")
         
         let url = URL(string:resource.src)
         
@@ -209,9 +209,9 @@ extension MSPlayer{
     }
     
     func createMovieClip(frame: MovieClipFrame) {
-        print("createMovieClip: frame: \(frame)")
+        DLog.printLog("createMovieClip: frame: \(frame)")
         for item in self.movieClipLayers {
-            print("createMovieClip: item.key: \(item.key)")
+            DLog.printLog("createMovieClip: item.key: \(item.key)")
         }
         guard let playerLayer = self.movieClipLayers[frame.id] else {
             printError("there is no movie clip id: \(frame.id), can't create")
@@ -227,13 +227,13 @@ extension MSPlayer{
         
 //        self.enableMoving(view: view)
         if let player = playerLayer.player {
-            print("player.play()")
+            DLog.printLog("player.play()")
             player.play()
         }
     }
     
     func destoryMovieClip(id: Int) {
-        print("destoryMovieClip movieClipLayers.count: \(self.movieClips.count)")
+        DLog.printLog("destoryMovieClip movieClipLayers.count: \(self.movieClips.count)")
 
         guard let playerLayer = self.movieClipLayers[id] else{
             return

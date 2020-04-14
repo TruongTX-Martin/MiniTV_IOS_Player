@@ -24,7 +24,7 @@ extension MSPlayer {
         , let payloadString = String(data: payloadData, encoding: String.Encoding.utf8)
         else { return }
 
-        //        print("callAPI payloadString: \(payloadString)")
+        //        DLog.printLog("callAPI payloadString: \(payloadString)")
 
         let class_key = self.classKeyAndToken.substring(0..<20)
         let token = self.classKeyAndToken.substring(from: 20)
@@ -53,14 +53,14 @@ extension MSPlayer {
         request.httpBody = jsonData
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            print("rcallAPI task response: \(response)")
+//            DLog.printLog("rcallAPI task response: \(response)")
             guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+                DLog.printLog(error?.localizedDescription ?? "No data")
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                print("rcallAPI esponseJSON: \(responseJSON)")
+                DLog.printLog("rcallAPI esponseJSON: \(responseJSON)")
             }
         }
         task.resume()

@@ -48,7 +48,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         
         wkWebView.isUserInteractionEnabled = true
         
-        print("self.wkWebView.frame: \(self.wkWebView.frame)")
+        DLog.printLog("self.wkWebView.frame: \(self.wkWebView.frame)")
     }
     
     func openEmbeded() {
@@ -63,7 +63,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     public func openUrlWK(_ urlString: String) {
         let url = URL(string: urlString)
 
-        print("openUrl containerView.frame: \(self.baseView.frame)")
+        DLog.printLog("openUrl containerView.frame: \(self.baseView.frame)")
         let request = URLRequest(url: url!)
         wkWebView.load(request)
     }
@@ -137,7 +137,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 //        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
-        print("didFinish \(url as Any)")
+        DLog.printLog("didFinish \(url as Any)")
         self.stopWebRTC()
     }
     
@@ -159,13 +159,13 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     func callJSWK(jsFunctionName: String, data: String) {
         let stringJS = "\(jsFunctionName)(\(data))"
         DispatchQueue.main.async {
-            print("callJS: \(stringJS)")
+            DLog.printLog("callJS: \(stringJS)")
             guard let webView = self.wkWebView else {
                 return
             }
             webView.evaluateJavaScript(stringJS, completionHandler: {(result, error) in
                 if let result = result {
-                    print(result)
+                    DLog.printLog(result)
                 }
             })
         }

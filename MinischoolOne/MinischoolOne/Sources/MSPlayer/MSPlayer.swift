@@ -103,7 +103,7 @@ public class MSPlayer : NSObject {
         self.initWKWebview()
 
         observer = self.baseView.layer.observe(\.bounds) { object, _ in
-            print("baseView changing bounds: \(object.bounds)")
+            DLog.printLog("baseView changing bounds: \(object.bounds)")
             self.relocateLocalVideoFrame()
             self.relocateRemoteVideoFrame()
         }
@@ -111,7 +111,7 @@ public class MSPlayer : NSObject {
     
     private func initBackgroundView() {
 
-        print("initBackgroundView self.containerView.frame: \(self.containerView.frame)")
+        DLog.printLog("initBackgroundView self.containerView.frame: \(self.containerView.frame)")
 
         let bounds = self.containerView.bounds
         
@@ -132,17 +132,17 @@ public class MSPlayer : NSObject {
 
         self.baseView.center = self.containerView.center
         
-        print("initBackgroundView self.baseView.frame: \(self.baseView.frame)")
+        DLog.printLog("initBackgroundView self.baseView.frame: \(self.baseView.frame)")
 
     }
     
     @objc public func run() {
-        print("MSPlayer urlComplete: \(urlComplete)")
+        DLog.printLog("MSPlayer urlComplete: \(urlComplete)")
         self.openUrl(urlComplete)
     }
     
     @objc public func closeAll() {
-        print("[mini] closeAll")
+        DLog.printLog("[mini] closeAll")
         self.wkWebView?.stopLoading()
         self.wkWebView = nil
         self.stopWebRTC()
@@ -160,14 +160,14 @@ public class MSPlayer : NSObject {
     }
     
     public func soundPrepare() {
-        print("soundPrepare")
+        DLog.printLog("soundPrepare")
         
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
             try audioSession.setActive(true)
         } catch let error as NSError {
-            print("audioSession error: \(error.localizedDescription)")
+            DLog.printLog("audioSession error: \(error.localizedDescription)")
         }
     }    
 }
