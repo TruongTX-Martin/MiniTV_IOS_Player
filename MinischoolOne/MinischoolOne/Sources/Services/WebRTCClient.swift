@@ -193,7 +193,7 @@ final class WebRTCClient: NSObject {
         self.rtcAudioSession.lockForConfiguration()
         do {
             try self.rtcAudioSession.setActive(true)
-            try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue)
+            try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue, with: .mixWithOthers)
             try self.rtcAudioSession.setMode(AVAudioSession.Mode.default.rawValue)
         } catch let error {
             debugPrint("Error changeing AVAudioSession category: \(error)")

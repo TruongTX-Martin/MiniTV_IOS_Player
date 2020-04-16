@@ -15,7 +15,7 @@ extension MSPlayer {
         
         guard let function = dictionary["function"] as? String else { return }
         DLog.printLog("JSToNative function: \(function)")
-
+        
         let parameterData: Any? = dictionary["data"]
         if let json = parameterData {
             DLog.printLog("JSToNative parameter: \(json)")
@@ -28,120 +28,134 @@ extension MSPlayer {
         
         switch function {
             
-            case "startWebRTC" :
-                DLog.printLog("startWebRTC start")
-                if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
-                    self.startWebRTC(webRTCParameter)
-                    //self.muteAudio()
-                }
+        case "startWebRTC" :
+            DLog.printLog("startWebRTC start")
+            if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
+                self.startWebRTC(webRTCParameter)
+                //self.muteAudio()
+            }
             
-            case "stopWebRTC" :
-                self.stopWebRTC()
+        case "stopWebRTC" :
+            self.stopWebRTC()
             
-            case "createLocalVideo" :
-                if let frame: Frame = self.jsonTo(json: parameterData as? String) {
-                    self.createLocalVideo(frame)
-                }
+        case "createLocalVideo" :
+            if let frame: Frame = self.jsonTo(json: parameterData as? String) {
+                self.createLocalVideo(frame)
+            }
             
-            case "destroyLocalVideo" :
-                self.hideVideo(isLocal: true)
-
-            case "createRemoteVideo" :
-                if let frame: Frame = self.jsonTo(json: parameterData as? String) {
-                    self.createRemoteVideo(frame)
-                }
+        case "destroyLocalVideo" :
+            self.hideVideo(isLocal: true)
             
-            case "destroyRemoteVideo" :
-                self.hideVideo(isLocal: false)
+        case "createRemoteVideo" :
+            if let frame: Frame = self.jsonTo(json: parameterData as? String) {
+                self.createRemoteVideo(frame)
+            }
             
-            case "onReceiveOffer" :
-                if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
-                    self.onReceiveOffer(sdp)
-                }
+        case "destroyRemoteVideo" :
+            self.hideVideo(isLocal: false)
             
-            case "onReceiveAnswer" :
-                if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
-                    self.onReceiveAnswer(sdp)
-                }
+        case "onReceiveOffer" :
+            if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
+                self.onReceiveOffer(sdp)
+            }
             
-            case "onReceiveIceCandidate" :
-                if let candidate: IceCandidate = self.jsonTo(json: parameterData as? String) {
-                    self.onReceiveIceCandidate(candidate)
-                }
-
-            case "muteAudio" :
-                self.muteAudio()
+        case "onReceiveAnswer" :
+            if let sdp: SessionDescription = self.jsonTo(json: parameterData as? String) {
+                self.onReceiveAnswer(sdp)
+            }
             
-            case "unmuteAudio" :
-                self.unmuteAudio()
+        case "onReceiveIceCandidate" :
+            if let candidate: IceCandidate = self.jsonTo(json: parameterData as? String) {
+                self.onReceiveIceCandidate(candidate)
+            }
             
-            case "speakerOn" :
-                self.speakerOn()
+        case "muteAudio" :
+            self.muteAudio()
             
-            case "speakerOff" :
-                self.speakerOff()
-
-            case "onWait" : //수업 룸에 참여하여 교사를 기다리는 중
-                self.changeStatusTo(MSPlayerStatus.waiting)
-
-            case "onStarted" : //교사와 연결되어 수업을 진행
-                self.unmuteAudio()
-                self.changeStatusTo(MSPlayerStatus.started)
+        case "unmuteAudio" :
+            self.unmuteAudio()
             
-            case "onEnded" : //수업이 종료됨
-                self.changeStatusTo(MSPlayerStatus.ended)
-                self.stopWebRTC()
+        case "speakerOn" :
+            self.speakerOn()
             
-            case "onError" : //에러가 발생
-                self.deliverError(parameterData.debugDescription)
-
-            case "changeStatusTo" :
-                if let status: MSPlayerStatus = self.jsonTo(json: parameterData as? String) {
-                    self.changeStatusTo(status)
-                }
-
-            case "backLoggingOn" :
-                self.backLoggingOn = true
-
-            case "backLoggingOff" :
-                self.backLoggingOn = false
+        case "speakerOff" :
+            self.speakerOff()
             
-            case "loadResource" :
-
-                if let resourceList: ResourceList = self.jsonTo(json: parameterData as? String) {
-                    self.loadResources(resources: resourceList.resourceList)
-                }
+        case "onWait" : //수업 룸에 참여하여 교사를 기다리는 중
+            self.changeStatusTo(MSPlayerStatus.waiting)
             
-            case "createVideo" :
-                if let frame: MovieClipFrame = self.jsonTo(json: parameterData as? String) {
-                    self.createMovieClip(frame: frame)
-                }
+        case "onStarted" : //교사와 연결되어 수업을 진행
+            self.unmuteAudio()
+            self.changeStatusTo(MSPlayerStatus.started)
             
-            case "destroyVideo" :
-                if let base: Base = self.jsonTo(json: parameterData as? String) {
-                    self.destoryMovieClip(id: base.id)
-                }
-
-            case "createBGImage" :
-                if let base: Base = self.jsonTo(json: parameterData as? String) {
-                    self.setBackground(base.id)
-                }
+        case "onEnded" : //수업이 종료됨
+            self.changeStatusTo(MSPlayerStatus.ended)
+            self.stopWebRTC()
             
-            case "destroyBGImage" :
-                self.removeBackground()
-
-            case "onLoadPageStart" :
-                self.onLoadPageStart()
-
-            case "onLoadPageEnd" :
-                self.onLoadPageEnd()
-
-            case "goBack" :
-                self.stopWebRTC()
-                self.closeAll()
+        case "onError" : //에러가 발생
+            self.deliverError(parameterData.debugDescription)
             
-            default:
-                printError("\(function) is not defined in ios native")
+        case "changeStatusTo" :
+            if let status: MSPlayerStatus = self.jsonTo(json: parameterData as? String) {
+                self.changeStatusTo(status)
+            }
+            
+        case "backLoggingOn" :
+            self.backLoggingOn = true
+            
+        case "backLoggingOff" :
+            self.backLoggingOn = false
+            
+        case "loadResource" :
+            
+            if let resourceList: ResourceList = self.jsonTo(json: parameterData as? String) {
+                DLog.printLog("Resources: \(parameterData ?? "")")
+                self.loadResources(resources: resourceList.resourceList)
+            }
+            
+        case "createVideo" :
+            if let frame: MovieClipFrame = self.jsonTo(json: parameterData as? String) {
+                self.createMovieClip(frame: frame)
+            }
+            
+        case "destroyVideo" :
+            if let base: Base = self.jsonTo(json: parameterData as? String) {
+                self.destoryMovieClip(id: base.id)
+            }
+            
+        case "createBGImage" :
+            if let base: Base = self.jsonTo(json: parameterData as? String) {
+                self.setBackground(base.id)
+            }
+            
+        case "destroyBGImage" :
+            self.removeBackground()
+            
+        case "onLoadPageStart" :
+            self.onLoadPageStart()
+            
+        case "onLoadPageEnd" :
+            self.onLoadPageEnd()
+            
+        case "goBack" :
+            self.stopWebRTC()
+            self.closeAll()
+            
+        case "playSound":
+            if let base: Base = jsonTo(json: parameterData as? String) {
+                playSoundEffect(base.id)
+            }
+            
+        case "stopSound":
+            if let base: Base = jsonTo(json: parameterData as? String) {
+                stopSoundEffect(base.id)
+            }
+            
+        case "stopSoundAll":
+            stopAllSoundEffect()
+            
+        default:
+            printError("\(function) is not defined in ios native")
         }
     }
     

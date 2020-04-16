@@ -51,6 +51,7 @@ public class MSPlayer : NSObject {
     
     var movieClipLayers : [Int: AVPlayerLayer] = [:]
     var movieClips : [Int: UIView] = [:]
+    var soundEffectLayers : [Int: MNMusicPlayer] = [:]
     var backgroundImages : [Int: UIImage?] = [:]
     var backgroundImage : UIImageView!
     var resourceList: [Resource] = []
@@ -154,6 +155,7 @@ public class MSPlayer : NSObject {
         
         self.movieClipLayers.removeAll()
         self.movieClips.removeAll()
+        self.soundEffectLayers.removeAll()
         self.backgroundImages.removeAll()
         self.resourceList.removeAll()
         self.changeStatusTo(MSPlayerStatus.closed)

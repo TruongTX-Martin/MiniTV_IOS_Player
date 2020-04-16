@@ -152,10 +152,18 @@ extension MSPlayer{
             }
         }
         
+        for item in soundEffectLayers {
+            let audioLayer = item.value
+            
+            if audioLayer.status() == AVPlayerItem.Status.readyToPlay {
+                countReadyToPlay += 1
+            }
+        }
+        
         let stillLoadingImagesCount = self.backgroundImages.filter({$0.value == nil}).count
         DLog.printLog("countReadyToPlay: \(countReadyToPlay), stillLoadingImagesCount: \(stillLoadingImagesCount)")
         
-        if countReadyToPlay >= self.movieClips.count, stillLoadingImagesCount == 0
+        if countReadyToPlay >= (self.movieClips.count + soundEffectLayers.count), stillLoadingImagesCount == 0
         {
             self.timer?.invalidate()
             self.loadResourceDone()
@@ -197,7 +205,8 @@ extension MSPlayer{
                     self.loadImage(resource)
                 case .video:
                     self.loadMovieClip(resource)
-                case .sound: break
+                case .sound:
+                    self.loadSoundEffect(resource)
                 }
             }
         }

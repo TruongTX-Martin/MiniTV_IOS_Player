@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C3F8B32447089F00D36805 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C3F8B22447089F00D36805 /* AudioToolbox.framework */; };
 		12CF0C102445B6390011496E /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF0C0F2445B6390011496E /* DLog.swift */; };
 		490317AD231CA8430031D3AF /* CustomeSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490317AC231CA8430031D3AF /* CustomeSchemeHandler.swift */; };
 		493B387D22CDFED200D19AC0 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 493B387A22CDFEC600D19AC0 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -54,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		12C3F8B12447089F00D36805 /* Minischool-Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Minischool-Demo.entitlements"; sourceTree = "<group>"; };
+		12C3F8B22447089F00D36805 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		12CF0C0F2445B6390011496E /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		490317AC231CA8430031D3AF /* CustomeSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeSchemeHandler.swift; sourceTree = "<group>"; };
 		493B387A22CDFEC600D19AC0 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4967FE9B22CDFCC800466C4D /* MinischoolOne.framework in Frameworks */,
+				12C3F8B32447089F00D36805 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 		494FFDD222CDEBBE00B38B59 /* Minischool-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				12C3F8B12447089F00D36805 /* Minischool-Demo.entitlements */,
 				12CF0C0E2445B6290011496E /* Utility */,
 				493B388622CED3FE00D19AC0 /* page.html */,
 				494FFDD322CDEBBE00B38B59 /* AppDelegate.swift */,
@@ -143,6 +148,7 @@
 		494FFDEC22CDEBE800B38B59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12C3F8B22447089F00D36805 /* AudioToolbox.framework */,
 				493B387A22CDFEC600D19AC0 /* WebRTC.framework */,
 			);
 			name = Frameworks;
@@ -408,9 +414,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = HS8WA856NV;
+				DEVELOPMENT_TEAM = B7Y9W2MUPP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -422,8 +428,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.minischool.ios.framework.demo.v1;
+				PRODUCT_BUNDLE_IDENTIFIER = jones.com.minischool.ios.framework.demo.v1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Jones iOS provisioning development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Minischool-Demo/Minischool-Demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -438,9 +445,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "Minischool-Demo/Minischool-Demo.entitlements";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = HS8WA856NV;
+				DEVELOPMENT_TEAM = B7Y9W2MUPP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,8 +460,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.minischool.ios.framework.demo.v1;
+				PRODUCT_BUNDLE_IDENTIFIER = jones.com.minischool.ios.framework.demo.v1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Jones iOS provisioning development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Minischool-Demo/Minischool-Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

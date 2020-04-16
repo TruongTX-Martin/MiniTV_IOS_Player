@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		129A4A3B244879810085B9DB /* MNMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A4A3A244879810085B9DB /* MNMusicPlayer.swift */; };
 		12CF0C052445AA440011496E /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF0C042445AA440011496E /* DLog.swift */; };
+		12D2E3B424485F48001DA82D /* MSPlayer+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */; };
 		493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */; };
 		49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EA922EF321900A239FE /* MSPlayer+API.swift */; };
 		49954EAF22EFD02100A239FE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49954EAE22EFD02100A239FE /* String.swift */; };
@@ -63,7 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		129A4A3A244879810085B9DB /* MNMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNMusicPlayer.swift; sourceTree = "<group>"; };
 		12CF0C042445AA440011496E /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
+		12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Sound.swift"; sourceTree = "<group>"; };
 		493B388822CEE94E00D19AC0 /* MSPlayer+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Layout.swift"; sourceTree = "<group>"; };
 		49954EA922EF321900A239FE /* MSPlayer+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+API.swift"; sourceTree = "<group>"; };
 		49954EAE22EFD02100A239FE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 				49DAC05022CDEAE80051FD17 /* MSPlayer+WKWebview.swift */,
 				49E7F43222D5DD18002F6F46 /* MSPlayer+JSCommunication.swift */,
 				49954EA922EF321900A239FE /* MSPlayer+API.swift */,
+				12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */,
+				129A4A3A244879810085B9DB /* MNMusicPlayer.swift */,
 			);
 			path = MSPlayer;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				49954EAF22EFD02100A239FE /* String.swift in Sources */,
 				12CF0C052445AA440011496E /* DLog.swift in Sources */,
 				49DAC06A22CDEAE80051FD17 /* MSPlayer+WebRTC.swift in Sources */,
+				129A4A3B244879810085B9DB /* MNMusicPlayer.swift in Sources */,
 				49DAC06722CDEAE80051FD17 /* MSPlayer+Video.swift in Sources */,
 				49954EAA22EF321900A239FE /* MSPlayer+API.swift in Sources */,
 				49DAC04922CDEA4C0051FD17 /* SSLClientCertificate.swift in Sources */,
@@ -485,6 +492,7 @@
 				49DAC06622CDEAE80051FD17 /* MSPlayer+WKWebview.swift in Sources */,
 				49DAC06D22CDEAE80051FD17 /* SessionDescription.swift in Sources */,
 				49DAC06E22CDEAE80051FD17 /* IceCandidate.swift in Sources */,
+				12D2E3B424485F48001DA82D /* MSPlayer+Sound.swift in Sources */,
 				49DAC06C22CDEAE80051FD17 /* RTCStates.swift in Sources */,
 				49DAC04C22CDEA4C0051FD17 /* WebSocket.swift in Sources */,
 				49DAC07422CDEAE80051FD17 /* WebRTCClient.swift in Sources */,
