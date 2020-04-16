@@ -269,7 +269,8 @@ extension MSPlayer {
     
     public func sendNativeError(_ message : String) {
 //        self.callJS(jsFunctionName: "console.log", data: errorMessage)
-        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: message)
+        let json = jsonFrom(obj: message)
+        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(json!)")
     }
 
     public func muteAudio() {
