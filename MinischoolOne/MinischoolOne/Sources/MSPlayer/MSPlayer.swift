@@ -144,6 +144,7 @@ public class MSPlayer : NSObject {
     
     @objc public func closeAll() {
         DLog.printLog("[mini] closeAll")
+        stopAllSoundEffect()
         self.wkWebView?.stopLoading()
         self.wkWebView = nil
         self.stopWebRTC()

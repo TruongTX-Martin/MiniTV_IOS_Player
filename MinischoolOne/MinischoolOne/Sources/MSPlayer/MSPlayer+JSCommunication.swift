@@ -215,6 +215,8 @@ extension MSPlayer {
     public func stopWebRTC() {
         DLog.printLog("stopWebRTC")
         if let webRTCClient = Client.shared?.webRTCClient {
+            stopAllSoundEffect()
+            soundEffectLayers.removeAll()
             webRTCClient.stopRenderRemoteVideo()
             self.hideVideo(isLocal: false)
             webRTCClient.stopCaptureLocalVideo()
