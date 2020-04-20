@@ -28,7 +28,7 @@ public class MSPlayer : NSObject {
     public var classKeyAndToken: String!
     public var role: String!
     public var serviceAppVersion: String!
-    public var frameworkVersion: String! = "1.3.1"
+    public var frameworkVersion: String! = "1.3.2"
 
     public weak var containerView: UIView!
     public var baseView: UIView!
