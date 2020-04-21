@@ -86,6 +86,8 @@ final class WebRTCClient: NSObject {
         
         self.rtcAudioSession.add(self)
         
+        registerOrientationObserver()
+        forceDeviceOrientationIfNeeded()
         self.startCapture()
     }
     
@@ -466,5 +468,27 @@ extension WebRTCClient: RTCDataChannelDelegate {
     
     func dataChannel(_ dataChannel: RTCDataChannel, didReceiveMessageWith buffer: RTCDataBuffer) {
         self.delegate?.webRTCClient(self, didReceiveData: buffer.data)
+    }
+}
+
+//MARK :- Orientation
+
+extension WebRTCClient {
+   
+    func registerOrientationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(forceDeviceOrientationIfNeeded), name: NSNotification.Name(rawValue: "UIDeviceOrientationDidChangeNotification"), object: nil)
+    }
+    
+    //Force device orientation is always landscape mode
+    @objc func forceDeviceOrientationIfNeeded() {
+        let orientation = UIDevice.current.orientation;
+        
+        switch orientation {
+        case .portrait, .portraitUpsideDown:
+            let value = UIInterfaceOrientation.landscapeLeft.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UIDeviceOrientationDidChangeNotification"), object: nil)
+        default: break
+        }
     }
 }
