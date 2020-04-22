@@ -28,7 +28,14 @@ public class MSPlayer : NSObject {
     public var classKeyAndToken: String!
     public var role: String!
     public var serviceAppVersion: String!
-    public var frameworkVersion: String! = "1.3.2"
+    public var frameworkVersion: String {
+        get {
+            let bundle = Bundle(for: Self.self)
+            let bundleVersion = bundle.infoDictionary?["CFBundleVersion"] ?? "0"
+            let shortVersion = bundle.infoDictionary?["CFBundleShortVersionString"] ?? "1.0"
+            return "\(shortVersion).\(bundleVersion)"
+        }
+    }
 
     public weak var containerView: UIView!
     public var baseView: UIView!
@@ -60,7 +67,7 @@ public class MSPlayer : NSObject {
         
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
-        
+        DLog.printLog("Framework version: \(frameworkVersion)")
         self.containerView = containerView
         
         self.viewController = viewController
@@ -80,7 +87,7 @@ public class MSPlayer : NSObject {
     
     @objc public init?(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
         super.init()
-        
+        DLog.printLog("Framework version: \(frameworkVersion)")
         self.containerView = containerView
         self.viewController = viewController
         self.serviceAppVersion = serviceAppVersion
