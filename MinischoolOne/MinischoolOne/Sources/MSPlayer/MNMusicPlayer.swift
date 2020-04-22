@@ -15,19 +15,19 @@ class MNMusicPlayer : NSObject {
 
     func prepareSound(url : URL) {
         urlIem = url
-        let playerItem = AVPlayerItem.init(url: urlIem!)
-        player = AVPlayer.init(playerItem: playerItem)
+        let playerItem = AVPlayerItem(url: urlIem!)
+        player = AVPlayer(playerItem: playerItem)
         playAudioBackground()
     }
 
     func playAudioBackground() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
-            print("Playback OK")
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+            DLog.printLog("Playback OK")
             try AVAudioSession.sharedInstance().setActive(true)
-            print("Session is Active")
+            DLog.printLog("Session is Active")
         } catch {
-            print(error)
+            DLog.printLog(error)
         }
     }
 
