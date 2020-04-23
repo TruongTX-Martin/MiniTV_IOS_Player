@@ -158,7 +158,7 @@ extension MSPlayer {
             stopAllSoundEffect()
             
         default:
-            printError("\(function) is not defined in ios native")
+            printError("\(function) is not defined in ios native", sendNativeError: false)
         }
     }
     
@@ -194,11 +194,18 @@ extension MSPlayer {
         return nil
     }
 
-    func printError(_ message : String) {
-//        DLog.printLog(message)
+    func printError(_ message : String, sendNativeError isSend: Bool) {
+        //call JS function to send error to Player(web)
+        if isSend {
+            sendNativeError(message)
+        }
+        
         let errorMessage = "Native Framwork Error: \(message)"
-        self.sendNativeError(message)
-        self.deliverError(errorMessage)
+        deliverError(errorMessage)
+    }
+    
+    func printError(_ message : String) {
+        printError(message, sendNativeError: true)
     }
         
     //    JSToNative
