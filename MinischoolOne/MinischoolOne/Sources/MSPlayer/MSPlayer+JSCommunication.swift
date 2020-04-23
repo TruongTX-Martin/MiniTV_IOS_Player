@@ -146,6 +146,9 @@ extension MSPlayer {
                 playSoundEffect(base.id)
             }
             
+        case "playCameraSound":
+            playCameraEffectSound()
+            
         case "stopSound":
             if let base: Base = jsonTo(json: parameterData as? String) {
                 stopSoundEffect(base.id)

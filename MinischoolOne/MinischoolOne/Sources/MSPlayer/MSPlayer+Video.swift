@@ -198,7 +198,7 @@ extension MSPlayer{
         }
         
         DispatchQueue.global().async {
-
+            self.preloadCameraEffectSound()
             for resource in resources {
                 switch resource.assetType {
                 case .image:

@@ -46,4 +46,27 @@ extension MSPlayer {
             audioPlayer.stop()
         }
     }
+    
+    func preloadCameraEffectSound() {
+        let bundle = Bundle(for: Self.self)
+        
+        if let filePath = bundle.path(forResource: "camera_effect", ofType: "mp3") {
+            let url = URL(fileURLWithPath: filePath, relativeTo: nil)
+            
+            let soundPlayer = MNMusicPlayer()
+            soundPlayer.prepareSound(url: url)
+            
+            soundEffectLayers[cameraEffectId] = soundPlayer
+            
+            DLog.printLog("Load camera effect sound")
+        }
+    }
+    
+    func playCameraEffectSound() {
+        playSoundEffect(cameraEffectId)
+    }
+    
+    func stopCameraEffectSound() {
+        stopSoundEffect(cameraEffectId)
+    }
 }

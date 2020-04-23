@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122745782451717B00E7FCF9 /* camera_effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 122745772451717B00E7FCF9 /* camera_effect.mp3 */; };
 		129A4A3B244879810085B9DB /* MNMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A4A3A244879810085B9DB /* MNMusicPlayer.swift */; };
 		12CF0C052445AA440011496E /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF0C042445AA440011496E /* DLog.swift */; };
 		12D2E3B424485F48001DA82D /* MSPlayer+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		122745772451717B00E7FCF9 /* camera_effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera_effect.mp3; sourceTree = "<group>"; };
 		129A4A3A244879810085B9DB /* MNMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNMusicPlayer.swift; sourceTree = "<group>"; };
 		12CF0C042445AA440011496E /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Sound.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		122745722451715600E7FCF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				122745762451716400E7FCF9 /* Sounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		122745762451716400E7FCF9 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				122745772451717B00E7FCF9 /* camera_effect.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		12CF0C002445AA1B0011496E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +331,7 @@
 		49DAC04D22CDEAE80051FD17 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				122745722451715600E7FCF9 /* Resources */,
 				12CF0C002445AA1B0011496E /* Utility */,
 				49DAC04E22CDEAE80051FD17 /* MSPlayer */,
 				49DAC05622CDEAE80051FD17 /* Extensions */,
@@ -454,6 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				122745782451717B00E7FCF9 /* camera_effect.mp3 in Resources */,
 				49DAC03722CDEA4C0051FD17 /* Pods-MinischoolPlayer-acknowledgements.markdown in Resources */,
 				49DAC03D22CDEA4C0051FD17 /* GoogleWebRTC.xcconfig in Resources */,
 				49DAC03C22CDEA4C0051FD17 /* Pods-MinischoolPlayer.release.xcconfig in Resources */,

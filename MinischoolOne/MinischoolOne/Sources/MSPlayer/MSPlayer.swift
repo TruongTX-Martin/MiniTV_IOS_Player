@@ -64,6 +64,8 @@ public class MSPlayer : NSObject {
     var resourceList: [Resource] = []
     
     var timer : Timer?
+    
+    let cameraEffectId = 101010
         
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
