@@ -181,5 +181,5 @@ public class MSPlayer : NSObject {
         } catch let error as NSError {
             DLog.printLog("audioSession error: \(error.localizedDescription)")
         }
-    }    
+    }
 }

@@ -215,6 +215,7 @@ extension MSPlayer {
         DLog.printLog("startWebRTC")
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
+        sendNativeError("Test send native logs")
 //        if let webRTCClient = Client.shared?.webRTCClient {
 //            webRTCClient.speakerOn()
 //        }else{
@@ -295,14 +296,20 @@ extension MSPlayer {
     
     public func sendNativeError(_ message : String) {
 //        self.callJS(jsFunctionName: "console.log", data: errorMessage)
-        let json = jsonFrom(obj: message)
-        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(json!)")
+        let payloadDict = generateLog(message: message)
+        var payLoadString = message
+        if let jsonData = try? JSONSerialization.data(withJSONObject: payloadDict, options: [.prettyPrinted]),let jsonString = String(data: jsonData, encoding: .utf8) {
+            payLoadString = jsonString
+        }
+        
+        DLog.printLog("Error Payload: \(payLoadString)")
+        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(payLoadString)")
     }
 
     public func muteAudio() {
         Client.shared.webRTCClient.muteAudio()
     }
-    
+
     public func unmuteAudio() {
         Client.shared.webRTCClient.unmuteAudio()
     }
@@ -354,5 +361,36 @@ extension MSPlayer {
 //            self.callJSUI(jsFunctionName: jsFunctionName, data: data)
         }
 
+    }
+    
+    public func generateLog(message: String) -> [String: Any] {
+        var logs = [String: Any]()
+        logs["message"] = message
+        logs["serviceAppVersion"] = serviceAppVersion
+        logs["frameworkVersion"] = frameworkVersion
+        
+        //speaker status
+        var speakerLogs = [String: Any]()
+        speakerLogs["status"] = Utils.speakerStatus
+        speakerLogs["volume"] = Utils.volumeOfSpeaker
+        
+        //internet connection status
+        var connectionLogs = [String: Any]()
+        connectionLogs["status"] = Reachability.shared.isConnectedToNetwork() ? "Connected" : "Not Connected"
+        connectionLogs["type"] = Reachability.shared.getConnectionType()
+        
+        //generate device info
+        var deviceLogs = [String: Any]()
+        deviceLogs["name"] = Utils.deviceName
+        deviceLogs["os"] = Utils.deviceOS
+        deviceLogs["model"] = Utils.deviceModel
+        deviceLogs["camera_status"] = Utils.cameraStatus
+        deviceLogs["microphone_status"] = Utils.microPhoneStatus
+        deviceLogs["speaker"] = speakerLogs
+        deviceLogs["network"] = connectionLogs
+        
+        logs["deviceInfo"] = deviceLogs
+        
+        return logs
     }
 }

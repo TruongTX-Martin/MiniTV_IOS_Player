@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		122745782451717B00E7FCF9 /* camera_effect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 122745772451717B00E7FCF9 /* camera_effect.mp3 */; };
+		1299EFD924567BF4005BAC7F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1299EFD824567BF4005BAC7F /* Utils.swift */; };
+		1299EFDE24568B9A005BAC7F /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1299EFDD24568B9A005BAC7F /* UIDevice.swift */; };
+		1299EFE02456C618005BAC7F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1299EFDF2456C618005BAC7F /* Reachability.swift */; };
 		129A4A3B244879810085B9DB /* MNMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A4A3A244879810085B9DB /* MNMusicPlayer.swift */; };
 		12CF0C052445AA440011496E /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF0C042445AA440011496E /* DLog.swift */; };
 		12D2E3B424485F48001DA82D /* MSPlayer+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */; };
@@ -67,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		122745772451717B00E7FCF9 /* camera_effect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera_effect.mp3; sourceTree = "<group>"; };
+		1299EFD824567BF4005BAC7F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1299EFDD24568B9A005BAC7F /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		1299EFDF2456C618005BAC7F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		129A4A3A244879810085B9DB /* MNMusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNMusicPlayer.swift; sourceTree = "<group>"; };
 		12CF0C042445AA440011496E /* DLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		12D2E3B324485F48001DA82D /* MSPlayer+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSPlayer+Sound.swift"; sourceTree = "<group>"; };
@@ -145,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				12CF0C042445AA440011496E /* DLog.swift */,
+				1299EFD824567BF4005BAC7F /* Utils.swift */,
+				1299EFDF2456C618005BAC7F /* Reachability.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 				49DAC05822CDEAE80051FD17 /* SessionDescription.swift */,
 				49DAC05922CDEAE80051FD17 /* IceCandidate.swift */,
 				49954EAE22EFD02100A239FE /* String.swift */,
+				1299EFDD24568B9A005BAC7F /* UIDevice.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1299EFDE24568B9A005BAC7F /* UIDevice.swift in Sources */,
 				49DAC04A22CDEA4C0051FD17 /* Compression.swift in Sources */,
 				49DAC03E22CDEA4C0051FD17 /* Starscream-dummy.m in Sources */,
 				49954EAF22EFD02100A239FE /* String.swift in Sources */,
@@ -504,6 +514,7 @@
 				49DAC04922CDEA4C0051FD17 /* SSLClientCertificate.swift in Sources */,
 				49DAC06822CDEAE80051FD17 /* Client.swift in Sources */,
 				49DAC03922CDEA4C0051FD17 /* Pods-MinischoolPlayer-dummy.m in Sources */,
+				1299EFE02456C618005BAC7F /* Reachability.swift in Sources */,
 				49DAC06922CDEAE80051FD17 /* MSPlayer.swift in Sources */,
 				49E7F43322D5DD18002F6F46 /* MSPlayer+JSCommunication.swift in Sources */,
 				493B388922CEE94E00D19AC0 /* MSPlayer+Layout.swift in Sources */,
@@ -516,6 +527,7 @@
 				49DAC06C22CDEAE80051FD17 /* RTCStates.swift in Sources */,
 				49DAC04C22CDEA4C0051FD17 /* WebSocket.swift in Sources */,
 				49DAC07422CDEAE80051FD17 /* WebRTCClient.swift in Sources */,
+				1299EFD924567BF4005BAC7F /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
