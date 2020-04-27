@@ -215,7 +215,6 @@ extension MSPlayer {
         DLog.printLog("startWebRTC")
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
-        sendNativeError("Test send native logs")
 //        if let webRTCClient = Client.shared?.webRTCClient {
 //            webRTCClient.speakerOn()
 //        }else{
