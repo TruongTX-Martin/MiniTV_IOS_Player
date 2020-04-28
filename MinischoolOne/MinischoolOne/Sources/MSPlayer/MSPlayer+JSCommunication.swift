@@ -295,14 +295,8 @@ extension MSPlayer {
     
     public func sendNativeError(_ message : String) {
 //        self.callJS(jsFunctionName: "console.log", data: errorMessage)
-        let payloadDict = generateLog(message: message)
-        var payLoadString = message
-        if let jsonData = try? JSONSerialization.data(withJSONObject: payloadDict, options: [.prettyPrinted]),let jsonString = String(data: jsonData, encoding: .utf8) {
-            payLoadString = jsonString
-        }
-        
-        DLog.printLog("Error Payload: \(payLoadString)")
-        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(payLoadString)")
+        let json = jsonFrom(obj: message)
+        self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(json!)")
     }
 
     public func muteAudio() {
@@ -362,9 +356,8 @@ extension MSPlayer {
 
     }
     
-    public func generateLog(message: String) -> [String: Any] {
+    public func generateLog() -> [String: Any] {
         var logs = [String: Any]()
-        logs["message"] = message
         logs["serviceAppVersion"] = serviceAppVersion
         logs["frameworkVersion"] = frameworkVersion
         

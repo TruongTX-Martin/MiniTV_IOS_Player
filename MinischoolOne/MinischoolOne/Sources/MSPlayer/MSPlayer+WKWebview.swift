@@ -16,8 +16,16 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         let contentController = WKUserContentController()
         contentController.add(self, name: "jsToNative")
         
-        let js = "window.isNative = true;" +
-        "window.NativeInfo = {serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion)'}"
+        let payloadDict = generateLog()
+        var payLoadString = "{serviceAppVersion: '\(self.serviceAppVersion!)', frameworkVersion: '\(self.frameworkVersion)'}"
+        if let jsonData = try? JSONSerialization.data(withJSONObject: payloadDict, options: [.prettyPrinted]),let jsonString = String(data: jsonData, encoding: .utf8) {
+            payLoadString = jsonString
+        }
+        
+        let js = "window.isNative = true;" + "window.NativeInfo = " + payLoadString
+        
+        DLog.printLog("JS body: \(js)")
+        
         let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         contentController.addUserScript(userScript)
         
