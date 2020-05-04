@@ -189,7 +189,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         if message.name == "jsToNative" {
             
             if let dictionary: [String: String] = message.body as? Dictionary {
-
+                DLog.printLog("JS to Native body: \(dictionary)")
                 self.JSToNative(dictionary: dictionary)
             }
         }

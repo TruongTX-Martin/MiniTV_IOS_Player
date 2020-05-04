@@ -66,9 +66,16 @@ public struct MovieClipFrame: Codable{
 }
 
 
-public struct Base: Codable{
+public struct Base: Codable {
     
     var id: Int
+    var options: SoundOptions?
+}
+
+public struct SoundOptions: Codable {
+    var loop: Bool = false
+    var volume: Float = 1.0
+    
 }
 
 public struct Url: Codable{

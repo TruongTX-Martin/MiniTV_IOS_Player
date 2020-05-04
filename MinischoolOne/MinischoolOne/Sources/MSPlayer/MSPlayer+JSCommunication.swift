@@ -12,7 +12,6 @@ import WebRTC
 extension MSPlayer {
     
     public func JSToNative(dictionary: [String: Any]) {
-        
         guard let function = dictionary["function"] as? String else { return }
         DLog.printLog("JSToNative function: \(function)")
         
@@ -143,7 +142,7 @@ extension MSPlayer {
             
         case "playSound":
             if let base: Base = jsonTo(json: parameterData as? String) {
-                playSoundEffect(base.id)
+                playSoundEffect(base.id, options: base.options)
             }
             
         case "playCameraSound":

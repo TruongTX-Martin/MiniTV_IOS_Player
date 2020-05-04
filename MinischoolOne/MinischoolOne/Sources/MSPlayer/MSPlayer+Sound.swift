@@ -21,13 +21,13 @@ extension MSPlayer {
         }
     }
     
-    func playSoundEffect(_ soundId : Int) {
+    func playSoundEffect(_ soundId : Int, options: SoundOptions?) {
         guard let audioPlayer = soundEffectLayers[soundId] else {
             DLog.printLog("Sound ID \(soundId) does not exists")
             return
         }
         DLog.printLog("Play sound effect id \(soundId) url = \(String(describing: audioPlayer.urlIem?.absoluteString))")
-        audioPlayer.play()
+        audioPlayer.play(options)
     }
     
     func stopSoundEffect(_ soundId : Int) {
@@ -63,7 +63,7 @@ extension MSPlayer {
     }
     
     func playCameraEffectSound() {
-        playSoundEffect(cameraEffectId)
+        playSoundEffect(cameraEffectId, options: nil)
     }
     
     func stopCameraEffectSound() {
