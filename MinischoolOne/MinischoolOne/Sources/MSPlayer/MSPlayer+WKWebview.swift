@@ -33,7 +33,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         webConfiguration.allowsInlineMediaPlayback = true
         webConfiguration.allowsPictureInPictureMediaPlayback = true
         webConfiguration.mediaTypesRequiringUserActionForPlayback = []
-
+        
         webConfiguration.preferences.javaScriptEnabled = true
         webConfiguration.userContentController = contentController
         
@@ -49,7 +49,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         wkWebView.backgroundColor = UIColor.clear
         wkWebView.scrollView.backgroundColor = UIColor.clear
         wkWebView.scrollView.bounces = false
-
+        
         wkWebView.uiDelegate = self
         wkWebView.navigationDelegate = self
         wkWebView.scrollView.delegate = self
@@ -63,21 +63,21 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         let localFile = Bundle.main.path(forResource: "page", ofType: "html")
         let url = URL(fileURLWithPath: localFile!)
         let request = URLRequest(url: url)
-
+        
         wkWebView.load(request)
     }
-
+    
     
     public func openUrlWK(_ urlString: String) {
         let url = URL(string: urlString)
-
+        
         DLog.printLog("openUrl containerView.frame: \(self.baseView.frame)")
         let request = URLRequest(url: url!)
         wkWebView.load(request)
     }
-
+    
     public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
-                 completionHandler: @escaping () -> Void) {
+                        completionHandler: @escaping () -> Void) {
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -87,12 +87,12 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
         if let presenter = alertController.popoverPresentationController {
             presenter.sourceView = webView
         }
-
+        
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
-                 completionHandler: @escaping (Bool) -> Void) {
+                        completionHandler: @escaping (Bool) -> Void) {
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         
@@ -111,7 +111,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     }
     
     public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo,
-                 completionHandler: @escaping (String?) -> Void) {
+                        completionHandler: @escaping (String?) -> Void) {
         
         let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .actionSheet)
         
@@ -139,19 +139,17 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     
     //MARK: - UIScrollViewDelegate
     public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-             scrollView.pinchGestureRecognizer?.isEnabled = false
+        scrollView.pinchGestureRecognizer?.isEnabled = false
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let url = webView.url
         DLog.printLog("didFinish \(url as Any)")
-        // self.stopWebRTC()
     }
     
     public func webView(_ webView: WKWebView,
-                 didReceive challenge: URLAuthenticationChallenge,
-                 completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+                        didReceive challenge: URLAuthenticationChallenge,
+                        completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
     {
         if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
         {
@@ -181,7 +179,7 @@ extension MSPlayer : WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler,
     
     //Called from JS
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-
+        
         if self.wkWebView == nil {
             return
         }

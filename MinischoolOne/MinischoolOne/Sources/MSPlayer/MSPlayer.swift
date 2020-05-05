@@ -18,12 +18,11 @@ public protocol MSPlayerDelegate: class {
 
 @objc(MSPlayer)
 public class MSPlayer : NSObject {
-
+    
     internal var localVideoView: UIView!
     internal var remoteVideoView: UIView!
     internal var wkWebView: WKWebView!
-//    internal var uiWebView: UIWebView!
-
+    
     public var serverAddress: String!
     public var classKeyAndToken: String!
     public var role: String!
@@ -36,7 +35,7 @@ public class MSPlayer : NSObject {
             return "\(shortVersion).\(bundleVersion)"
         }
     }
-
+    
     public weak var containerView: UIView!
     public var baseView: UIView!
     public var backgroundColorView: UIView!
@@ -66,7 +65,7 @@ public class MSPlayer : NSObject {
     var timer : Timer?
     
     let cameraEffectId = 101010
-        
+    
     @objc public init(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, serverAddress: String, classKeyAndToken: String, role: String) {
         super.init()
         DLog.printLog("Framework version: \(frameworkVersion)")
@@ -80,12 +79,12 @@ public class MSPlayer : NSObject {
         self.classKeyAndToken = classKeyAndToken
         self.role = role
         
-//        urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
+        //        urlComplete = "\(self.serverAddress!)/student.html?hash=\(self.classKeyAndToken!)&role=\(self.role!)&playsinline=1"
         urlComplete = "\(self.serverAddress!)/student/\(self.classKeyAndToken!)&role=\(self.role!)"
-
+        
         self.initialize()
     }
-
+    
     
     @objc public init?(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
         super.init()
@@ -97,21 +96,19 @@ public class MSPlayer : NSObject {
         self.serverAddress = url
         
         urlComplete = url
-
+        
         self.initialize()
         
         self.classKeyAndToken = url.betweenChar("/", "?")
     }
-
+    
     private func initialize() {
-//        self.soundPrepare()
-        
         UIApplication.shared.isIdleTimerDisabled = true
         
         self.initBackgroundView()
         
         self.initWKWebview()
-
+        
         observer = self.baseView.layer.observe(\.bounds) { object, _ in
             DLog.printLog("baseView changing bounds: \(object.bounds)")
             self.relocateLocalVideoFrame()
@@ -120,9 +117,9 @@ public class MSPlayer : NSObject {
     }
     
     private func initBackgroundView() {
-
+        
         DLog.printLog("initBackgroundView self.containerView.frame: \(self.containerView.frame)")
-
+        
         let bounds = self.containerView.bounds
         
         if bounds.width / bounds.height <= 16 / 9 { // ex: ipad
@@ -139,11 +136,11 @@ public class MSPlayer : NSObject {
         self.containerView.backgroundColor = UIColor.black
         self.containerView.addSubview(baseView)
         self.baseView.autoresizingMask    = [.flexibleHeight, .flexibleWidth]
-
+        
         self.baseView.center = self.containerView.center
         
         DLog.printLog("initBackgroundView self.baseView.frame: \(self.baseView.frame)")
-
+        
     }
     
     @objc public func run() {

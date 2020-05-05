@@ -25,7 +25,7 @@ class MNMusicPlayer : NSObject {
         }
     }
     
-    //volume level: 0,1,2,3,4
+    //volume level: 0.05~1.0
     var volumeLevel: Float = 1.0 {
         didSet {
             player.volume = volumeLevel

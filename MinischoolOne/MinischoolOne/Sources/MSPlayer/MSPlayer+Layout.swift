@@ -10,36 +10,36 @@ import Foundation
 
 extension MSPlayer {
     /*
-    public func bringLocalVideoToFront() {
-        DLog.printLog("bringLocalVideoToFront")
-        self.baseView.bringSubviewToFront(self.localVideoView)
-    }
-    
-    public func bringRemoteVideoToFront() {
-        DLog.printLog("bringRemoteVideoToFront")
-        self.baseView.bringSubviewToFront(self.remoteVideoView)
-    }
-    
-    public func bringWebViewToFront() {
-        DLog.printLog("bringWebViewToFront")
-        self.baseView.bringSubviewToFront(self.wkWebView)
-    }
-    
-    public func sendLocalVideoToBack() {
-        DLog.printLog("sendLocalVideoToBack")
-        self.baseView.sendSubviewToBack(self.localVideoView)
-    }
-    
-    public func sendRemoteVideoToBack() {
-        DLog.printLog("sendRemoteVideoToBack")
-        self.baseView.sendSubviewToBack(self.remoteVideoView)
-    }
-    
-    public func sendWebViewToBack() {
-        DLog.printLog("sendWebViewToBack")
-        self.baseView.sendSubviewToBack(self.wkWebView)
-    }
-    */
+     public func bringLocalVideoToFront() {
+     DLog.printLog("bringLocalVideoToFront")
+     self.baseView.bringSubviewToFront(self.localVideoView)
+     }
+     
+     public func bringRemoteVideoToFront() {
+     DLog.printLog("bringRemoteVideoToFront")
+     self.baseView.bringSubviewToFront(self.remoteVideoView)
+     }
+     
+     public func bringWebViewToFront() {
+     DLog.printLog("bringWebViewToFront")
+     self.baseView.bringSubviewToFront(self.wkWebView)
+     }
+     
+     public func sendLocalVideoToBack() {
+     DLog.printLog("sendLocalVideoToBack")
+     self.baseView.sendSubviewToBack(self.localVideoView)
+     }
+     
+     public func sendRemoteVideoToBack() {
+     DLog.printLog("sendRemoteVideoToBack")
+     self.baseView.sendSubviewToBack(self.remoteVideoView)
+     }
+     
+     public func sendWebViewToBack() {
+     DLog.printLog("sendWebViewToBack")
+     self.baseView.sendSubviewToBack(self.wkWebView)
+     }
+     */
     public func relocateLocalVideoFrame() {
         if let frame = self.localVideoViewOriginalFrame {
             self.localVideoView.frame = self.getModifiedFrame(frame: frame)
@@ -70,15 +70,10 @@ extension MSPlayer {
         DLog.printLog("setBackground: \(id)")
         if let image =  self.backgroundImages[id] {
             self.backgroundImage = UIImageView(frame: self.baseView.bounds)
-//            self.backgroundImage = UIImageView(frame: CGRect(x:0, y:100, width: 800, height: 500))
             self.backgroundImage.image = image
             self.backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFit
             
             self.insertSubview(view: self.backgroundImage, z: ZINDEX.Background.rawValue)
-
-//            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-//            backgroundImage.addGestureRecognizer(tap)
-//            backgroundImage.isUserInteractionEnabled = true
             
         }else{
             DLog.printLog("setBackground: no image - \(id)")
@@ -96,20 +91,20 @@ extension MSPlayer {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         DLog.printLog("handleTap")
-
+        
         self.wkWebView.superview?.bringSubviewToFront(self.wkWebView)
-
+        
         for v in self.baseView.subviews {
             DLog.printLog("\(v.tag): \(v.debugDescription)")
         }
     }
-
+    
     public func insertSubview(view: UIView, z: CGFloat) {
         //z index와 subview의 index는 반대임. subview목록에서 0번째 뷰가 맨 뒤에 위치하게 됨
         let parent = self.baseView!
         let oldCount = parent.subviews.count
         DLog.printLog("insertSubview: oldCount - \(oldCount)")
-
+        
         view.tag = Int(z)
         if oldCount == 0 {
             parent.addSubview(view)
@@ -127,9 +122,9 @@ extension MSPlayer {
                 parent.insertSubview(view, at: 0)
             }
         }
-
+        
         self.baseView.setNeedsDisplay()
-
+        
         for v in parent.subviews {
             DLog.printLog("\(v.tag): \(v.debugDescription)")
         }

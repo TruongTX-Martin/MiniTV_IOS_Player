@@ -13,9 +13,9 @@ public class Client {
     static var shared : Client!
     
     var webRTCClient: WebRTCClient!
-
-    public init(webRTCParameter : WebRTCParameter) {
     
+    public init(webRTCParameter : WebRTCParameter) {
+        
         self.webRTCClient = WebRTCClient(webRTCParameter)
     }
     

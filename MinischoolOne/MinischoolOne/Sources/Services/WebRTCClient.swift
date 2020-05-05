@@ -44,14 +44,14 @@ final class WebRTCClient: NSObject {
     private var localVideoMandatory: [String: Int]?
     
     public var videoCaptureFormat: AVCaptureDevice.Format?
-
+    
     @available(*, unavailable)
     override init() {
         fatalError("WebRTCClient:init is unavailable")
     }
     
     required init(_ webRTCParameter : WebRTCParameter) {
-
+        
         let iceConfiguration = webRTCParameter.iceConfiguration
         let constraints = webRTCParameter.constraints
         
@@ -60,12 +60,13 @@ final class WebRTCClient: NSObject {
         let config = RTCConfiguration()
         config.iceServers = [
             RTCIceServer(urlStrings: iceConfiguration.iceServers.map({ (url) -> String in
-            return url.urls
-        }), username:  iceConfiguration.iceServers.first(where: { (url) -> Bool in
-            return url.username != nil
-        })?.username, credential: iceConfiguration.iceServers.first(where: { (url) -> Bool in
-            return url.credential != nil
-        })?.credential )]
+                return url.urls
+            }), username:  iceConfiguration.iceServers.first(where: { (url) -> Bool in
+                return url.username != nil
+            })?.username, credential: iceConfiguration.iceServers.first(where: { (url) -> Bool in
+                return url.credential != nil
+            })?.credential )]
+        
         // Unified plan is more superior than planB
         config.sdpSemantics = .unifiedPlan
         
@@ -73,12 +74,12 @@ final class WebRTCClient: NSObject {
         config.continualGatheringPolicy = .gatherContinually
         
         let mandatoryConstraints = [kRTCMediaConstraintsOfferToReceiveAudio: constraints.audio ? kRTCMediaConstraintsValueTrue : kRTCMediaConstraintsValueFalse,
-                                            kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue]
+                                    kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue]
         let rTCMediaConstraints = RTCMediaConstraints(mandatoryConstraints: mandatoryConstraints,
-                                              optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
-
+                                                      optionalConstraints: ["DtlsSrtpKeyAgreement":kRTCMediaConstraintsValueTrue])
+        
         self.peerConnection = WebRTCClient.factory.peerConnection(with: config, constraints: rTCMediaConstraints, delegate: nil)
-
+        
         super.init()
         self.createMediaSenders()
         self.configureAudioSession()
@@ -122,7 +123,6 @@ final class WebRTCClient: NSObject {
     }
     
     func set(remoteSdp: RTCSessionDescription, completion: @escaping (Error?) -> ()) {
-//        DLog.printLog("set remoteSdp: \(remoteSdp)")
         self.peerConnection.setRemoteDescription(remoteSdp, completionHandler: completion)
     }
     
@@ -131,10 +131,9 @@ final class WebRTCClient: NSObject {
     }
     
     // MARK: Media
-//    func startCaptureLocalVideo(renderer: RTCVideoRenderer) {
     func startCapture() {
         guard let capturer = self.videoCapturer as? RTCCameraVideoCapturer else { return }
-
+        
         guard let frontCamera = (RTCCameraVideoCapturer.captureDevices().first { $0.position == .front }) else { return }
         
         let maxFrameRate = self.localVideoMandatory?["maxFrameRate"] ?? 10
@@ -144,7 +143,7 @@ final class WebRTCClient: NSObject {
         // 포맷 설정
         let targetWidth = Int32( maxWidth )
         let targetHeight = Int32( maxHeight )
-//        var selectedFormat:AVCaptureDevice.Format?
+        
         var currentDiff = INT_MAX
         
         let formats = RTCCameraVideoCapturer.supportedFormats(for: frontCamera )
@@ -209,17 +208,15 @@ final class WebRTCClient: NSObject {
         // Audio
         let audioTrack0 = self.createAudioTrack("audio0")
         self.peerConnection.add(audioTrack0, streamIds: [streamId])
-
+        
         let audioTrack1 = self.createAudioTrack("audio1")
         self.peerConnection.add(audioTrack1, streamIds: [streamId])
-
+        
         // Video
         let videoTrack = self.createVideoTrack()
         self.localVideoTrack = videoTrack
         self.peerConnection.add(videoTrack, streamIds: [streamId])
         self.remoteVideoTrack = self.peerConnection.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
-        
-        // No Data in native part
     }
     
     private func createAudioTrack(_ trackId: String) -> RTCAudioTrack {
@@ -270,8 +267,6 @@ extension WebRTCClient: RTCPeerConnectionDelegate {
         self.delegate?.webRTCClient(self, didChangeConnectionState: newState)
         if newState == RTCIceConnectionState.connected {
             self.muteAudio()
-            //self.speakerOn()
-//            self.speakerForceOn()
         }
     }
     
@@ -309,8 +304,6 @@ extension WebRTCClient: RTCAudioSessionDelegate {
             printIfNotEqual("outputs", s1: prev.portName, s2: curr.portName)
         }
         DLog.printLog(self.rtcAudioSession.description)
-//        DLog.printLog("previousRoute:\n\(previousRoute.debugDescription)")
-//        DLog.printLog("currentRoute:\n\(session.currentRoute.debugDescription)")
     }
     func printIfNotEqual(_ description:String, s1:String, s2:String) {
         if s1 != s2 {
@@ -420,7 +413,7 @@ extension WebRTCClient {
     // Force speaker
     public func speakerForceOn() {
         DLog.printLog("[mini] speakerForceOn")
-
+        
         let audioSession = AVAudioSession.sharedInstance()
         
         do {
@@ -434,7 +427,7 @@ extension WebRTCClient {
     
     func speakerOn() {
         DLog.printLog("[mini] speakerOn")
-
+        
         self.audioQueue.async { [weak self] in
             guard let self = self else {
                 DLog.printLog("not initialized")
@@ -443,7 +436,6 @@ extension WebRTCClient {
             self.rtcAudioSession.lockForConfiguration()
             do {
                 try self.rtcAudioSession.setCategory(AVAudioSession.Category.playAndRecord.rawValue, with: AVAudioSession.CategoryOptions.defaultToSpeaker)
-//                try self.rtcAudioSession.overrideOutputAudioPort(.speaker)
             } catch let error {
                 debugPrint("Couldn't force audio to speaker: \(error)")
             }
@@ -455,7 +447,7 @@ extension WebRTCClient {
     private func setAudioEnabled(_ isEnabled: Bool) {
         let inputTracks = self.peerConnection.transceivers.compactMap { return $0.sender.track as? RTCAudioTrack }
         inputTracks.forEach { $0.isEnabled = isEnabled }
-
+        
         let outputTracks = self.peerConnection.transceivers.compactMap { return $0.receiver.track as? RTCAudioTrack }
         outputTracks.forEach { $0.isEnabled = isEnabled }
     }
@@ -474,7 +466,7 @@ extension WebRTCClient: RTCDataChannelDelegate {
 //MARK :- Orientation
 
 extension WebRTCClient {
-   
+    
     func registerOrientationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(forceDeviceOrientationIfNeeded), name: NSNotification.Name(rawValue: "UIDeviceOrientationDidChangeNotification"), object: nil)
     }

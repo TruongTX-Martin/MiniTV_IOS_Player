@@ -65,9 +65,9 @@ struct Utils {
         var status = false
         
         for output in currentRoute.outputs {
-
+            
             switch output.portType {
-
+                
             case .builtInSpeaker:
                 status = true
                 

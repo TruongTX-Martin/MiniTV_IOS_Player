@@ -19,29 +19,29 @@ public struct Frame: Codable {
     var canvasOver: Bool = true
 }
 
-public struct WebRTCParameter: Codable{
+public struct WebRTCParameter: Codable {
     
     var constraints: AVConstraint
     var iceConfiguration: ICEConfiguration
 }
 
-public struct AVConstraint: Codable{
+public struct AVConstraint: Codable {
     
     var audio: Bool
     var video: [String: [String: Int]]
 }
 
-public struct ICEConfiguration: Codable{
+public struct ICEConfiguration: Codable {
     
     var iceServers: [Url]
 }
 
-public struct ResourceList: Codable{
+public struct ResourceList: Codable {
     
     var resourceList: [Resource]
 }
 
-public struct Resource: Codable{
+public struct Resource: Codable {
     
     var id: Int
     var src: String
@@ -53,7 +53,7 @@ public enum AssetType: String, Codable {
     case sound
     case video
 }
-public struct MovieClipFrame: Codable{
+public struct MovieClipFrame: Codable {
     
     var id: Int = 0
     
@@ -78,7 +78,7 @@ public struct SoundOptions: Codable {
     
 }
 
-public struct Url: Codable{
+public struct Url: Codable {
     var credential: String?
     var url: String
     var urls: String

@@ -12,7 +12,7 @@ import WebRTC
 extension MSPlayer{
     
     func createCaptureVideo(isLocal: Bool, frame: Frame) {
-
+        
         if Client.shared == nil {
             return
         }
@@ -24,7 +24,7 @@ extension MSPlayer{
         }
         
         let modifiedFrame = self.getModifiedFrame(frame: frame)
-
+        
         // video view 생성
         
         if isLocal {
@@ -38,14 +38,10 @@ extension MSPlayer{
         }
         
         let videoView = UIView(frame: modifiedFrame)
-
+        
         let z = frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue + 1
         self.insertSubview(view: videoView, z: z)
-
-//        let renderer = RTCMTLVideoView(frame: videoView.frame)
-//        renderer.rotationOverride = nil
-//        let scaleY = self.getCameraCaptureScaleY(size: CGSize(width: frame.width, height: frame.height))
-
+        
         let renderer = RTCEAGLVideoView(frame: videoView.frame)
         let scaleY = CGFloat(1.0)
         DLog.printLog("scaleY = \(scaleY)")
@@ -58,9 +54,9 @@ extension MSPlayer{
             Client.shared.webRTCClient.renderRemoteVideo(to: renderer)
         }
         self.embedView(renderer, into: videoView)
-
+        
         self.enableMoving(view: videoView)
-
+        
         if isLocal {
             self.localVideoView = videoView
         }else{
@@ -70,7 +66,7 @@ extension MSPlayer{
     
     func getCameraCaptureScaleY(size:CGSize) -> CGFloat{
         var scaleY = self.baseView.frame.height / self.containerView.frame.height
-
+        
         guard let format = Client.shared?.webRTCClient.videoCaptureFormat else { return scaleY }
         
         DLog.printLog(format.formatDescription)
@@ -79,21 +75,16 @@ extension MSPlayer{
         
         let H1 = size.height
         let W1 = size.width
-
+        
         let H2 = CGFloat(camera.height)
         let W2 = CGFloat(camera.width)
         
-
-        // W1 : H1 = W2 : H2 * x
-        // H1*W2 = W1*H2*x
-        // x = H1 * W2 / (W1 * H2)
-        
         scaleY = H1 * W2 / (W1 * H2)
-
+        
         DLog.printLog("\(W1) : \(H1) = \(W2) : \(H2) * \(scaleY)")
-
+        
         return scaleY
-
+        
     }
     
     func destroyVideo(isLocal: Bool) {
@@ -123,25 +114,25 @@ extension MSPlayer{
     
     private func embedView(_ view: UIView, into parentView: UIView) {
         DLog.printLog("embedView - view.frame: \(view.frame)")
-
+        
         parentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         parentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
-                                                                    options: [],
-                                                                    metrics: nil,
-                                                                    views: ["view":view]))
-
+                                                                 options: [],
+                                                                 metrics: nil,
+                                                                 views: ["view":view]))
+        
         parentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
-                                                                    options: [],
-                                                                    metrics: nil,
-                                                                    views: ["view":view]))
+                                                                 options: [],
+                                                                 metrics: nil,
+                                                                 views: ["view":view]))
         parentView.layoutIfNeeded()
     }
     
     @objc func timerCallback(){
-
+        
         DLog.printLog("timerCallback movieClipLayers.count: \(self.movieClips.count)")
-
+        
         var countReadyToPlay = 0
         for item in self.movieClipLayers {
             let movieClipLayer = item.value
@@ -231,10 +222,9 @@ extension MSPlayer{
         let view = UIView(frame: modifiedFrame)
         view.layer.addSublayer(playerLayer)
         self.movieClips[frame.id] = view
-
+        
         self.insertSubview(view: view, z: frame.canvasOver ? frame.zIndex : frame.zIndex + ZINDEX.Canvas.rawValue)
         
-//        self.enableMoving(view: view)
         if let player = playerLayer.player {
             DLog.printLog("player.play()")
             player.play()
@@ -243,7 +233,7 @@ extension MSPlayer{
     
     func destoryMovieClip(id: Int) {
         DLog.printLog("destoryMovieClip movieClipLayers.count: \(self.movieClips.count)")
-
+        
         guard let playerLayer = self.movieClipLayers[id] else{
             return
         }
@@ -260,7 +250,7 @@ extension MSPlayer{
     }
     
     func enableMoving(view: UIView) {
-
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_: )))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(panGesture)

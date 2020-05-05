@@ -28,10 +28,8 @@ extension MSPlayer {
         switch function {
             
         case "startWebRTC" :
-            DLog.printLog("startWebRTC start")
             if let webRTCParameter : WebRTCParameter = self.jsonTo(json: parameterData) {
                 self.startWebRTC(webRTCParameter)
-                //self.muteAudio()
             }
             
         case "stopWebRTC" :
@@ -179,7 +177,7 @@ extension MSPlayer {
         }
         return nil
     }
-
+    
     func jsonFrom<T: Codable>(obj: T) -> String? {
         
         do {
@@ -192,7 +190,7 @@ extension MSPlayer {
         }
         return nil
     }
-
+    
     func printError(_ message : String, sendNativeError isSend: Bool) {
         //call JS function to send error to Player(web)
         if isSend {
@@ -206,19 +204,12 @@ extension MSPlayer {
     func printError(_ message : String) {
         printError(message, sendNativeError: true)
     }
-        
-    //    JSToNative
     
     //    WebRTC Control
     public func startWebRTC(_ webRTCParameter : WebRTCParameter) {
         DLog.printLog("startWebRTC")
         Client.prepare(webRTCParameter : webRTCParameter)
         Client.shared.webRTCClient.delegate = self
-//        if let webRTCClient = Client.shared?.webRTCClient {
-//            webRTCClient.speakerOn()
-//        }else{
-//            DLog.printLog("webRTCClient is not ready, can't speaker on")
-//        }
     }
     
     public func stopWebRTC() {
@@ -231,8 +222,7 @@ extension MSPlayer {
             webRTCClient.stopCaptureLocalVideo()
             self.hideVideo(isLocal: true)
             webRTCClient.closePeerConnection()
-            //self.speakerOff()
-        }else{
+        } else {
             printError("webRTCClient is not ready, nothing to stop")
         }
     }
@@ -262,46 +252,51 @@ extension MSPlayer {
                 self.printError(error.localizedDescription)
                 return
             }
-
+            
             Client.shared.webRTCClient.answer { (localSdp) in
                 self.sendAnswer(SessionDescription(from: localSdp))
             }
         }
     }
+    
     public func  onReceiveAnswer(_ sdp: SessionDescription) {
         printError("onReceiveAnswer has not been implemented")
     }
+    
     public func  onReceiveIceCandidate(_ candidate: IceCandidate) {
         Client.shared.webRTCClient.set(remoteCandidate: candidate.rtcIceCandidate)
     }
+    
     //    NativeToJS
     public func  sendOffer(_ sdp: SessionDescription) {
         let json = jsonFrom(obj: sdp)
         self.callJS(jsFunctionName: "NativeToJS.sendOffer", data: "\(json!)")
     }
+    
     public func  sendAnswer(_ sdp: SessionDescription) {
         let json = jsonFrom(obj: sdp)
         self.callJS(jsFunctionName: "NativeToJS.sendAnswer", data: "\(json!)")
     }
+    
     public func  sendIceCandidate(_ candidate: IceCandidate) {
         let json = jsonFrom(obj: candidate)
         self.callJS(jsFunctionName: "NativeToJS.sendIceCandidate", data: "\(json!)")
     }
+    
     public func  loadResourceDone() {
         DLog.printLog("loadResourceDone")
         self.callJS(jsFunctionName: "NativeToJS.loadResourceDone", data: "")
     }
     
     public func sendNativeError(_ message : String) {
-//        self.callJS(jsFunctionName: "console.log", data: errorMessage)
         let json = jsonFrom(obj: message)
         self.callJS(jsFunctionName: "NativeToJS.sendNativeError", data: "\(json!)")
     }
-
+    
     public func muteAudio() {
         Client.shared.webRTCClient.muteAudio()
     }
-
+    
     public func unmuteAudio() {
         Client.shared.webRTCClient.unmuteAudio()
     }
@@ -309,10 +304,9 @@ extension MSPlayer {
     public func speakerOff() {
         Client.shared.webRTCClient.speakerOff()
     }
-
+    
     public func speakerOn() {
         Client.shared.webRTCClient.speakerOn()
-//        Client.shared.webRTCClient.speakerOn1()
     }
     
     public func onLoadPageStart() {
@@ -329,7 +323,7 @@ extension MSPlayer {
     }
     
     public func deliverError(_ message: String) {
-
+        
         let error = MSPlayerError.runtimeError(message)
         self.delegate?.MSPlayer(self, errorOccured: error)
     }
@@ -341,18 +335,13 @@ extension MSPlayer {
     public func openUrl(_ urlString: String) {
         if self.useWKWebview {
             self.openUrlWK(urlString)
-        } else {
-//            self.openUrlUI(urlString)
         }
     }
     
     public func callJS(jsFunctionName: String, data: String) {
         if self.useWKWebview {
             self.callJSWK(jsFunctionName: jsFunctionName, data: data)
-        } else {
-//            self.callJSUI(jsFunctionName: jsFunctionName, data: data)
         }
-
     }
     
     public func generateLog() -> [String: Any] {

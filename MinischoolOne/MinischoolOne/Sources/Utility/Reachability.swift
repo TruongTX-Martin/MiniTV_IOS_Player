@@ -28,7 +28,7 @@ enum RadioAccessTechnology: String {
     case revA = "CTRadioAccessTechnologyCDMAEVDORevA"
     case revB = "CTRadioAccessTechnologyCDMAEVDORevB"
     case wcdma = "CTRadioAccessTechnologyWCDMA"
-
+    
     var description: String {
         switch self {
         case .gprs, .edge, .cdma:
