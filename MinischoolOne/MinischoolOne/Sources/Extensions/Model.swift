@@ -80,7 +80,7 @@ public struct SoundOptions: Codable {
 
 public struct Url: Codable {
     var credential: String?
-    var url: String
+    var url: String?
     var urls: String
     var username: String?
 }
