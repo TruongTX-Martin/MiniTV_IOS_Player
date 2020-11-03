@@ -137,6 +137,7 @@ extension MSPlayer {
         case "goBack" :
             self.stopWebRTC()
             self.closeAll()
+            onBackPress!()
             
         case "playSound":
             if let base: Base = jsonTo(json: parameterData as? String) {

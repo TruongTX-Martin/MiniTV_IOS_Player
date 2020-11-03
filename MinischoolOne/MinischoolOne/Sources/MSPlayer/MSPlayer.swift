@@ -26,6 +26,7 @@ public class MSPlayer : NSObject {
     public var serverAddress: String!
     public var classKeyAndToken: String!
     public var role: String!
+    public var onBackPress: (()->Void)?
     public var serviceAppVersion: String!
     public var frameworkVersion: String {
         get {
@@ -86,7 +87,7 @@ public class MSPlayer : NSObject {
     }
     
     
-    @objc public init?(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String) {
+    @objc public init?(_ containerView: UIView, viewController: UIViewController?, serviceAppVersion: String, url: String, onBackPress: @escaping ()->Void) {
         super.init()
         DLog.printLog("Framework version: \(frameworkVersion)")
         self.containerView = containerView
@@ -94,6 +95,7 @@ public class MSPlayer : NSObject {
         self.serviceAppVersion = serviceAppVersion
         
         self.serverAddress = url
+        self.onBackPress = onBackPress
         
         urlComplete = url
         
